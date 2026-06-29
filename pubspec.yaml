@@ -1,0 +1,70 @@
+name: petly
+description: "Petly — local-first pet health and care manager."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+
+  # State management
+  flutter_riverpod: ^2.6.1
+
+  # Navigation
+  go_router: ^14.8.1
+
+  # Database
+  drift: ^2.22.1
+  drift_flutter: ^0.2.4
+  path_provider: ^2.1.6
+  path: ^1.9.1
+
+  # Utilities
+  uuid: ^4.5.3
+  intl: ^0.20.2
+  collection: ^1.19.1
+
+  # Charts
+  fl_chart: ^0.70.2
+
+  # File handling
+  image_picker: ^1.1.2
+  share_plus: ^10.1.4
+
+  # PDF
+  pdf: ^3.12.0
+  printing: ^5.14.2
+
+  # QR
+  qr_flutter: ^4.1.0
+
+  # Notifications
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.10.1
+
+  # Backup
+  google_sign_in: ^6.2.2
+  googleapis: ^13.2.0
+  http: ^1.2.2
+  crypto: ^3.0.6
+
+  # Permissions
+  permission_handler: ^11.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.15
+  drift_dev: ^2.22.1
+
+flutter:
+  uses-material-design: true
