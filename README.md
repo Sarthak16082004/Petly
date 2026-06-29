@@ -24,6 +24,9 @@ With a stunning **glassmorphic** and **bento-grid UI** inspired by modern design
 ## ✨ Key Features
 
 - **🐕 Comprehensive Pet Profiles:** Manage multiple pets with stunning dedicated profile screens featuring dynamic, color-coded bento grids for quick access to their data.
+- **📸 Memories Gallery:** A Pinterest-style photo grid to save and look back on precious moments with your pets.
+- **📅 Unified Upcoming Timeline:** A smart dashboard widget that combines appointments, medications, and vaccines into a single chronological timeline.
+- **💾 Secure Backup System:** Easily export your entire local database and images to a secure zip file to share or save to the cloud.
 - **💊 Medicines & Reminders:** Log active and past prescriptions. Keep track of dosages and easily view course progress.
 - **💉 Vaccinations & Health:** Keep an active log of your pet's vaccination history and upcoming due dates.
 - **📈 Growth Tracking:** Monitor your pet's weight over time to ensure they are growing healthy and strong.
