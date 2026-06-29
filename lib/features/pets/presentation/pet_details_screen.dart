@@ -244,6 +244,13 @@ class PetDetailsScreen extends ConsumerWidget {
                             color: const Color(0xFFf97316), // Orange
                             onTap: () => context.push('/pets/$petId/expenses'),
                           ),
+                          _BentoCard(
+                            title: 'Memories',
+                            subtitle: 'Photo gallery',
+                            icon: Icons.photo_library,
+                            color: const Color(0xFFec4899), // Pink
+                            onTap: () => context.push('/pets/$petId/memories'),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 100), // Padding for bottom nav

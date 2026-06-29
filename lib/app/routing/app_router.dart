@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:petly/app/shell/app_shell.dart';
 import 'package:petly/features/appointments/presentation/appointment_form_screen.dart';
+import 'package:petly/features/memories/presentation/memories_screen.dart';
 import 'package:petly/features/appointments/presentation/appointments_screen.dart';
 import 'package:petly/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:petly/features/expenses/presentation/expense_form_screen.dart';
@@ -207,6 +208,14 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                               petId: s.pathParameters['petId']!),
                         ),
                       ],
+                    ),
+                    
+                    // Memories
+                    GoRoute(
+                      path: 'memories',
+                      parentNavigatorKey: rootNavigatorKey,
+                      builder: (ctx, s) =>
+                          MemoriesScreen(petId: s.pathParameters['petId']!),
                     ),
                   ],
                 ),

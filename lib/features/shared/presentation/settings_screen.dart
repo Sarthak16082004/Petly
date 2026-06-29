@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:petly/features/owner_profile/presentation/owner_providers.dart';
+import 'package:petly/features/shared/data/backup_service.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -38,10 +39,22 @@ class SettingsScreen extends ConsumerWidget {
             title: 'Privacy & security',
             subtitle: 'Local app protection',
           ),
-          const _SettingsTile(
+          _SettingsTile(
             icon: Icons.cloud_upload_outlined,
             title: 'Backup & restore',
-            subtitle: 'Google Drive — not configured yet',
+            subtitle: 'Manual export file backup',
+            onTap: () async {
+              try {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Preparing backup...')),
+                );
+                await ref.read(backupServiceProvider).createManualBackup();
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Error: $e')),
+                );
+              }
+            },
           ),
           const _SettingsTile(
             icon: Icons.info_outline_rounded,
@@ -59,11 +72,13 @@ class _SettingsTile extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.subtitle,
+    this.onTap,
   });
 
   final IconData icon;
   final String title;
   final String subtitle;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +87,7 @@ class _SettingsTile extends StatelessWidget {
       title: Text(title),
       subtitle: Text(subtitle),
       trailing: const Icon(Icons.chevron_right_rounded),
+      onTap: onTap,
     );
   }
 }

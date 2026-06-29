@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:petly/app/theme/app_theme.dart';
 import 'package:petly/core/extensions/extensions.dart';
-import 'package:petly/features/appointments/presentation/appointment_providers.dart';
+import 'package:petly/features/dashboard/presentation/upcoming_events_provider.dart';
 import 'package:petly/features/owner_profile/presentation/owner_providers.dart';
 import 'package:petly/features/pets/presentation/pet_providers.dart';
 
@@ -14,7 +14,7 @@ class DashboardScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final owner = ref.watch(ownerProvider).value;
     final pets = ref.watch(activePetsProvider);
-    final upcomingAppts = ref.watch(upcomingAppointmentsProvider);
+    final upcomingEvents = ref.watch(upcomingEventsProvider);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -79,7 +79,7 @@ class DashboardScreen extends ConsumerWidget {
                 const SizedBox(height: 32),
 
                 // Upcoming Section
-                _UpcomingSection(upcomingAppts: upcomingAppts),
+                _UpcomingSection(upcomingEvents: upcomingEvents),
                 const SizedBox(height: 32),
 
                 // Health Summary (Bento extra)
@@ -381,8 +381,8 @@ class _QuickActionTile extends StatelessWidget {
 }
 
 class _UpcomingSection extends StatelessWidget {
-  const _UpcomingSection({required this.upcomingAppts});
-  final AsyncValue upcomingAppts;
+  const _UpcomingSection({required this.upcomingEvents});
+  final AsyncValue upcomingEvents;
 
   @override
   Widget build(BuildContext context) {
@@ -401,7 +401,7 @@ class _UpcomingSection extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        upcomingAppts.when(
+        upcomingEvents.when(
           data: (items) {
             if (items.isEmpty) {
               return Container(
@@ -435,10 +435,10 @@ class _UpcomingSection extends StatelessWidget {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.primary.withOpacity(0.2),
+                      color: _getEventColor(theme, appt.type).withOpacity(0.2),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: Icon(Icons.event, color: theme.colorScheme.primary),
+                    child: Icon(_getEventIcon(appt.type), color: _getEventColor(theme, appt.type)),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
@@ -456,7 +456,7 @@ class _UpcomingSection extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
-                                appt.startsAt.isTomorrow ? 'Tomorrow' : appt.startsAt.toRelativeDate(),
+                                appt.date.isTomorrow ? 'Tomorrow' : appt.date.toRelativeDate(),
                                 style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.primary),
                               ),
                             ),
@@ -464,7 +464,7 @@ class _UpcomingSection extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Scheduled for ${appt.startsAt.toDisplayDateTime()}',
+                          'Scheduled for ${appt.date.toDisplayDateTime()}',
                           style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
                         ),
                         const SizedBox(height: 16),
@@ -501,6 +501,28 @@ class _UpcomingSection extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Color _getEventColor(ThemeData theme, EventType type) {
+    switch (type) {
+      case EventType.appointment:
+        return theme.colorScheme.primary;
+      case EventType.vaccination:
+        return theme.colorScheme.secondary;
+      case EventType.medication:
+        return AppTheme.medicineColor;
+    }
+  }
+
+  IconData _getEventIcon(EventType type) {
+    switch (type) {
+      case EventType.appointment:
+        return Icons.event;
+      case EventType.vaccination:
+        return Icons.vaccines;
+      case EventType.medication:
+        return Icons.medication;
+    }
   }
 }
 

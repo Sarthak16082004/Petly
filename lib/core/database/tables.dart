@@ -311,3 +311,20 @@ class BackupRecords extends Table with TimestampColumns {
   @override
   Set<Column<Object>> get primaryKey => {id};
 }
+
+class Memories extends Table with TimestampColumns {
+  TextColumn get id => text()();
+  TextColumn get petId =>
+      text().references(Pets, #id, onDelete: KeyAction.cascade)();
+  TextColumn get title => text().nullable()();
+  TextColumn get description => text().nullable()();
+  TextColumn get imageFileId => text().nullable().references(
+    FileAssets,
+    #id,
+    onDelete: KeyAction.setNull,
+  )();
+  DateTimeColumn get date => dateTime().withDefault(currentDateAndTime)();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}

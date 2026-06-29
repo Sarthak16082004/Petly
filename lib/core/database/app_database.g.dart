@@ -212,42 +212,51 @@ class $FileAssetsTable extends FileAssets
   FileAsset map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return FileAsset(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      relativePath: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}relative_path'],
-      )!,
-      originalName: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}original_name'],
-      )!,
-      mimeType: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}mime_type'],
-      )!,
-      byteSize: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}byte_size'],
-      )!,
-      sha256: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}sha256'],
-      )!,
-      category: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}category'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      relativePath:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}relative_path'],
+          )!,
+      originalName:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}original_name'],
+          )!,
+      mimeType:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}mime_type'],
+          )!,
+      byteSize:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}byte_size'],
+          )!,
+      sha256:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}sha256'],
+          )!,
+      category:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}category'],
+          )!,
     );
   }
 
@@ -366,12 +375,14 @@ class FileAsset extends DataClass implements Insertable<FileAsset> {
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
-      relativePath: data.relativePath.present
-          ? data.relativePath.value
-          : this.relativePath,
-      originalName: data.originalName.present
-          ? data.originalName.value
-          : this.originalName,
+      relativePath:
+          data.relativePath.present
+              ? data.relativePath.value
+              : this.relativePath,
+      originalName:
+          data.originalName.present
+              ? data.originalName.value
+              : this.originalName,
       mimeType: data.mimeType.present ? data.mimeType.value : this.mimeType,
       byteSize: data.byteSize.present ? data.byteSize.value : this.byteSize,
       sha256: data.sha256.present ? data.sha256.value : this.sha256,
@@ -680,9 +691,6 @@ class $OwnerProfilesTable extends OwnerProfiles
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES file_assets (id) ON DELETE SET NULL',
-    ),
   );
   @override
   List<GeneratedColumn> get $columns => [
@@ -791,22 +799,26 @@ class $OwnerProfilesTable extends OwnerProfiles
   OwnerProfile map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return OwnerProfile(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      displayName: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}display_name'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      displayName:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}display_name'],
+          )!,
       email: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}email'],
@@ -897,24 +909,26 @@ class OwnerProfile extends DataClass implements Insertable<OwnerProfile> {
       updatedAt: Value(updatedAt),
       id: Value(id),
       displayName: Value(displayName),
-      email: email == null && nullToAbsent
-          ? const Value.absent()
-          : Value(email),
-      phone: phone == null && nullToAbsent
-          ? const Value.absent()
-          : Value(phone),
-      address: address == null && nullToAbsent
-          ? const Value.absent()
-          : Value(address),
-      emergencyContactName: emergencyContactName == null && nullToAbsent
-          ? const Value.absent()
-          : Value(emergencyContactName),
-      emergencyContactPhone: emergencyContactPhone == null && nullToAbsent
-          ? const Value.absent()
-          : Value(emergencyContactPhone),
-      photoFileId: photoFileId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(photoFileId),
+      email:
+          email == null && nullToAbsent ? const Value.absent() : Value(email),
+      phone:
+          phone == null && nullToAbsent ? const Value.absent() : Value(phone),
+      address:
+          address == null && nullToAbsent
+              ? const Value.absent()
+              : Value(address),
+      emergencyContactName:
+          emergencyContactName == null && nullToAbsent
+              ? const Value.absent()
+              : Value(emergencyContactName),
+      emergencyContactPhone:
+          emergencyContactPhone == null && nullToAbsent
+              ? const Value.absent()
+              : Value(emergencyContactPhone),
+      photoFileId:
+          photoFileId == null && nullToAbsent
+              ? const Value.absent()
+              : Value(photoFileId),
     );
   }
 
@@ -978,12 +992,14 @@ class OwnerProfile extends DataClass implements Insertable<OwnerProfile> {
     email: email.present ? email.value : this.email,
     phone: phone.present ? phone.value : this.phone,
     address: address.present ? address.value : this.address,
-    emergencyContactName: emergencyContactName.present
-        ? emergencyContactName.value
-        : this.emergencyContactName,
-    emergencyContactPhone: emergencyContactPhone.present
-        ? emergencyContactPhone.value
-        : this.emergencyContactPhone,
+    emergencyContactName:
+        emergencyContactName.present
+            ? emergencyContactName.value
+            : this.emergencyContactName,
+    emergencyContactPhone:
+        emergencyContactPhone.present
+            ? emergencyContactPhone.value
+            : this.emergencyContactPhone,
     photoFileId: photoFileId.present ? photoFileId.value : this.photoFileId,
   );
   OwnerProfile copyWithCompanion(OwnerProfilesCompanion data) {
@@ -991,21 +1007,21 @@ class OwnerProfile extends DataClass implements Insertable<OwnerProfile> {
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
-      displayName: data.displayName.present
-          ? data.displayName.value
-          : this.displayName,
+      displayName:
+          data.displayName.present ? data.displayName.value : this.displayName,
       email: data.email.present ? data.email.value : this.email,
       phone: data.phone.present ? data.phone.value : this.phone,
       address: data.address.present ? data.address.value : this.address,
-      emergencyContactName: data.emergencyContactName.present
-          ? data.emergencyContactName.value
-          : this.emergencyContactName,
-      emergencyContactPhone: data.emergencyContactPhone.present
-          ? data.emergencyContactPhone.value
-          : this.emergencyContactPhone,
-      photoFileId: data.photoFileId.present
-          ? data.photoFileId.value
-          : this.photoFileId,
+      emergencyContactName:
+          data.emergencyContactName.present
+              ? data.emergencyContactName.value
+              : this.emergencyContactName,
+      emergencyContactPhone:
+          data.emergencyContactPhone.present
+              ? data.emergencyContactPhone.value
+              : this.emergencyContactPhone,
+      photoFileId:
+          data.photoFileId.present ? data.photoFileId.value : this.photoFileId,
     );
   }
 
@@ -1263,9 +1279,6 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES owner_profiles (id) ON DELETE RESTRICT',
-    ),
   );
   static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
@@ -1391,9 +1404,6 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES file_assets (id) ON DELETE SET NULL',
-    ),
   );
   static const VerificationMeta _statusMeta = const VerificationMeta('status');
   @override
@@ -1580,30 +1590,36 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
   Pet map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Pet(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      ownerId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}owner_id'],
-      )!,
-      name: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}name'],
-      )!,
-      species: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}species'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      ownerId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}owner_id'],
+          )!,
+      name:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}name'],
+          )!,
+      species:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}species'],
+          )!,
       breed: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}breed'],
@@ -1644,10 +1660,11 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
         DriftSqlType.string,
         data['${effectivePrefix}profile_file_id'],
       ),
-      status: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}status'],
-      )!,
+      status:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}status'],
+          )!,
       archivedAt: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}archived_at'],
@@ -1754,38 +1771,42 @@ class Pet extends DataClass implements Insertable<Pet> {
       ownerId: Value(ownerId),
       name: Value(name),
       species: Value(species),
-      breed: breed == null && nullToAbsent
-          ? const Value.absent()
-          : Value(breed),
+      breed:
+          breed == null && nullToAbsent ? const Value.absent() : Value(breed),
       sex: sex == null && nullToAbsent ? const Value.absent() : Value(sex),
-      birthDate: birthDate == null && nullToAbsent
-          ? const Value.absent()
-          : Value(birthDate),
-      adoptionDate: adoptionDate == null && nullToAbsent
-          ? const Value.absent()
-          : Value(adoptionDate),
-      color: color == null && nullToAbsent
-          ? const Value.absent()
-          : Value(color),
-      microchipNumber: microchipNumber == null && nullToAbsent
-          ? const Value.absent()
-          : Value(microchipNumber),
-      bloodType: bloodType == null && nullToAbsent
-          ? const Value.absent()
-          : Value(bloodType),
-      neutered: neutered == null && nullToAbsent
-          ? const Value.absent()
-          : Value(neutered),
-      notes: notes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(notes),
-      profileFileId: profileFileId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(profileFileId),
+      birthDate:
+          birthDate == null && nullToAbsent
+              ? const Value.absent()
+              : Value(birthDate),
+      adoptionDate:
+          adoptionDate == null && nullToAbsent
+              ? const Value.absent()
+              : Value(adoptionDate),
+      color:
+          color == null && nullToAbsent ? const Value.absent() : Value(color),
+      microchipNumber:
+          microchipNumber == null && nullToAbsent
+              ? const Value.absent()
+              : Value(microchipNumber),
+      bloodType:
+          bloodType == null && nullToAbsent
+              ? const Value.absent()
+              : Value(bloodType),
+      neutered:
+          neutered == null && nullToAbsent
+              ? const Value.absent()
+              : Value(neutered),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
+      profileFileId:
+          profileFileId == null && nullToAbsent
+              ? const Value.absent()
+              : Value(profileFileId),
       status: Value(status),
-      archivedAt: archivedAt == null && nullToAbsent
-          ? const Value.absent()
-          : Value(archivedAt),
+      archivedAt:
+          archivedAt == null && nullToAbsent
+              ? const Value.absent()
+              : Value(archivedAt),
     );
   }
 
@@ -1871,15 +1892,13 @@ class Pet extends DataClass implements Insertable<Pet> {
     birthDate: birthDate.present ? birthDate.value : this.birthDate,
     adoptionDate: adoptionDate.present ? adoptionDate.value : this.adoptionDate,
     color: color.present ? color.value : this.color,
-    microchipNumber: microchipNumber.present
-        ? microchipNumber.value
-        : this.microchipNumber,
+    microchipNumber:
+        microchipNumber.present ? microchipNumber.value : this.microchipNumber,
     bloodType: bloodType.present ? bloodType.value : this.bloodType,
     neutered: neutered.present ? neutered.value : this.neutered,
     notes: notes.present ? notes.value : this.notes,
-    profileFileId: profileFileId.present
-        ? profileFileId.value
-        : this.profileFileId,
+    profileFileId:
+        profileFileId.present ? profileFileId.value : this.profileFileId,
     status: status ?? this.status,
     archivedAt: archivedAt.present ? archivedAt.value : this.archivedAt,
   );
@@ -1894,23 +1913,25 @@ class Pet extends DataClass implements Insertable<Pet> {
       breed: data.breed.present ? data.breed.value : this.breed,
       sex: data.sex.present ? data.sex.value : this.sex,
       birthDate: data.birthDate.present ? data.birthDate.value : this.birthDate,
-      adoptionDate: data.adoptionDate.present
-          ? data.adoptionDate.value
-          : this.adoptionDate,
+      adoptionDate:
+          data.adoptionDate.present
+              ? data.adoptionDate.value
+              : this.adoptionDate,
       color: data.color.present ? data.color.value : this.color,
-      microchipNumber: data.microchipNumber.present
-          ? data.microchipNumber.value
-          : this.microchipNumber,
+      microchipNumber:
+          data.microchipNumber.present
+              ? data.microchipNumber.value
+              : this.microchipNumber,
       bloodType: data.bloodType.present ? data.bloodType.value : this.bloodType,
       neutered: data.neutered.present ? data.neutered.value : this.neutered,
       notes: data.notes.present ? data.notes.value : this.notes,
-      profileFileId: data.profileFileId.present
-          ? data.profileFileId.value
-          : this.profileFileId,
+      profileFileId:
+          data.profileFileId.present
+              ? data.profileFileId.value
+              : this.profileFileId,
       status: data.status.present ? data.status.value : this.status,
-      archivedAt: data.archivedAt.present
-          ? data.archivedAt.value
-          : this.archivedAt,
+      archivedAt:
+          data.archivedAt.present ? data.archivedAt.value : this.archivedAt,
     );
   }
 
@@ -2274,9 +2295,6 @@ class $VaccinationsTable extends Vaccinations
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pets (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _vaccineNameMeta = const VerificationMeta(
     'vaccineName',
@@ -2544,26 +2562,31 @@ class $VaccinationsTable extends Vaccinations
   Vaccination map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Vaccination(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      petId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}pet_id'],
-      )!,
-      vaccineName: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}vaccine_name'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      vaccineName:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}vaccine_name'],
+          )!,
       disease: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}disease'],
@@ -2580,10 +2603,11 @@ class $VaccinationsTable extends Vaccinations
         DriftSqlType.int,
         data['${effectivePrefix}dose_number'],
       ),
-      administeredOn: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}administered_on'],
-      )!,
+      administeredOn:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}administered_on'],
+          )!,
       nextDueOn: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}next_due_on'],
@@ -2600,10 +2624,11 @@ class $VaccinationsTable extends Vaccinations
         DriftSqlType.string,
         data['${effectivePrefix}notes'],
       ),
-      status: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}status'],
-      )!,
+      status:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}status'],
+          )!,
     );
   }
 
@@ -2690,31 +2715,35 @@ class Vaccination extends DataClass implements Insertable<Vaccination> {
       id: Value(id),
       petId: Value(petId),
       vaccineName: Value(vaccineName),
-      disease: disease == null && nullToAbsent
-          ? const Value.absent()
-          : Value(disease),
-      manufacturer: manufacturer == null && nullToAbsent
-          ? const Value.absent()
-          : Value(manufacturer),
-      batchNumber: batchNumber == null && nullToAbsent
-          ? const Value.absent()
-          : Value(batchNumber),
-      doseNumber: doseNumber == null && nullToAbsent
-          ? const Value.absent()
-          : Value(doseNumber),
+      disease:
+          disease == null && nullToAbsent
+              ? const Value.absent()
+              : Value(disease),
+      manufacturer:
+          manufacturer == null && nullToAbsent
+              ? const Value.absent()
+              : Value(manufacturer),
+      batchNumber:
+          batchNumber == null && nullToAbsent
+              ? const Value.absent()
+              : Value(batchNumber),
+      doseNumber:
+          doseNumber == null && nullToAbsent
+              ? const Value.absent()
+              : Value(doseNumber),
       administeredOn: Value(administeredOn),
-      nextDueOn: nextDueOn == null && nullToAbsent
-          ? const Value.absent()
-          : Value(nextDueOn),
-      veterinarian: veterinarian == null && nullToAbsent
-          ? const Value.absent()
-          : Value(veterinarian),
-      clinic: clinic == null && nullToAbsent
-          ? const Value.absent()
-          : Value(clinic),
-      notes: notes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(notes),
+      nextDueOn:
+          nextDueOn == null && nullToAbsent
+              ? const Value.absent()
+              : Value(nextDueOn),
+      veterinarian:
+          veterinarian == null && nullToAbsent
+              ? const Value.absent()
+              : Value(veterinarian),
+      clinic:
+          clinic == null && nullToAbsent ? const Value.absent() : Value(clinic),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
       status: Value(status),
     );
   }
@@ -2803,26 +2832,26 @@ class Vaccination extends DataClass implements Insertable<Vaccination> {
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
       petId: data.petId.present ? data.petId.value : this.petId,
-      vaccineName: data.vaccineName.present
-          ? data.vaccineName.value
-          : this.vaccineName,
+      vaccineName:
+          data.vaccineName.present ? data.vaccineName.value : this.vaccineName,
       disease: data.disease.present ? data.disease.value : this.disease,
-      manufacturer: data.manufacturer.present
-          ? data.manufacturer.value
-          : this.manufacturer,
-      batchNumber: data.batchNumber.present
-          ? data.batchNumber.value
-          : this.batchNumber,
-      doseNumber: data.doseNumber.present
-          ? data.doseNumber.value
-          : this.doseNumber,
-      administeredOn: data.administeredOn.present
-          ? data.administeredOn.value
-          : this.administeredOn,
+      manufacturer:
+          data.manufacturer.present
+              ? data.manufacturer.value
+              : this.manufacturer,
+      batchNumber:
+          data.batchNumber.present ? data.batchNumber.value : this.batchNumber,
+      doseNumber:
+          data.doseNumber.present ? data.doseNumber.value : this.doseNumber,
+      administeredOn:
+          data.administeredOn.present
+              ? data.administeredOn.value
+              : this.administeredOn,
       nextDueOn: data.nextDueOn.present ? data.nextDueOn.value : this.nextDueOn,
-      veterinarian: data.veterinarian.present
-          ? data.veterinarian.value
-          : this.veterinarian,
+      veterinarian:
+          data.veterinarian.present
+              ? data.veterinarian.value
+              : this.veterinarian,
       clinic: data.clinic.present ? data.clinic.value : this.clinic,
       notes: data.notes.present ? data.notes.value : this.notes,
       status: data.status.present ? data.status.value : this.status,
@@ -3147,9 +3176,6 @@ class $MedicalRecordsTable extends MedicalRecords
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pets (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _recordTypeMeta = const VerificationMeta(
     'recordType',
@@ -3390,34 +3416,41 @@ class $MedicalRecordsTable extends MedicalRecords
   MedicalRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return MedicalRecord(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      petId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}pet_id'],
-      )!,
-      recordType: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}record_type'],
-      )!,
-      occurredOn: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}occurred_on'],
-      )!,
-      title: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}title'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      recordType:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}record_type'],
+          )!,
+      occurredOn:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}occurred_on'],
+          )!,
+      title:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}title'],
+          )!,
       symptoms: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}symptoms'],
@@ -3529,27 +3562,30 @@ class MedicalRecord extends DataClass implements Insertable<MedicalRecord> {
       recordType: Value(recordType),
       occurredOn: Value(occurredOn),
       title: Value(title),
-      symptoms: symptoms == null && nullToAbsent
-          ? const Value.absent()
-          : Value(symptoms),
-      diagnosis: diagnosis == null && nullToAbsent
-          ? const Value.absent()
-          : Value(diagnosis),
-      treatment: treatment == null && nullToAbsent
-          ? const Value.absent()
-          : Value(treatment),
-      veterinarian: veterinarian == null && nullToAbsent
-          ? const Value.absent()
-          : Value(veterinarian),
-      clinic: clinic == null && nullToAbsent
-          ? const Value.absent()
-          : Value(clinic),
-      followUpOn: followUpOn == null && nullToAbsent
-          ? const Value.absent()
-          : Value(followUpOn),
-      notes: notes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(notes),
+      symptoms:
+          symptoms == null && nullToAbsent
+              ? const Value.absent()
+              : Value(symptoms),
+      diagnosis:
+          diagnosis == null && nullToAbsent
+              ? const Value.absent()
+              : Value(diagnosis),
+      treatment:
+          treatment == null && nullToAbsent
+              ? const Value.absent()
+              : Value(treatment),
+      veterinarian:
+          veterinarian == null && nullToAbsent
+              ? const Value.absent()
+              : Value(veterinarian),
+      clinic:
+          clinic == null && nullToAbsent ? const Value.absent() : Value(clinic),
+      followUpOn:
+          followUpOn == null && nullToAbsent
+              ? const Value.absent()
+              : Value(followUpOn),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
     );
   }
 
@@ -3633,23 +3669,21 @@ class MedicalRecord extends DataClass implements Insertable<MedicalRecord> {
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
       petId: data.petId.present ? data.petId.value : this.petId,
-      recordType: data.recordType.present
-          ? data.recordType.value
-          : this.recordType,
-      occurredOn: data.occurredOn.present
-          ? data.occurredOn.value
-          : this.occurredOn,
+      recordType:
+          data.recordType.present ? data.recordType.value : this.recordType,
+      occurredOn:
+          data.occurredOn.present ? data.occurredOn.value : this.occurredOn,
       title: data.title.present ? data.title.value : this.title,
       symptoms: data.symptoms.present ? data.symptoms.value : this.symptoms,
       diagnosis: data.diagnosis.present ? data.diagnosis.value : this.diagnosis,
       treatment: data.treatment.present ? data.treatment.value : this.treatment,
-      veterinarian: data.veterinarian.present
-          ? data.veterinarian.value
-          : this.veterinarian,
+      veterinarian:
+          data.veterinarian.present
+              ? data.veterinarian.value
+              : this.veterinarian,
       clinic: data.clinic.present ? data.clinic.value : this.clinic,
-      followUpOn: data.followUpOn.present
-          ? data.followUpOn.value
-          : this.followUpOn,
+      followUpOn:
+          data.followUpOn.present ? data.followUpOn.value : this.followUpOn,
       notes: data.notes.present ? data.notes.value : this.notes,
     );
   }
@@ -4084,22 +4118,26 @@ class $MedicinesTable extends Medicines
   Medicine map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Medicine(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      name: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}name'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      name:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}name'],
+          )!,
       form: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}form'],
@@ -4173,15 +4211,16 @@ class Medicine extends DataClass implements Insertable<Medicine> {
       id: Value(id),
       name: Value(name),
       form: form == null && nullToAbsent ? const Value.absent() : Value(form),
-      strength: strength == null && nullToAbsent
-          ? const Value.absent()
-          : Value(strength),
-      manufacturer: manufacturer == null && nullToAbsent
-          ? const Value.absent()
-          : Value(manufacturer),
-      notes: notes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(notes),
+      strength:
+          strength == null && nullToAbsent
+              ? const Value.absent()
+              : Value(strength),
+      manufacturer:
+          manufacturer == null && nullToAbsent
+              ? const Value.absent()
+              : Value(manufacturer),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
     );
   }
 
@@ -4243,9 +4282,10 @@ class Medicine extends DataClass implements Insertable<Medicine> {
       name: data.name.present ? data.name.value : this.name,
       form: data.form.present ? data.form.value : this.form,
       strength: data.strength.present ? data.strength.value : this.strength,
-      manufacturer: data.manufacturer.present
-          ? data.manufacturer.value
-          : this.manufacturer,
+      manufacturer:
+          data.manufacturer.present
+              ? data.manufacturer.value
+              : this.manufacturer,
       notes: data.notes.present ? data.notes.value : this.notes,
     );
   }
@@ -4468,9 +4508,6 @@ class $PetMedicationsTable extends PetMedications
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pets (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _medicineIdMeta = const VerificationMeta(
     'medicineId',
@@ -4482,9 +4519,6 @@ class $PetMedicationsTable extends PetMedications
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES medicines (id) ON DELETE RESTRICT',
-    ),
   );
   static const VerificationMeta _dosageMeta = const VerificationMeta('dosage');
   @override
@@ -4701,30 +4735,36 @@ class $PetMedicationsTable extends PetMedications
   PetMedication map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return PetMedication(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      petId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}pet_id'],
-      )!,
-      medicineId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}medicine_id'],
-      )!,
-      dosage: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}dosage'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      medicineId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}medicine_id'],
+          )!,
+      dosage:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}dosage'],
+          )!,
       route: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}route'],
@@ -4737,22 +4777,25 @@ class $PetMedicationsTable extends PetMedications
         DriftSqlType.string,
         data['${effectivePrefix}prescribed_by'],
       ),
-      startDate: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}start_date'],
-      )!,
+      startDate:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}start_date'],
+          )!,
       endDate: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}end_date'],
       ),
-      asNeeded: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}as_needed'],
-      )!,
-      status: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}status'],
-      )!,
+      asNeeded:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.bool,
+            data['${effectivePrefix}as_needed'],
+          )!,
+      status:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}status'],
+          )!,
     );
   }
 
@@ -4826,19 +4869,21 @@ class PetMedication extends DataClass implements Insertable<PetMedication> {
       petId: Value(petId),
       medicineId: Value(medicineId),
       dosage: Value(dosage),
-      route: route == null && nullToAbsent
-          ? const Value.absent()
-          : Value(route),
-      instructions: instructions == null && nullToAbsent
-          ? const Value.absent()
-          : Value(instructions),
-      prescribedBy: prescribedBy == null && nullToAbsent
-          ? const Value.absent()
-          : Value(prescribedBy),
+      route:
+          route == null && nullToAbsent ? const Value.absent() : Value(route),
+      instructions:
+          instructions == null && nullToAbsent
+              ? const Value.absent()
+              : Value(instructions),
+      prescribedBy:
+          prescribedBy == null && nullToAbsent
+              ? const Value.absent()
+              : Value(prescribedBy),
       startDate: Value(startDate),
-      endDate: endDate == null && nullToAbsent
-          ? const Value.absent()
-          : Value(endDate),
+      endDate:
+          endDate == null && nullToAbsent
+              ? const Value.absent()
+              : Value(endDate),
       asNeeded: Value(asNeeded),
       status: Value(status),
     );
@@ -4920,17 +4965,18 @@ class PetMedication extends DataClass implements Insertable<PetMedication> {
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
       petId: data.petId.present ? data.petId.value : this.petId,
-      medicineId: data.medicineId.present
-          ? data.medicineId.value
-          : this.medicineId,
+      medicineId:
+          data.medicineId.present ? data.medicineId.value : this.medicineId,
       dosage: data.dosage.present ? data.dosage.value : this.dosage,
       route: data.route.present ? data.route.value : this.route,
-      instructions: data.instructions.present
-          ? data.instructions.value
-          : this.instructions,
-      prescribedBy: data.prescribedBy.present
-          ? data.prescribedBy.value
-          : this.prescribedBy,
+      instructions:
+          data.instructions.present
+              ? data.instructions.value
+              : this.instructions,
+      prescribedBy:
+          data.prescribedBy.present
+              ? data.prescribedBy.value
+              : this.prescribedBy,
       startDate: data.startDate.present ? data.startDate.value : this.startDate,
       endDate: data.endDate.present ? data.endDate.value : this.endDate,
       asNeeded: data.asNeeded.present ? data.asNeeded.value : this.asNeeded,
@@ -5231,9 +5277,6 @@ class $MedicationSchedulesTable extends MedicationSchedules
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pet_medications (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _localTimeMeta = const VerificationMeta(
     'localTime',
@@ -5354,34 +5397,41 @@ class $MedicationSchedulesTable extends MedicationSchedules
   MedicationSchedule map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return MedicationSchedule(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      petMedicationId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}pet_medication_id'],
-      )!,
-      localTime: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}local_time'],
-      )!,
-      timezoneId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}timezone_id'],
-      )!,
-      recurrenceRule: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}recurrence_rule'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petMedicationId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_medication_id'],
+          )!,
+      localTime:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}local_time'],
+          )!,
+      timezoneId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}timezone_id'],
+          )!,
+      recurrenceRule:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}recurrence_rule'],
+          )!,
     );
   }
 
@@ -5485,16 +5535,17 @@ class MedicationSchedule extends DataClass
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
-      petMedicationId: data.petMedicationId.present
-          ? data.petMedicationId.value
-          : this.petMedicationId,
+      petMedicationId:
+          data.petMedicationId.present
+              ? data.petMedicationId.value
+              : this.petMedicationId,
       localTime: data.localTime.present ? data.localTime.value : this.localTime,
-      timezoneId: data.timezoneId.present
-          ? data.timezoneId.value
-          : this.timezoneId,
-      recurrenceRule: data.recurrenceRule.present
-          ? data.recurrenceRule.value
-          : this.recurrenceRule,
+      timezoneId:
+          data.timezoneId.present ? data.timezoneId.value : this.timezoneId,
+      recurrenceRule:
+          data.recurrenceRule.present
+              ? data.recurrenceRule.value
+              : this.recurrenceRule,
     );
   }
 
@@ -5707,9 +5758,6 @@ class $MedicationAdministrationsTable extends MedicationAdministrations
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pet_medications (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _scheduledForMeta = const VerificationMeta(
     'scheduledFor',
@@ -5847,22 +5895,26 @@ class $MedicationAdministrationsTable extends MedicationAdministrations
   }) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return MedicationAdministration(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      petMedicationId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}pet_medication_id'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petMedicationId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_medication_id'],
+          )!,
       scheduledFor: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}scheduled_for'],
@@ -5871,10 +5923,11 @@ class $MedicationAdministrationsTable extends MedicationAdministrations
         DriftSqlType.dateTime,
         data['${effectivePrefix}administered_at'],
       ),
-      state: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}state'],
-      )!,
+      state:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}state'],
+          )!,
       notes: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}notes'],
@@ -5934,16 +5987,17 @@ class MedicationAdministration extends DataClass
       updatedAt: Value(updatedAt),
       id: Value(id),
       petMedicationId: Value(petMedicationId),
-      scheduledFor: scheduledFor == null && nullToAbsent
-          ? const Value.absent()
-          : Value(scheduledFor),
-      administeredAt: administeredAt == null && nullToAbsent
-          ? const Value.absent()
-          : Value(administeredAt),
+      scheduledFor:
+          scheduledFor == null && nullToAbsent
+              ? const Value.absent()
+              : Value(scheduledFor),
+      administeredAt:
+          administeredAt == null && nullToAbsent
+              ? const Value.absent()
+              : Value(administeredAt),
       state: Value(state),
-      notes: notes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(notes),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
     );
   }
 
@@ -5993,9 +6047,8 @@ class MedicationAdministration extends DataClass
     id: id ?? this.id,
     petMedicationId: petMedicationId ?? this.petMedicationId,
     scheduledFor: scheduledFor.present ? scheduledFor.value : this.scheduledFor,
-    administeredAt: administeredAt.present
-        ? administeredAt.value
-        : this.administeredAt,
+    administeredAt:
+        administeredAt.present ? administeredAt.value : this.administeredAt,
     state: state ?? this.state,
     notes: notes.present ? notes.value : this.notes,
   );
@@ -6006,15 +6059,18 @@ class MedicationAdministration extends DataClass
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
-      petMedicationId: data.petMedicationId.present
-          ? data.petMedicationId.value
-          : this.petMedicationId,
-      scheduledFor: data.scheduledFor.present
-          ? data.scheduledFor.value
-          : this.scheduledFor,
-      administeredAt: data.administeredAt.present
-          ? data.administeredAt.value
-          : this.administeredAt,
+      petMedicationId:
+          data.petMedicationId.present
+              ? data.petMedicationId.value
+              : this.petMedicationId,
+      scheduledFor:
+          data.scheduledFor.present
+              ? data.scheduledFor.value
+              : this.scheduledFor,
+      administeredAt:
+          data.administeredAt.present
+              ? data.administeredAt.value
+              : this.administeredAt,
       state: data.state.present ? data.state.value : this.state,
       notes: data.notes.present ? data.notes.value : this.notes,
     );
@@ -6240,9 +6296,6 @@ class $AppointmentsTable extends Appointments
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pets (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _titleMeta = const VerificationMeta('title');
   @override
@@ -6471,38 +6524,46 @@ class $AppointmentsTable extends Appointments
   Appointment map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Appointment(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      petId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}pet_id'],
-      )!,
-      title: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}title'],
-      )!,
-      appointmentType: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}appointment_type'],
-      )!,
-      startsAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}starts_at'],
-      )!,
-      timezoneId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}timezone_id'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      title:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}title'],
+          )!,
+      appointmentType:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}appointment_type'],
+          )!,
+      startsAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}starts_at'],
+          )!,
+      timezoneId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}timezone_id'],
+          )!,
       durationMinutes: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}duration_minutes'],
@@ -6519,10 +6580,11 @@ class $AppointmentsTable extends Appointments
         DriftSqlType.string,
         data['${effectivePrefix}notes'],
       ),
-      status: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}status'],
-      )!,
+      status:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}status'],
+          )!,
     );
   }
 
@@ -6598,18 +6660,20 @@ class Appointment extends DataClass implements Insertable<Appointment> {
       appointmentType: Value(appointmentType),
       startsAt: Value(startsAt),
       timezoneId: Value(timezoneId),
-      durationMinutes: durationMinutes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(durationMinutes),
-      providerName: providerName == null && nullToAbsent
-          ? const Value.absent()
-          : Value(providerName),
-      location: location == null && nullToAbsent
-          ? const Value.absent()
-          : Value(location),
-      notes: notes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(notes),
+      durationMinutes:
+          durationMinutes == null && nullToAbsent
+              ? const Value.absent()
+              : Value(durationMinutes),
+      providerName:
+          providerName == null && nullToAbsent
+              ? const Value.absent()
+              : Value(providerName),
+      location:
+          location == null && nullToAbsent
+              ? const Value.absent()
+              : Value(location),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
       status: Value(status),
     );
   }
@@ -6678,9 +6742,8 @@ class Appointment extends DataClass implements Insertable<Appointment> {
     appointmentType: appointmentType ?? this.appointmentType,
     startsAt: startsAt ?? this.startsAt,
     timezoneId: timezoneId ?? this.timezoneId,
-    durationMinutes: durationMinutes.present
-        ? durationMinutes.value
-        : this.durationMinutes,
+    durationMinutes:
+        durationMinutes.present ? durationMinutes.value : this.durationMinutes,
     providerName: providerName.present ? providerName.value : this.providerName,
     location: location.present ? location.value : this.location,
     notes: notes.present ? notes.value : this.notes,
@@ -6693,19 +6756,21 @@ class Appointment extends DataClass implements Insertable<Appointment> {
       id: data.id.present ? data.id.value : this.id,
       petId: data.petId.present ? data.petId.value : this.petId,
       title: data.title.present ? data.title.value : this.title,
-      appointmentType: data.appointmentType.present
-          ? data.appointmentType.value
-          : this.appointmentType,
+      appointmentType:
+          data.appointmentType.present
+              ? data.appointmentType.value
+              : this.appointmentType,
       startsAt: data.startsAt.present ? data.startsAt.value : this.startsAt,
-      timezoneId: data.timezoneId.present
-          ? data.timezoneId.value
-          : this.timezoneId,
-      durationMinutes: data.durationMinutes.present
-          ? data.durationMinutes.value
-          : this.durationMinutes,
-      providerName: data.providerName.present
-          ? data.providerName.value
-          : this.providerName,
+      timezoneId:
+          data.timezoneId.present ? data.timezoneId.value : this.timezoneId,
+      durationMinutes:
+          data.durationMinutes.present
+              ? data.durationMinutes.value
+              : this.durationMinutes,
+      providerName:
+          data.providerName.present
+              ? data.providerName.value
+              : this.providerName,
       location: data.location.present ? data.location.value : this.location,
       notes: data.notes.present ? data.notes.value : this.notes,
       status: data.status.present ? data.status.value : this.status,
@@ -7004,9 +7069,6 @@ class $DocumentsTable extends Documents
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pets (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _fileIdMeta = const VerificationMeta('fileId');
   @override
@@ -7016,9 +7078,6 @@ class $DocumentsTable extends Documents
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES file_assets (id) ON DELETE RESTRICT',
-    ),
   );
   static const VerificationMeta _titleMeta = const VerificationMeta('title');
   @override
@@ -7173,34 +7232,40 @@ class $DocumentsTable extends Documents
   Document map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Document(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
       petId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}pet_id'],
       ),
-      fileId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}file_id'],
-      )!,
-      title: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}title'],
-      )!,
-      documentType: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}document_type'],
-      )!,
+      fileId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}file_id'],
+          )!,
+      title:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}title'],
+          )!,
+      documentType:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}document_type'],
+          )!,
       issuedOn: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}issued_on'],
@@ -7274,21 +7339,21 @@ class Document extends DataClass implements Insertable<Document> {
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
       id: Value(id),
-      petId: petId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(petId),
+      petId:
+          petId == null && nullToAbsent ? const Value.absent() : Value(petId),
       fileId: Value(fileId),
       title: Value(title),
       documentType: Value(documentType),
-      issuedOn: issuedOn == null && nullToAbsent
-          ? const Value.absent()
-          : Value(issuedOn),
-      expiresOn: expiresOn == null && nullToAbsent
-          ? const Value.absent()
-          : Value(expiresOn),
-      notes: notes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(notes),
+      issuedOn:
+          issuedOn == null && nullToAbsent
+              ? const Value.absent()
+              : Value(issuedOn),
+      expiresOn:
+          expiresOn == null && nullToAbsent
+              ? const Value.absent()
+              : Value(expiresOn),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
     );
   }
 
@@ -7358,9 +7423,10 @@ class Document extends DataClass implements Insertable<Document> {
       petId: data.petId.present ? data.petId.value : this.petId,
       fileId: data.fileId.present ? data.fileId.value : this.fileId,
       title: data.title.present ? data.title.value : this.title,
-      documentType: data.documentType.present
-          ? data.documentType.value
-          : this.documentType,
+      documentType:
+          data.documentType.present
+              ? data.documentType.value
+              : this.documentType,
       issuedOn: data.issuedOn.present ? data.issuedOn.value : this.issuedOn,
       expiresOn: data.expiresOn.present ? data.expiresOn.value : this.expiresOn,
       notes: data.notes.present ? data.notes.value : this.notes,
@@ -7615,9 +7681,6 @@ class $RecordAttachmentsTable extends RecordAttachments
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES file_assets (id) ON DELETE RESTRICT',
-    ),
   );
   static const VerificationMeta _entityTypeMeta = const VerificationMeta(
     'entityType',
@@ -7730,30 +7793,36 @@ class $RecordAttachmentsTable extends RecordAttachments
   RecordAttachment map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return RecordAttachment(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      fileId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}file_id'],
-      )!,
-      entityType: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}entity_type'],
-      )!,
-      entityId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}entity_id'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      fileId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}file_id'],
+          )!,
+      entityType:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}entity_type'],
+          )!,
+      entityId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}entity_id'],
+          )!,
       caption: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}caption'],
@@ -7808,9 +7877,10 @@ class RecordAttachment extends DataClass
       fileId: Value(fileId),
       entityType: Value(entityType),
       entityId: Value(entityId),
-      caption: caption == null && nullToAbsent
-          ? const Value.absent()
-          : Value(caption),
+      caption:
+          caption == null && nullToAbsent
+              ? const Value.absent()
+              : Value(caption),
     );
   }
 
@@ -7866,9 +7936,8 @@ class RecordAttachment extends DataClass
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
       fileId: data.fileId.present ? data.fileId.value : this.fileId,
-      entityType: data.entityType.present
-          ? data.entityType.value
-          : this.entityType,
+      entityType:
+          data.entityType.present ? data.entityType.value : this.entityType,
       entityId: data.entityId.present ? data.entityId.value : this.entityId,
       caption: data.caption.present ? data.caption.value : this.caption,
     );
@@ -8080,9 +8149,6 @@ class $GrowthEntriesTable extends GrowthEntries
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pets (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _measuredAtMeta = const VerificationMeta(
     'measuredAt',
@@ -8218,30 +8284,36 @@ class $GrowthEntriesTable extends GrowthEntries
   GrowthEntry map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return GrowthEntry(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      petId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}pet_id'],
-      )!,
-      measuredAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}measured_at'],
-      )!,
-      weightGrams: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}weight_grams'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      measuredAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}measured_at'],
+          )!,
+      weightGrams:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}weight_grams'],
+          )!,
       bodyConditionScore: attachedDatabase.typeMapping.read(
         DriftSqlType.double,
         data['${effectivePrefix}body_condition_score'],
@@ -8304,12 +8376,12 @@ class GrowthEntry extends DataClass implements Insertable<GrowthEntry> {
       petId: Value(petId),
       measuredAt: Value(measuredAt),
       weightGrams: Value(weightGrams),
-      bodyConditionScore: bodyConditionScore == null && nullToAbsent
-          ? const Value.absent()
-          : Value(bodyConditionScore),
-      notes: notes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(notes),
+      bodyConditionScore:
+          bodyConditionScore == null && nullToAbsent
+              ? const Value.absent()
+              : Value(bodyConditionScore),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
     );
   }
 
@@ -8362,9 +8434,10 @@ class GrowthEntry extends DataClass implements Insertable<GrowthEntry> {
     petId: petId ?? this.petId,
     measuredAt: measuredAt ?? this.measuredAt,
     weightGrams: weightGrams ?? this.weightGrams,
-    bodyConditionScore: bodyConditionScore.present
-        ? bodyConditionScore.value
-        : this.bodyConditionScore,
+    bodyConditionScore:
+        bodyConditionScore.present
+            ? bodyConditionScore.value
+            : this.bodyConditionScore,
     notes: notes.present ? notes.value : this.notes,
   );
   GrowthEntry copyWithCompanion(GrowthEntriesCompanion data) {
@@ -8373,15 +8446,14 @@ class GrowthEntry extends DataClass implements Insertable<GrowthEntry> {
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
       petId: data.petId.present ? data.petId.value : this.petId,
-      measuredAt: data.measuredAt.present
-          ? data.measuredAt.value
-          : this.measuredAt,
-      weightGrams: data.weightGrams.present
-          ? data.weightGrams.value
-          : this.weightGrams,
-      bodyConditionScore: data.bodyConditionScore.present
-          ? data.bodyConditionScore.value
-          : this.bodyConditionScore,
+      measuredAt:
+          data.measuredAt.present ? data.measuredAt.value : this.measuredAt,
+      weightGrams:
+          data.weightGrams.present ? data.weightGrams.value : this.weightGrams,
+      bodyConditionScore:
+          data.bodyConditionScore.present
+              ? data.bodyConditionScore.value
+              : this.bodyConditionScore,
       notes: data.notes.present ? data.notes.value : this.notes,
     );
   }
@@ -8606,9 +8678,6 @@ class $ExpensesTable extends Expenses with TableInfo<$ExpensesTable, Expense> {
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pets (id) ON DELETE SET NULL',
-    ),
   );
   static const VerificationMeta _categoryMeta = const VerificationMeta(
     'category',
@@ -8687,9 +8756,6 @@ class $ExpensesTable extends Expenses with TableInfo<$ExpensesTable, Expense> {
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES file_assets (id) ON DELETE SET NULL',
-    ),
   );
   static const VerificationMeta _notesMeta = const VerificationMeta('notes');
   @override
@@ -8827,38 +8893,45 @@ class $ExpensesTable extends Expenses with TableInfo<$ExpensesTable, Expense> {
   Expense map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Expense(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
       petId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}pet_id'],
       ),
-      category: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}category'],
-      )!,
-      amountMinor: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}amount_minor'],
-      )!,
-      currencyCode: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}currency_code'],
-      )!,
-      occurredOn: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}occurred_on'],
-      )!,
+      category:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}category'],
+          )!,
+      amountMinor:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}amount_minor'],
+          )!,
+      currencyCode:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}currency_code'],
+          )!,
+      occurredOn:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}occurred_on'],
+          )!,
       merchant: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}merchant'],
@@ -8944,25 +9017,26 @@ class Expense extends DataClass implements Insertable<Expense> {
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
       id: Value(id),
-      petId: petId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(petId),
+      petId:
+          petId == null && nullToAbsent ? const Value.absent() : Value(petId),
       category: Value(category),
       amountMinor: Value(amountMinor),
       currencyCode: Value(currencyCode),
       occurredOn: Value(occurredOn),
-      merchant: merchant == null && nullToAbsent
-          ? const Value.absent()
-          : Value(merchant),
-      paymentMethod: paymentMethod == null && nullToAbsent
-          ? const Value.absent()
-          : Value(paymentMethod),
-      receiptFileId: receiptFileId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(receiptFileId),
-      notes: notes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(notes),
+      merchant:
+          merchant == null && nullToAbsent
+              ? const Value.absent()
+              : Value(merchant),
+      paymentMethod:
+          paymentMethod == null && nullToAbsent
+              ? const Value.absent()
+              : Value(paymentMethod),
+      receiptFileId:
+          receiptFileId == null && nullToAbsent
+              ? const Value.absent()
+              : Value(receiptFileId),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
     );
   }
 
@@ -9028,12 +9102,10 @@ class Expense extends DataClass implements Insertable<Expense> {
     currencyCode: currencyCode ?? this.currencyCode,
     occurredOn: occurredOn ?? this.occurredOn,
     merchant: merchant.present ? merchant.value : this.merchant,
-    paymentMethod: paymentMethod.present
-        ? paymentMethod.value
-        : this.paymentMethod,
-    receiptFileId: receiptFileId.present
-        ? receiptFileId.value
-        : this.receiptFileId,
+    paymentMethod:
+        paymentMethod.present ? paymentMethod.value : this.paymentMethod,
+    receiptFileId:
+        receiptFileId.present ? receiptFileId.value : this.receiptFileId,
     notes: notes.present ? notes.value : this.notes,
   );
   Expense copyWithCompanion(ExpensesCompanion data) {
@@ -9043,22 +9115,23 @@ class Expense extends DataClass implements Insertable<Expense> {
       id: data.id.present ? data.id.value : this.id,
       petId: data.petId.present ? data.petId.value : this.petId,
       category: data.category.present ? data.category.value : this.category,
-      amountMinor: data.amountMinor.present
-          ? data.amountMinor.value
-          : this.amountMinor,
-      currencyCode: data.currencyCode.present
-          ? data.currencyCode.value
-          : this.currencyCode,
-      occurredOn: data.occurredOn.present
-          ? data.occurredOn.value
-          : this.occurredOn,
+      amountMinor:
+          data.amountMinor.present ? data.amountMinor.value : this.amountMinor,
+      currencyCode:
+          data.currencyCode.present
+              ? data.currencyCode.value
+              : this.currencyCode,
+      occurredOn:
+          data.occurredOn.present ? data.occurredOn.value : this.occurredOn,
       merchant: data.merchant.present ? data.merchant.value : this.merchant,
-      paymentMethod: data.paymentMethod.present
-          ? data.paymentMethod.value
-          : this.paymentMethod,
-      receiptFileId: data.receiptFileId.present
-          ? data.receiptFileId.value
-          : this.receiptFileId,
+      paymentMethod:
+          data.paymentMethod.present
+              ? data.paymentMethod.value
+              : this.paymentMethod,
+      receiptFileId:
+          data.receiptFileId.present
+              ? data.receiptFileId.value
+              : this.receiptFileId,
       notes: data.notes.present ? data.notes.value : this.notes,
     );
   }
@@ -9340,9 +9413,6 @@ class $RemindersTable extends Reminders
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pets (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _kindMeta = const VerificationMeta('kind');
   @override
@@ -9610,42 +9680,49 @@ class $RemindersTable extends Reminders
   Reminder map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Reminder(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
       petId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}pet_id'],
       ),
-      kind: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}kind'],
-      )!,
-      title: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}title'],
-      )!,
+      kind:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}kind'],
+          )!,
+      title:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}title'],
+          )!,
       body: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}body'],
       ),
-      startsAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}starts_at'],
-      )!,
-      timezoneId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}timezone_id'],
-      )!,
+      startsAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}starts_at'],
+          )!,
+      timezoneId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}timezone_id'],
+          )!,
       recurrenceRule: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}recurrence_rule'],
@@ -9658,14 +9735,16 @@ class $RemindersTable extends Reminders
         DriftSqlType.string,
         data['${effectivePrefix}source_entity_id'],
       ),
-      enabled: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}enabled'],
-      )!,
-      notificationLeadMinutes: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}notification_lead_minutes'],
-      )!,
+      enabled:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.bool,
+            data['${effectivePrefix}enabled'],
+          )!,
+      notificationLeadMinutes:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}notification_lead_minutes'],
+          )!,
       endsAt: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}ends_at'],
@@ -9750,28 +9829,29 @@ class Reminder extends DataClass implements Insertable<Reminder> {
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
       id: Value(id),
-      petId: petId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(petId),
+      petId:
+          petId == null && nullToAbsent ? const Value.absent() : Value(petId),
       kind: Value(kind),
       title: Value(title),
       body: body == null && nullToAbsent ? const Value.absent() : Value(body),
       startsAt: Value(startsAt),
       timezoneId: Value(timezoneId),
-      recurrenceRule: recurrenceRule == null && nullToAbsent
-          ? const Value.absent()
-          : Value(recurrenceRule),
-      sourceEntityType: sourceEntityType == null && nullToAbsent
-          ? const Value.absent()
-          : Value(sourceEntityType),
-      sourceEntityId: sourceEntityId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(sourceEntityId),
+      recurrenceRule:
+          recurrenceRule == null && nullToAbsent
+              ? const Value.absent()
+              : Value(recurrenceRule),
+      sourceEntityType:
+          sourceEntityType == null && nullToAbsent
+              ? const Value.absent()
+              : Value(sourceEntityType),
+      sourceEntityId:
+          sourceEntityId == null && nullToAbsent
+              ? const Value.absent()
+              : Value(sourceEntityId),
       enabled: Value(enabled),
       notificationLeadMinutes: Value(notificationLeadMinutes),
-      endsAt: endsAt == null && nullToAbsent
-          ? const Value.absent()
-          : Value(endsAt),
+      endsAt:
+          endsAt == null && nullToAbsent ? const Value.absent() : Value(endsAt),
     );
   }
 
@@ -9850,15 +9930,14 @@ class Reminder extends DataClass implements Insertable<Reminder> {
     body: body.present ? body.value : this.body,
     startsAt: startsAt ?? this.startsAt,
     timezoneId: timezoneId ?? this.timezoneId,
-    recurrenceRule: recurrenceRule.present
-        ? recurrenceRule.value
-        : this.recurrenceRule,
-    sourceEntityType: sourceEntityType.present
-        ? sourceEntityType.value
-        : this.sourceEntityType,
-    sourceEntityId: sourceEntityId.present
-        ? sourceEntityId.value
-        : this.sourceEntityId,
+    recurrenceRule:
+        recurrenceRule.present ? recurrenceRule.value : this.recurrenceRule,
+    sourceEntityType:
+        sourceEntityType.present
+            ? sourceEntityType.value
+            : this.sourceEntityType,
+    sourceEntityId:
+        sourceEntityId.present ? sourceEntityId.value : this.sourceEntityId,
     enabled: enabled ?? this.enabled,
     notificationLeadMinutes:
         notificationLeadMinutes ?? this.notificationLeadMinutes,
@@ -9874,22 +9953,25 @@ class Reminder extends DataClass implements Insertable<Reminder> {
       title: data.title.present ? data.title.value : this.title,
       body: data.body.present ? data.body.value : this.body,
       startsAt: data.startsAt.present ? data.startsAt.value : this.startsAt,
-      timezoneId: data.timezoneId.present
-          ? data.timezoneId.value
-          : this.timezoneId,
-      recurrenceRule: data.recurrenceRule.present
-          ? data.recurrenceRule.value
-          : this.recurrenceRule,
-      sourceEntityType: data.sourceEntityType.present
-          ? data.sourceEntityType.value
-          : this.sourceEntityType,
-      sourceEntityId: data.sourceEntityId.present
-          ? data.sourceEntityId.value
-          : this.sourceEntityId,
+      timezoneId:
+          data.timezoneId.present ? data.timezoneId.value : this.timezoneId,
+      recurrenceRule:
+          data.recurrenceRule.present
+              ? data.recurrenceRule.value
+              : this.recurrenceRule,
+      sourceEntityType:
+          data.sourceEntityType.present
+              ? data.sourceEntityType.value
+              : this.sourceEntityType,
+      sourceEntityId:
+          data.sourceEntityId.present
+              ? data.sourceEntityId.value
+              : this.sourceEntityId,
       enabled: data.enabled.present ? data.enabled.value : this.enabled,
-      notificationLeadMinutes: data.notificationLeadMinutes.present
-          ? data.notificationLeadMinutes.value
-          : this.notificationLeadMinutes,
+      notificationLeadMinutes:
+          data.notificationLeadMinutes.present
+              ? data.notificationLeadMinutes.value
+              : this.notificationLeadMinutes,
       endsAt: data.endsAt.present ? data.endsAt.value : this.endsAt,
     );
   }
@@ -10219,9 +10301,6 @@ class $ScheduledNotificationsTable extends ScheduledNotifications
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES reminders (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _platformNotificationIdMeta =
       const VerificationMeta('platformNotificationId');
@@ -10340,34 +10419,41 @@ class $ScheduledNotificationsTable extends ScheduledNotifications
   ScheduledNotification map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return ScheduledNotification(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      reminderId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}reminder_id'],
-      )!,
-      platformNotificationId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}platform_notification_id'],
-      )!,
-      scheduledFor: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}scheduled_for'],
-      )!,
-      status: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}status'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      reminderId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}reminder_id'],
+          )!,
+      platformNotificationId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}platform_notification_id'],
+          )!,
+      scheduledFor:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}scheduled_for'],
+          )!,
+      status:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}status'],
+          )!,
     );
   }
 
@@ -10476,15 +10562,16 @@ class ScheduledNotification extends DataClass
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
-      reminderId: data.reminderId.present
-          ? data.reminderId.value
-          : this.reminderId,
-      platformNotificationId: data.platformNotificationId.present
-          ? data.platformNotificationId.value
-          : this.platformNotificationId,
-      scheduledFor: data.scheduledFor.present
-          ? data.scheduledFor.value
-          : this.scheduledFor,
+      reminderId:
+          data.reminderId.present ? data.reminderId.value : this.reminderId,
+      platformNotificationId:
+          data.platformNotificationId.present
+              ? data.platformNotificationId.value
+              : this.platformNotificationId,
+      scheduledFor:
+          data.scheduledFor.present
+              ? data.scheduledFor.value
+              : this.scheduledFor,
       status: data.status.present ? data.status.value : this.status,
     );
   }
@@ -10701,9 +10788,6 @@ class $GeneratedReportsTable extends GeneratedReports
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES pets (id) ON DELETE SET NULL',
-    ),
   );
   static const VerificationMeta _fileIdMeta = const VerificationMeta('fileId');
   @override
@@ -10713,9 +10797,6 @@ class $GeneratedReportsTable extends GeneratedReports
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES file_assets (id) ON DELETE RESTRICT',
-    ),
   );
   static const VerificationMeta _reportTypeMeta = const VerificationMeta(
     'reportType',
@@ -10836,30 +10917,35 @@ class $GeneratedReportsTable extends GeneratedReports
   GeneratedReport map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return GeneratedReport(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
       petId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}pet_id'],
       ),
-      fileId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}file_id'],
-      )!,
-      reportType: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}report_type'],
-      )!,
+      fileId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}file_id'],
+          )!,
+      reportType:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}report_type'],
+          )!,
       periodStart: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}period_start'],
@@ -10921,17 +11007,18 @@ class GeneratedReport extends DataClass implements Insertable<GeneratedReport> {
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
       id: Value(id),
-      petId: petId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(petId),
+      petId:
+          petId == null && nullToAbsent ? const Value.absent() : Value(petId),
       fileId: Value(fileId),
       reportType: Value(reportType),
-      periodStart: periodStart == null && nullToAbsent
-          ? const Value.absent()
-          : Value(periodStart),
-      periodEnd: periodEnd == null && nullToAbsent
-          ? const Value.absent()
-          : Value(periodEnd),
+      periodStart:
+          periodStart == null && nullToAbsent
+              ? const Value.absent()
+              : Value(periodStart),
+      periodEnd:
+          periodEnd == null && nullToAbsent
+              ? const Value.absent()
+              : Value(periodEnd),
     );
   }
 
@@ -10992,12 +11079,10 @@ class GeneratedReport extends DataClass implements Insertable<GeneratedReport> {
       id: data.id.present ? data.id.value : this.id,
       petId: data.petId.present ? data.petId.value : this.petId,
       fileId: data.fileId.present ? data.fileId.value : this.fileId,
-      reportType: data.reportType.present
-          ? data.reportType.value
-          : this.reportType,
-      periodStart: data.periodStart.present
-          ? data.periodStart.value
-          : this.periodStart,
+      reportType:
+          data.reportType.present ? data.reportType.value : this.reportType,
+      periodStart:
+          data.periodStart.present ? data.periodStart.value : this.periodStart,
       periodEnd: data.periodEnd.present ? data.periodEnd.value : this.periodEnd,
     );
   }
@@ -11298,26 +11383,31 @@ class $AppSettingsTable extends AppSettings
   AppSetting map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return AppSetting(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      settingKey: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}setting_key'],
-      )!,
-      valueJson: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}value_json'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      settingKey:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}setting_key'],
+          )!,
+      valueJson:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}value_json'],
+          )!,
     );
   }
 
@@ -11404,9 +11494,8 @@ class AppSetting extends DataClass implements Insertable<AppSetting> {
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
-      settingKey: data.settingKey.present
-          ? data.settingKey.value
-          : this.settingKey,
+      settingKey:
+          data.settingKey.present ? data.settingKey.value : this.settingKey,
       valueJson: data.valueJson.present ? data.valueJson.value : this.valueJson,
     );
   }
@@ -11803,30 +11892,35 @@ class $BackupRecordsTable extends BackupRecords
   BackupRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return BackupRecord(
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
       driveFileId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}drive_file_id'],
       ),
-      backupFormatVersion: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}backup_format_version'],
-      )!,
-      databaseSchemaVersion: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}database_schema_version'],
-      )!,
+      backupFormatVersion:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}backup_format_version'],
+          )!,
+      databaseSchemaVersion:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}database_schema_version'],
+          )!,
       encryptedSha256: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}encrypted_sha256'],
@@ -11835,18 +11929,20 @@ class $BackupRecordsTable extends BackupRecords
         DriftSqlType.int,
         data['${effectivePrefix}byte_size'],
       ),
-      startedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}started_at'],
-      )!,
+      startedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}started_at'],
+          )!,
       completedAt: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}completed_at'],
       ),
-      status: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}status'],
-      )!,
+      status:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}status'],
+          )!,
       failureCode: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}failure_code'],
@@ -11920,25 +12016,30 @@ class BackupRecord extends DataClass implements Insertable<BackupRecord> {
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
       id: Value(id),
-      driveFileId: driveFileId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(driveFileId),
+      driveFileId:
+          driveFileId == null && nullToAbsent
+              ? const Value.absent()
+              : Value(driveFileId),
       backupFormatVersion: Value(backupFormatVersion),
       databaseSchemaVersion: Value(databaseSchemaVersion),
-      encryptedSha256: encryptedSha256 == null && nullToAbsent
-          ? const Value.absent()
-          : Value(encryptedSha256),
-      byteSize: byteSize == null && nullToAbsent
-          ? const Value.absent()
-          : Value(byteSize),
+      encryptedSha256:
+          encryptedSha256 == null && nullToAbsent
+              ? const Value.absent()
+              : Value(encryptedSha256),
+      byteSize:
+          byteSize == null && nullToAbsent
+              ? const Value.absent()
+              : Value(byteSize),
       startedAt: Value(startedAt),
-      completedAt: completedAt == null && nullToAbsent
-          ? const Value.absent()
-          : Value(completedAt),
+      completedAt:
+          completedAt == null && nullToAbsent
+              ? const Value.absent()
+              : Value(completedAt),
       status: Value(status),
-      failureCode: failureCode == null && nullToAbsent
-          ? const Value.absent()
-          : Value(failureCode),
+      failureCode:
+          failureCode == null && nullToAbsent
+              ? const Value.absent()
+              : Value(failureCode),
     );
   }
 
@@ -12005,9 +12106,8 @@ class BackupRecord extends DataClass implements Insertable<BackupRecord> {
     driveFileId: driveFileId.present ? driveFileId.value : this.driveFileId,
     backupFormatVersion: backupFormatVersion ?? this.backupFormatVersion,
     databaseSchemaVersion: databaseSchemaVersion ?? this.databaseSchemaVersion,
-    encryptedSha256: encryptedSha256.present
-        ? encryptedSha256.value
-        : this.encryptedSha256,
+    encryptedSha256:
+        encryptedSha256.present ? encryptedSha256.value : this.encryptedSha256,
     byteSize: byteSize.present ? byteSize.value : this.byteSize,
     startedAt: startedAt ?? this.startedAt,
     completedAt: completedAt.present ? completedAt.value : this.completedAt,
@@ -12019,27 +12119,27 @@ class BackupRecord extends DataClass implements Insertable<BackupRecord> {
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       id: data.id.present ? data.id.value : this.id,
-      driveFileId: data.driveFileId.present
-          ? data.driveFileId.value
-          : this.driveFileId,
-      backupFormatVersion: data.backupFormatVersion.present
-          ? data.backupFormatVersion.value
-          : this.backupFormatVersion,
-      databaseSchemaVersion: data.databaseSchemaVersion.present
-          ? data.databaseSchemaVersion.value
-          : this.databaseSchemaVersion,
-      encryptedSha256: data.encryptedSha256.present
-          ? data.encryptedSha256.value
-          : this.encryptedSha256,
+      driveFileId:
+          data.driveFileId.present ? data.driveFileId.value : this.driveFileId,
+      backupFormatVersion:
+          data.backupFormatVersion.present
+              ? data.backupFormatVersion.value
+              : this.backupFormatVersion,
+      databaseSchemaVersion:
+          data.databaseSchemaVersion.present
+              ? data.databaseSchemaVersion.value
+              : this.databaseSchemaVersion,
+      encryptedSha256:
+          data.encryptedSha256.present
+              ? data.encryptedSha256.value
+              : this.encryptedSha256,
       byteSize: data.byteSize.present ? data.byteSize.value : this.byteSize,
       startedAt: data.startedAt.present ? data.startedAt.value : this.startedAt,
-      completedAt: data.completedAt.present
-          ? data.completedAt.value
-          : this.completedAt,
+      completedAt:
+          data.completedAt.present ? data.completedAt.value : this.completedAt,
       status: data.status.present ? data.status.value : this.status,
-      failureCode: data.failureCode.present
-          ? data.failureCode.value
-          : this.failureCode,
+      failureCode:
+          data.failureCode.present ? data.failureCode.value : this.failureCode,
     );
   }
 
@@ -12278,6 +12378,522 @@ class BackupRecordsCompanion extends UpdateCompanion<BackupRecord> {
   }
 }
 
+class $MemoriesTable extends Memories with TableInfo<$MemoriesTable, Memory> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MemoriesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _petIdMeta = const VerificationMeta('petId');
+  @override
+  late final GeneratedColumn<String> petId = GeneratedColumn<String>(
+    'pet_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _descriptionMeta = const VerificationMeta(
+    'description',
+  );
+  @override
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+    'description',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _imageFileIdMeta = const VerificationMeta(
+    'imageFileId',
+  );
+  @override
+  late final GeneratedColumn<String> imageFileId = GeneratedColumn<String>(
+    'image_file_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<DateTime> date = GeneratedColumn<DateTime>(
+    'date',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    title,
+    description,
+    imageFileId,
+    date,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'memories';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Memory> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pet_id')) {
+      context.handle(
+        _petIdMeta,
+        petId.isAcceptableOrUnknown(data['pet_id']!, _petIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_petIdMeta);
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    }
+    if (data.containsKey('description')) {
+      context.handle(
+        _descriptionMeta,
+        description.isAcceptableOrUnknown(
+          data['description']!,
+          _descriptionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('image_file_id')) {
+      context.handle(
+        _imageFileIdMeta,
+        imageFileId.isAcceptableOrUnknown(
+          data['image_file_id']!,
+          _imageFileIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+        _dateMeta,
+        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Memory map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Memory(
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      ),
+      description: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}description'],
+      ),
+      imageFileId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}image_file_id'],
+      ),
+      date:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}date'],
+          )!,
+    );
+  }
+
+  @override
+  $MemoriesTable createAlias(String alias) {
+    return $MemoriesTable(attachedDatabase, alias);
+  }
+}
+
+class Memory extends DataClass implements Insertable<Memory> {
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final String id;
+  final String petId;
+  final String? title;
+  final String? description;
+  final String? imageFileId;
+  final DateTime date;
+  const Memory({
+    required this.createdAt,
+    required this.updatedAt,
+    required this.id,
+    required this.petId,
+    this.title,
+    this.description,
+    this.imageFileId,
+    required this.date,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['id'] = Variable<String>(id);
+    map['pet_id'] = Variable<String>(petId);
+    if (!nullToAbsent || title != null) {
+      map['title'] = Variable<String>(title);
+    }
+    if (!nullToAbsent || description != null) {
+      map['description'] = Variable<String>(description);
+    }
+    if (!nullToAbsent || imageFileId != null) {
+      map['image_file_id'] = Variable<String>(imageFileId);
+    }
+    map['date'] = Variable<DateTime>(date);
+    return map;
+  }
+
+  MemoriesCompanion toCompanion(bool nullToAbsent) {
+    return MemoriesCompanion(
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      id: Value(id),
+      petId: Value(petId),
+      title:
+          title == null && nullToAbsent ? const Value.absent() : Value(title),
+      description:
+          description == null && nullToAbsent
+              ? const Value.absent()
+              : Value(description),
+      imageFileId:
+          imageFileId == null && nullToAbsent
+              ? const Value.absent()
+              : Value(imageFileId),
+      date: Value(date),
+    );
+  }
+
+  factory Memory.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Memory(
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      id: serializer.fromJson<String>(json['id']),
+      petId: serializer.fromJson<String>(json['petId']),
+      title: serializer.fromJson<String?>(json['title']),
+      description: serializer.fromJson<String?>(json['description']),
+      imageFileId: serializer.fromJson<String?>(json['imageFileId']),
+      date: serializer.fromJson<DateTime>(json['date']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'id': serializer.toJson<String>(id),
+      'petId': serializer.toJson<String>(petId),
+      'title': serializer.toJson<String?>(title),
+      'description': serializer.toJson<String?>(description),
+      'imageFileId': serializer.toJson<String?>(imageFileId),
+      'date': serializer.toJson<DateTime>(date),
+    };
+  }
+
+  Memory copyWith({
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? id,
+    String? petId,
+    Value<String?> title = const Value.absent(),
+    Value<String?> description = const Value.absent(),
+    Value<String?> imageFileId = const Value.absent(),
+    DateTime? date,
+  }) => Memory(
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    id: id ?? this.id,
+    petId: petId ?? this.petId,
+    title: title.present ? title.value : this.title,
+    description: description.present ? description.value : this.description,
+    imageFileId: imageFileId.present ? imageFileId.value : this.imageFileId,
+    date: date ?? this.date,
+  );
+  Memory copyWithCompanion(MemoriesCompanion data) {
+    return Memory(
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      id: data.id.present ? data.id.value : this.id,
+      petId: data.petId.present ? data.petId.value : this.petId,
+      title: data.title.present ? data.title.value : this.title,
+      description:
+          data.description.present ? data.description.value : this.description,
+      imageFileId:
+          data.imageFileId.present ? data.imageFileId.value : this.imageFileId,
+      date: data.date.present ? data.date.value : this.date,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Memory(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('title: $title, ')
+          ..write('description: $description, ')
+          ..write('imageFileId: $imageFileId, ')
+          ..write('date: $date')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    title,
+    description,
+    imageFileId,
+    date,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Memory &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.id == this.id &&
+          other.petId == this.petId &&
+          other.title == this.title &&
+          other.description == this.description &&
+          other.imageFileId == this.imageFileId &&
+          other.date == this.date);
+}
+
+class MemoriesCompanion extends UpdateCompanion<Memory> {
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<String> id;
+  final Value<String> petId;
+  final Value<String?> title;
+  final Value<String?> description;
+  final Value<String?> imageFileId;
+  final Value<DateTime> date;
+  final Value<int> rowid;
+  const MemoriesCompanion({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.id = const Value.absent(),
+    this.petId = const Value.absent(),
+    this.title = const Value.absent(),
+    this.description = const Value.absent(),
+    this.imageFileId = const Value.absent(),
+    this.date = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  MemoriesCompanion.insert({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    required String id,
+    required String petId,
+    this.title = const Value.absent(),
+    this.description = const Value.absent(),
+    this.imageFileId = const Value.absent(),
+    this.date = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       petId = Value(petId);
+  static Insertable<Memory> custom({
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<String>? id,
+    Expression<String>? petId,
+    Expression<String>? title,
+    Expression<String>? description,
+    Expression<String>? imageFileId,
+    Expression<DateTime>? date,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (id != null) 'id': id,
+      if (petId != null) 'pet_id': petId,
+      if (title != null) 'title': title,
+      if (description != null) 'description': description,
+      if (imageFileId != null) 'image_file_id': imageFileId,
+      if (date != null) 'date': date,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  MemoriesCompanion copyWith({
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<String>? id,
+    Value<String>? petId,
+    Value<String?>? title,
+    Value<String?>? description,
+    Value<String?>? imageFileId,
+    Value<DateTime>? date,
+    Value<int>? rowid,
+  }) {
+    return MemoriesCompanion(
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      id: id ?? this.id,
+      petId: petId ?? this.petId,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      imageFileId: imageFileId ?? this.imageFileId,
+      date: date ?? this.date,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (petId.present) {
+      map['pet_id'] = Variable<String>(petId.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (description.present) {
+      map['description'] = Variable<String>(description.value);
+    }
+    if (imageFileId.present) {
+      map['image_file_id'] = Variable<String>(imageFileId.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<DateTime>(date.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MemoriesCompanion(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('title: $title, ')
+          ..write('description: $description, ')
+          ..write('imageFileId: $imageFileId, ')
+          ..write('date: $date, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -12306,6 +12922,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   );
   late final $AppSettingsTable appSettings = $AppSettingsTable(this);
   late final $BackupRecordsTable backupRecords = $BackupRecordsTable(this);
+  late final $MemoriesTable memories = $MemoriesTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -12330,117 +12947,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     generatedReports,
     appSettings,
     backupRecords,
+    memories,
   ];
-  @override
-  StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'file_assets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('owner_profiles', kind: UpdateKind.update)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'file_assets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('pets', kind: UpdateKind.update)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('vaccinations', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('medical_records', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('pet_medications', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pet_medications',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('medication_schedules', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pet_medications',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [
-        TableUpdate('medication_administrations', kind: UpdateKind.delete),
-      ],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('appointments', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('documents', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('growth_entries', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('expenses', kind: UpdateKind.update)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'file_assets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('expenses', kind: UpdateKind.update)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('reminders', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'reminders',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('scheduled_notifications', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'pets',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('generated_reports', kind: UpdateKind.update)],
-    ),
-  ]);
 }
 
 typedef $$FileAssetsTableCreateCompanionBuilder =
@@ -12469,126 +12977,6 @@ typedef $$FileAssetsTableUpdateCompanionBuilder =
       Value<String> category,
       Value<int> rowid,
     });
-
-final class $$FileAssetsTableReferences
-    extends BaseReferences<_$AppDatabase, $FileAssetsTable, FileAsset> {
-  $$FileAssetsTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static MultiTypedResultKey<$OwnerProfilesTable, List<OwnerProfile>>
-  _ownerProfilesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.ownerProfiles,
-    aliasName: 'file_assets__id__owner_profiles__photo_file_id',
-  );
-
-  $$OwnerProfilesTableProcessedTableManager get ownerProfilesRefs {
-    final manager = $$OwnerProfilesTableTableManager(
-      $_db,
-      $_db.ownerProfiles,
-    ).filter((f) => f.photoFileId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_ownerProfilesRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$PetsTable, List<Pet>> _petsRefsTable(
-    _$AppDatabase db,
-  ) => MultiTypedResultKey.fromTable(
-    db.pets,
-    aliasName: 'file_assets__id__pets__profile_file_id',
-  );
-
-  $$PetsTableProcessedTableManager get petsRefs {
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.profileFileId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_petsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$DocumentsTable, List<Document>>
-  _documentsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.documents,
-    aliasName: 'file_assets__id__documents__file_id',
-  );
-
-  $$DocumentsTableProcessedTableManager get documentsRefs {
-    final manager = $$DocumentsTableTableManager(
-      $_db,
-      $_db.documents,
-    ).filter((f) => f.fileId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_documentsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$RecordAttachmentsTable, List<RecordAttachment>>
-  _recordAttachmentsRefsTable(_$AppDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.recordAttachments,
-        aliasName: 'file_assets__id__record_attachments__file_id',
-      );
-
-  $$RecordAttachmentsTableProcessedTableManager get recordAttachmentsRefs {
-    final manager = $$RecordAttachmentsTableTableManager(
-      $_db,
-      $_db.recordAttachments,
-    ).filter((f) => f.fileId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _recordAttachmentsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$ExpensesTable, List<Expense>> _expensesRefsTable(
-    _$AppDatabase db,
-  ) => MultiTypedResultKey.fromTable(
-    db.expenses,
-    aliasName: 'file_assets__id__expenses__receipt_file_id',
-  );
-
-  $$ExpensesTableProcessedTableManager get expensesRefs {
-    final manager = $$ExpensesTableTableManager(
-      $_db,
-      $_db.expenses,
-    ).filter((f) => f.receiptFileId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_expensesRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$GeneratedReportsTable, List<GeneratedReport>>
-  _generatedReportsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.generatedReports,
-    aliasName: 'file_assets__id__generated_reports__file_id',
-  );
-
-  $$GeneratedReportsTableProcessedTableManager get generatedReportsRefs {
-    final manager = $$GeneratedReportsTableTableManager(
-      $_db,
-      $_db.generatedReports,
-    ).filter((f) => f.fileId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _generatedReportsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
 
 class $$FileAssetsTableFilterComposer
     extends Composer<_$AppDatabase, $FileAssetsTable> {
@@ -12643,156 +13031,6 @@ class $$FileAssetsTableFilterComposer
     column: $table.category,
     builder: (column) => ColumnFilters(column),
   );
-
-  Expression<bool> ownerProfilesRefs(
-    Expression<bool> Function($$OwnerProfilesTableFilterComposer f) f,
-  ) {
-    final $$OwnerProfilesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.ownerProfiles,
-      getReferencedColumn: (t) => t.photoFileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$OwnerProfilesTableFilterComposer(
-            $db: $db,
-            $table: $db.ownerProfiles,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> petsRefs(
-    Expression<bool> Function($$PetsTableFilterComposer f) f,
-  ) {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.profileFileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> documentsRefs(
-    Expression<bool> Function($$DocumentsTableFilterComposer f) f,
-  ) {
-    final $$DocumentsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.documents,
-      getReferencedColumn: (t) => t.fileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$DocumentsTableFilterComposer(
-            $db: $db,
-            $table: $db.documents,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> recordAttachmentsRefs(
-    Expression<bool> Function($$RecordAttachmentsTableFilterComposer f) f,
-  ) {
-    final $$RecordAttachmentsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.recordAttachments,
-      getReferencedColumn: (t) => t.fileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$RecordAttachmentsTableFilterComposer(
-            $db: $db,
-            $table: $db.recordAttachments,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> expensesRefs(
-    Expression<bool> Function($$ExpensesTableFilterComposer f) f,
-  ) {
-    final $$ExpensesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.expenses,
-      getReferencedColumn: (t) => t.receiptFileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ExpensesTableFilterComposer(
-            $db: $db,
-            $table: $db.expenses,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> generatedReportsRefs(
-    Expression<bool> Function($$GeneratedReportsTableFilterComposer f) f,
-  ) {
-    final $$GeneratedReportsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.generatedReports,
-      getReferencedColumn: (t) => t.fileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GeneratedReportsTableFilterComposer(
-            $db: $db,
-            $table: $db.generatedReports,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$FileAssetsTableOrderingComposer
@@ -12889,157 +13127,6 @@ class $$FileAssetsTableAnnotationComposer
 
   GeneratedColumn<String> get category =>
       $composableBuilder(column: $table.category, builder: (column) => column);
-
-  Expression<T> ownerProfilesRefs<T extends Object>(
-    Expression<T> Function($$OwnerProfilesTableAnnotationComposer a) f,
-  ) {
-    final $$OwnerProfilesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.ownerProfiles,
-      getReferencedColumn: (t) => t.photoFileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$OwnerProfilesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.ownerProfiles,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> petsRefs<T extends Object>(
-    Expression<T> Function($$PetsTableAnnotationComposer a) f,
-  ) {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.profileFileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> documentsRefs<T extends Object>(
-    Expression<T> Function($$DocumentsTableAnnotationComposer a) f,
-  ) {
-    final $$DocumentsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.documents,
-      getReferencedColumn: (t) => t.fileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$DocumentsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.documents,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> recordAttachmentsRefs<T extends Object>(
-    Expression<T> Function($$RecordAttachmentsTableAnnotationComposer a) f,
-  ) {
-    final $$RecordAttachmentsTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.recordAttachments,
-          getReferencedColumn: (t) => t.fileId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$RecordAttachmentsTableAnnotationComposer(
-                $db: $db,
-                $table: $db.recordAttachments,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<T> expensesRefs<T extends Object>(
-    Expression<T> Function($$ExpensesTableAnnotationComposer a) f,
-  ) {
-    final $$ExpensesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.expenses,
-      getReferencedColumn: (t) => t.receiptFileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ExpensesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.expenses,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> generatedReportsRefs<T extends Object>(
-    Expression<T> Function($$GeneratedReportsTableAnnotationComposer a) f,
-  ) {
-    final $$GeneratedReportsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.generatedReports,
-      getReferencedColumn: (t) => t.fileId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GeneratedReportsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.generatedReports,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$FileAssetsTableTableManager
@@ -13053,28 +13140,24 @@ class $$FileAssetsTableTableManager
           $$FileAssetsTableAnnotationComposer,
           $$FileAssetsTableCreateCompanionBuilder,
           $$FileAssetsTableUpdateCompanionBuilder,
-          (FileAsset, $$FileAssetsTableReferences),
+          (
+            FileAsset,
+            BaseReferences<_$AppDatabase, $FileAssetsTable, FileAsset>,
+          ),
           FileAsset,
-          PrefetchHooks Function({
-            bool ownerProfilesRefs,
-            bool petsRefs,
-            bool documentsRefs,
-            bool recordAttachmentsRefs,
-            bool expensesRefs,
-            bool generatedReportsRefs,
-          })
+          PrefetchHooks Function()
         > {
   $$FileAssetsTableTableManager(_$AppDatabase db, $FileAssetsTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$FileAssetsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$FileAssetsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$FileAssetsTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$FileAssetsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$FileAssetsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$FileAssetsTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -13123,166 +13206,17 @@ class $$FileAssetsTableTableManager
                 category: category,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$FileAssetsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback:
-              ({
-                ownerProfilesRefs = false,
-                petsRefs = false,
-                documentsRefs = false,
-                recordAttachmentsRefs = false,
-                expensesRefs = false,
-                generatedReportsRefs = false,
-              }) {
-                return PrefetchHooks(
-                  db: db,
-                  explicitlyWatchedTables: [
-                    if (ownerProfilesRefs) db.ownerProfiles,
-                    if (petsRefs) db.pets,
-                    if (documentsRefs) db.documents,
-                    if (recordAttachmentsRefs) db.recordAttachments,
-                    if (expensesRefs) db.expenses,
-                    if (generatedReportsRefs) db.generatedReports,
-                  ],
-                  addJoins: null,
-                  getPrefetchedDataCallback: (items) async {
-                    return [
-                      if (ownerProfilesRefs)
-                        await $_getPrefetchedData<
-                          FileAsset,
-                          $FileAssetsTable,
-                          OwnerProfile
-                        >(
-                          currentTable: table,
-                          referencedTable: $$FileAssetsTableReferences
-                              ._ownerProfilesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$FileAssetsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).ownerProfilesRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.photoFileId == item.id,
-                              ),
-                          typedResults: items,
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
                         ),
-                      if (petsRefs)
-                        await $_getPrefetchedData<
-                          FileAsset,
-                          $FileAssetsTable,
-                          Pet
-                        >(
-                          currentTable: table,
-                          referencedTable: $$FileAssetsTableReferences
-                              ._petsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$FileAssetsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).petsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.profileFileId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (documentsRefs)
-                        await $_getPrefetchedData<
-                          FileAsset,
-                          $FileAssetsTable,
-                          Document
-                        >(
-                          currentTable: table,
-                          referencedTable: $$FileAssetsTableReferences
-                              ._documentsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$FileAssetsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).documentsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.fileId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (recordAttachmentsRefs)
-                        await $_getPrefetchedData<
-                          FileAsset,
-                          $FileAssetsTable,
-                          RecordAttachment
-                        >(
-                          currentTable: table,
-                          referencedTable: $$FileAssetsTableReferences
-                              ._recordAttachmentsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$FileAssetsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).recordAttachmentsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.fileId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (expensesRefs)
-                        await $_getPrefetchedData<
-                          FileAsset,
-                          $FileAssetsTable,
-                          Expense
-                        >(
-                          currentTable: table,
-                          referencedTable: $$FileAssetsTableReferences
-                              ._expensesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$FileAssetsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).expensesRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.receiptFileId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (generatedReportsRefs)
-                        await $_getPrefetchedData<
-                          FileAsset,
-                          $FileAssetsTable,
-                          GeneratedReport
-                        >(
-                          currentTable: table,
-                          referencedTable: $$FileAssetsTableReferences
-                              ._generatedReportsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$FileAssetsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).generatedReportsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.fileId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                    ];
-                  },
-                );
-              },
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -13297,16 +13231,9 @@ typedef $$FileAssetsTableProcessedTableManager =
       $$FileAssetsTableAnnotationComposer,
       $$FileAssetsTableCreateCompanionBuilder,
       $$FileAssetsTableUpdateCompanionBuilder,
-      (FileAsset, $$FileAssetsTableReferences),
+      (FileAsset, BaseReferences<_$AppDatabase, $FileAssetsTable, FileAsset>),
       FileAsset,
-      PrefetchHooks Function({
-        bool ownerProfilesRefs,
-        bool petsRefs,
-        bool documentsRefs,
-        bool recordAttachmentsRefs,
-        bool expensesRefs,
-        bool generatedReportsRefs,
-      })
+      PrefetchHooks Function()
     >;
 typedef $$OwnerProfilesTableCreateCompanionBuilder =
     OwnerProfilesCompanion Function({
@@ -13336,51 +13263,6 @@ typedef $$OwnerProfilesTableUpdateCompanionBuilder =
       Value<String?> photoFileId,
       Value<int> rowid,
     });
-
-final class $$OwnerProfilesTableReferences
-    extends BaseReferences<_$AppDatabase, $OwnerProfilesTable, OwnerProfile> {
-  $$OwnerProfilesTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $FileAssetsTable _photoFileIdTable(_$AppDatabase db) => db.fileAssets
-      .createAlias('owner_profiles__photo_file_id__file_assets__id');
-
-  $$FileAssetsTableProcessedTableManager? get photoFileId {
-    final $_column = $_itemColumn<String>('photo_file_id');
-    if ($_column == null) return null;
-    final manager = $$FileAssetsTableTableManager(
-      $_db,
-      $_db.fileAssets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_photoFileIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static MultiTypedResultKey<$PetsTable, List<Pet>> _petsRefsTable(
-    _$AppDatabase db,
-  ) => MultiTypedResultKey.fromTable(
-    db.pets,
-    aliasName: 'owner_profiles__id__pets__owner_id',
-  );
-
-  $$PetsTableProcessedTableManager get petsRefs {
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.ownerId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_petsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
 
 class $$OwnerProfilesTableFilterComposer
     extends Composer<_$AppDatabase, $OwnerProfilesTable> {
@@ -13436,53 +13318,10 @@ class $$OwnerProfilesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  $$FileAssetsTableFilterComposer get photoFileId {
-    final $$FileAssetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.photoFileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableFilterComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<bool> petsRefs(
-    Expression<bool> Function($$PetsTableFilterComposer f) f,
-  ) {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.ownerId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
+  ColumnFilters<String> get photoFileId => $composableBuilder(
+    column: $table.photoFileId,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$OwnerProfilesTableOrderingComposer
@@ -13539,28 +13378,10 @@ class $$OwnerProfilesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  $$FileAssetsTableOrderingComposer get photoFileId {
-    final $$FileAssetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.photoFileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
+  ColumnOrderings<String> get photoFileId => $composableBuilder(
+    column: $table.photoFileId,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$OwnerProfilesTableAnnotationComposer
@@ -13605,53 +13426,10 @@ class $$OwnerProfilesTableAnnotationComposer
     builder: (column) => column,
   );
 
-  $$FileAssetsTableAnnotationComposer get photoFileId {
-    final $$FileAssetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.photoFileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<T> petsRefs<T extends Object>(
-    Expression<T> Function($$PetsTableAnnotationComposer a) f,
-  ) {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.ownerId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
+  GeneratedColumn<String> get photoFileId => $composableBuilder(
+    column: $table.photoFileId,
+    builder: (column) => column,
+  );
 }
 
 class $$OwnerProfilesTableTableManager
@@ -13665,21 +13443,28 @@ class $$OwnerProfilesTableTableManager
           $$OwnerProfilesTableAnnotationComposer,
           $$OwnerProfilesTableCreateCompanionBuilder,
           $$OwnerProfilesTableUpdateCompanionBuilder,
-          (OwnerProfile, $$OwnerProfilesTableReferences),
+          (
+            OwnerProfile,
+            BaseReferences<_$AppDatabase, $OwnerProfilesTable, OwnerProfile>,
+          ),
           OwnerProfile,
-          PrefetchHooks Function({bool photoFileId, bool petsRefs})
+          PrefetchHooks Function()
         > {
   $$OwnerProfilesTableTableManager(_$AppDatabase db, $OwnerProfilesTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$OwnerProfilesTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$OwnerProfilesTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$OwnerProfilesTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$OwnerProfilesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () =>
+                  $$OwnerProfilesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$OwnerProfilesTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -13732,75 +13517,17 @@ class $$OwnerProfilesTableTableManager
                 photoFileId: photoFileId,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$OwnerProfilesTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({photoFileId = false, petsRefs = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [if (petsRefs) db.pets],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (photoFileId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.photoFileId,
-                                referencedTable: $$OwnerProfilesTableReferences
-                                    ._photoFileIdTable(db),
-                                referencedColumn: $$OwnerProfilesTableReferences
-                                    ._photoFileIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [
-                  if (petsRefs)
-                    await $_getPrefetchedData<
-                      OwnerProfile,
-                      $OwnerProfilesTable,
-                      Pet
-                    >(
-                      currentTable: table,
-                      referencedTable: $$OwnerProfilesTableReferences
-                          ._petsRefsTable(db),
-                      managerFromTypedResult: (p0) =>
-                          $$OwnerProfilesTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).petsRefs,
-                      referencedItemsForCurrentItem: (item, referencedItems) =>
-                          referencedItems.where((e) => e.ownerId == item.id),
-                      typedResults: items,
-                    ),
-                ];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -13815,9 +13542,12 @@ typedef $$OwnerProfilesTableProcessedTableManager =
       $$OwnerProfilesTableAnnotationComposer,
       $$OwnerProfilesTableCreateCompanionBuilder,
       $$OwnerProfilesTableUpdateCompanionBuilder,
-      (OwnerProfile, $$OwnerProfilesTableReferences),
+      (
+        OwnerProfile,
+        BaseReferences<_$AppDatabase, $OwnerProfilesTable, OwnerProfile>,
+      ),
       OwnerProfile,
-      PrefetchHooks Function({bool photoFileId, bool petsRefs})
+      PrefetchHooks Function()
     >;
 typedef $$PetsTableCreateCompanionBuilder =
     PetsCompanion Function({
@@ -13864,210 +13594,6 @@ typedef $$PetsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$PetsTableReferences
-    extends BaseReferences<_$AppDatabase, $PetsTable, Pet> {
-  $$PetsTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $OwnerProfilesTable _ownerIdTable(_$AppDatabase db) =>
-      db.ownerProfiles.createAlias('pets__owner_id__owner_profiles__id');
-
-  $$OwnerProfilesTableProcessedTableManager get ownerId {
-    final $_column = $_itemColumn<String>('owner_id')!;
-
-    final manager = $$OwnerProfilesTableTableManager(
-      $_db,
-      $_db.ownerProfiles,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_ownerIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static $FileAssetsTable _profileFileIdTable(_$AppDatabase db) =>
-      db.fileAssets.createAlias('pets__profile_file_id__file_assets__id');
-
-  $$FileAssetsTableProcessedTableManager? get profileFileId {
-    final $_column = $_itemColumn<String>('profile_file_id');
-    if ($_column == null) return null;
-    final manager = $$FileAssetsTableTableManager(
-      $_db,
-      $_db.fileAssets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_profileFileIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static MultiTypedResultKey<$VaccinationsTable, List<Vaccination>>
-  _vaccinationsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.vaccinations,
-    aliasName: 'pets__id__vaccinations__pet_id',
-  );
-
-  $$VaccinationsTableProcessedTableManager get vaccinationsRefs {
-    final manager = $$VaccinationsTableTableManager(
-      $_db,
-      $_db.vaccinations,
-    ).filter((f) => f.petId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_vaccinationsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$MedicalRecordsTable, List<MedicalRecord>>
-  _medicalRecordsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.medicalRecords,
-    aliasName: 'pets__id__medical_records__pet_id',
-  );
-
-  $$MedicalRecordsTableProcessedTableManager get medicalRecordsRefs {
-    final manager = $$MedicalRecordsTableTableManager(
-      $_db,
-      $_db.medicalRecords,
-    ).filter((f) => f.petId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_medicalRecordsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$PetMedicationsTable, List<PetMedication>>
-  _petMedicationsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.petMedications,
-    aliasName: 'pets__id__pet_medications__pet_id',
-  );
-
-  $$PetMedicationsTableProcessedTableManager get petMedicationsRefs {
-    final manager = $$PetMedicationsTableTableManager(
-      $_db,
-      $_db.petMedications,
-    ).filter((f) => f.petId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_petMedicationsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$AppointmentsTable, List<Appointment>>
-  _appointmentsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.appointments,
-    aliasName: 'pets__id__appointments__pet_id',
-  );
-
-  $$AppointmentsTableProcessedTableManager get appointmentsRefs {
-    final manager = $$AppointmentsTableTableManager(
-      $_db,
-      $_db.appointments,
-    ).filter((f) => f.petId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_appointmentsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$DocumentsTable, List<Document>>
-  _documentsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.documents,
-    aliasName: 'pets__id__documents__pet_id',
-  );
-
-  $$DocumentsTableProcessedTableManager get documentsRefs {
-    final manager = $$DocumentsTableTableManager(
-      $_db,
-      $_db.documents,
-    ).filter((f) => f.petId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_documentsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$GrowthEntriesTable, List<GrowthEntry>>
-  _growthEntriesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.growthEntries,
-    aliasName: 'pets__id__growth_entries__pet_id',
-  );
-
-  $$GrowthEntriesTableProcessedTableManager get growthEntriesRefs {
-    final manager = $$GrowthEntriesTableTableManager(
-      $_db,
-      $_db.growthEntries,
-    ).filter((f) => f.petId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_growthEntriesRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$ExpensesTable, List<Expense>> _expensesRefsTable(
-    _$AppDatabase db,
-  ) => MultiTypedResultKey.fromTable(
-    db.expenses,
-    aliasName: 'pets__id__expenses__pet_id',
-  );
-
-  $$ExpensesTableProcessedTableManager get expensesRefs {
-    final manager = $$ExpensesTableTableManager(
-      $_db,
-      $_db.expenses,
-    ).filter((f) => f.petId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_expensesRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$RemindersTable, List<Reminder>>
-  _remindersRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.reminders,
-    aliasName: 'pets__id__reminders__pet_id',
-  );
-
-  $$RemindersTableProcessedTableManager get remindersRefs {
-    final manager = $$RemindersTableTableManager(
-      $_db,
-      $_db.reminders,
-    ).filter((f) => f.petId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_remindersRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$GeneratedReportsTable, List<GeneratedReport>>
-  _generatedReportsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.generatedReports,
-    aliasName: 'pets__id__generated_reports__pet_id',
-  );
-
-  $$GeneratedReportsTableProcessedTableManager get generatedReportsRefs {
-    final manager = $$GeneratedReportsTableTableManager(
-      $_db,
-      $_db.generatedReports,
-    ).filter((f) => f.petId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _generatedReportsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
-
 class $$PetsTableFilterComposer extends Composer<_$AppDatabase, $PetsTable> {
   $$PetsTableFilterComposer({
     required super.$db,
@@ -14088,6 +13614,11 @@ class $$PetsTableFilterComposer extends Composer<_$AppDatabase, $PetsTable> {
 
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get ownerId => $composableBuilder(
+    column: $table.ownerId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -14146,6 +13677,11 @@ class $$PetsTableFilterComposer extends Composer<_$AppDatabase, $PetsTable> {
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get profileFileId => $composableBuilder(
+    column: $table.profileFileId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get status => $composableBuilder(
     column: $table.status,
     builder: (column) => ColumnFilters(column),
@@ -14155,277 +13691,6 @@ class $$PetsTableFilterComposer extends Composer<_$AppDatabase, $PetsTable> {
     column: $table.archivedAt,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$OwnerProfilesTableFilterComposer get ownerId {
-    final $$OwnerProfilesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.ownerId,
-      referencedTable: $db.ownerProfiles,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$OwnerProfilesTableFilterComposer(
-            $db: $db,
-            $table: $db.ownerProfiles,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableFilterComposer get profileFileId {
-    final $$FileAssetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.profileFileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableFilterComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<bool> vaccinationsRefs(
-    Expression<bool> Function($$VaccinationsTableFilterComposer f) f,
-  ) {
-    final $$VaccinationsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.vaccinations,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$VaccinationsTableFilterComposer(
-            $db: $db,
-            $table: $db.vaccinations,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> medicalRecordsRefs(
-    Expression<bool> Function($$MedicalRecordsTableFilterComposer f) f,
-  ) {
-    final $$MedicalRecordsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.medicalRecords,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$MedicalRecordsTableFilterComposer(
-            $db: $db,
-            $table: $db.medicalRecords,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> petMedicationsRefs(
-    Expression<bool> Function($$PetMedicationsTableFilterComposer f) f,
-  ) {
-    final $$PetMedicationsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.petMedications,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetMedicationsTableFilterComposer(
-            $db: $db,
-            $table: $db.petMedications,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> appointmentsRefs(
-    Expression<bool> Function($$AppointmentsTableFilterComposer f) f,
-  ) {
-    final $$AppointmentsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.appointments,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$AppointmentsTableFilterComposer(
-            $db: $db,
-            $table: $db.appointments,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> documentsRefs(
-    Expression<bool> Function($$DocumentsTableFilterComposer f) f,
-  ) {
-    final $$DocumentsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.documents,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$DocumentsTableFilterComposer(
-            $db: $db,
-            $table: $db.documents,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> growthEntriesRefs(
-    Expression<bool> Function($$GrowthEntriesTableFilterComposer f) f,
-  ) {
-    final $$GrowthEntriesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.growthEntries,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GrowthEntriesTableFilterComposer(
-            $db: $db,
-            $table: $db.growthEntries,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> expensesRefs(
-    Expression<bool> Function($$ExpensesTableFilterComposer f) f,
-  ) {
-    final $$ExpensesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.expenses,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ExpensesTableFilterComposer(
-            $db: $db,
-            $table: $db.expenses,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> remindersRefs(
-    Expression<bool> Function($$RemindersTableFilterComposer f) f,
-  ) {
-    final $$RemindersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.reminders,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$RemindersTableFilterComposer(
-            $db: $db,
-            $table: $db.reminders,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> generatedReportsRefs(
-    Expression<bool> Function($$GeneratedReportsTableFilterComposer f) f,
-  ) {
-    final $$GeneratedReportsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.generatedReports,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GeneratedReportsTableFilterComposer(
-            $db: $db,
-            $table: $db.generatedReports,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$PetsTableOrderingComposer extends Composer<_$AppDatabase, $PetsTable> {
@@ -14448,6 +13713,11 @@ class $$PetsTableOrderingComposer extends Composer<_$AppDatabase, $PetsTable> {
 
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get ownerId => $composableBuilder(
+    column: $table.ownerId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -14506,6 +13776,11 @@ class $$PetsTableOrderingComposer extends Composer<_$AppDatabase, $PetsTable> {
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get profileFileId => $composableBuilder(
+    column: $table.profileFileId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get status => $composableBuilder(
     column: $table.status,
     builder: (column) => ColumnOrderings(column),
@@ -14515,52 +13790,6 @@ class $$PetsTableOrderingComposer extends Composer<_$AppDatabase, $PetsTable> {
     column: $table.archivedAt,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$OwnerProfilesTableOrderingComposer get ownerId {
-    final $$OwnerProfilesTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.ownerId,
-      referencedTable: $db.ownerProfiles,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$OwnerProfilesTableOrderingComposer(
-            $db: $db,
-            $table: $db.ownerProfiles,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableOrderingComposer get profileFileId {
-    final $$FileAssetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.profileFileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$PetsTableAnnotationComposer
@@ -14580,6 +13809,9 @@ class $$PetsTableAnnotationComposer
 
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get ownerId =>
+      $composableBuilder(column: $table.ownerId, builder: (column) => column);
 
   GeneratedColumn<String> get name =>
       $composableBuilder(column: $table.name, builder: (column) => column);
@@ -14618,6 +13850,11 @@ class $$PetsTableAnnotationComposer
   GeneratedColumn<String> get notes =>
       $composableBuilder(column: $table.notes, builder: (column) => column);
 
+  GeneratedColumn<String> get profileFileId => $composableBuilder(
+    column: $table.profileFileId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get status =>
       $composableBuilder(column: $table.status, builder: (column) => column);
 
@@ -14625,277 +13862,6 @@ class $$PetsTableAnnotationComposer
     column: $table.archivedAt,
     builder: (column) => column,
   );
-
-  $$OwnerProfilesTableAnnotationComposer get ownerId {
-    final $$OwnerProfilesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.ownerId,
-      referencedTable: $db.ownerProfiles,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$OwnerProfilesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.ownerProfiles,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableAnnotationComposer get profileFileId {
-    final $$FileAssetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.profileFileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<T> vaccinationsRefs<T extends Object>(
-    Expression<T> Function($$VaccinationsTableAnnotationComposer a) f,
-  ) {
-    final $$VaccinationsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.vaccinations,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$VaccinationsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.vaccinations,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> medicalRecordsRefs<T extends Object>(
-    Expression<T> Function($$MedicalRecordsTableAnnotationComposer a) f,
-  ) {
-    final $$MedicalRecordsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.medicalRecords,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$MedicalRecordsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.medicalRecords,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> petMedicationsRefs<T extends Object>(
-    Expression<T> Function($$PetMedicationsTableAnnotationComposer a) f,
-  ) {
-    final $$PetMedicationsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.petMedications,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetMedicationsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.petMedications,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> appointmentsRefs<T extends Object>(
-    Expression<T> Function($$AppointmentsTableAnnotationComposer a) f,
-  ) {
-    final $$AppointmentsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.appointments,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$AppointmentsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.appointments,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> documentsRefs<T extends Object>(
-    Expression<T> Function($$DocumentsTableAnnotationComposer a) f,
-  ) {
-    final $$DocumentsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.documents,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$DocumentsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.documents,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> growthEntriesRefs<T extends Object>(
-    Expression<T> Function($$GrowthEntriesTableAnnotationComposer a) f,
-  ) {
-    final $$GrowthEntriesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.growthEntries,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GrowthEntriesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.growthEntries,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> expensesRefs<T extends Object>(
-    Expression<T> Function($$ExpensesTableAnnotationComposer a) f,
-  ) {
-    final $$ExpensesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.expenses,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ExpensesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.expenses,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> remindersRefs<T extends Object>(
-    Expression<T> Function($$RemindersTableAnnotationComposer a) f,
-  ) {
-    final $$RemindersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.reminders,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$RemindersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.reminders,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> generatedReportsRefs<T extends Object>(
-    Expression<T> Function($$GeneratedReportsTableAnnotationComposer a) f,
-  ) {
-    final $$GeneratedReportsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.generatedReports,
-      getReferencedColumn: (t) => t.petId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GeneratedReportsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.generatedReports,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$PetsTableTableManager
@@ -14909,33 +13875,21 @@ class $$PetsTableTableManager
           $$PetsTableAnnotationComposer,
           $$PetsTableCreateCompanionBuilder,
           $$PetsTableUpdateCompanionBuilder,
-          (Pet, $$PetsTableReferences),
+          (Pet, BaseReferences<_$AppDatabase, $PetsTable, Pet>),
           Pet,
-          PrefetchHooks Function({
-            bool ownerId,
-            bool profileFileId,
-            bool vaccinationsRefs,
-            bool medicalRecordsRefs,
-            bool petMedicationsRefs,
-            bool appointmentsRefs,
-            bool documentsRefs,
-            bool growthEntriesRefs,
-            bool expensesRefs,
-            bool remindersRefs,
-            bool generatedReportsRefs,
-          })
+          PrefetchHooks Function()
         > {
   $$PetsTableTableManager(_$AppDatabase db, $PetsTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$PetsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$PetsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$PetsTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$PetsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$PetsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$PetsTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -15020,243 +13974,17 @@ class $$PetsTableTableManager
                 archivedAt: archivedAt,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) =>
-                    (e.readTable(table), $$PetsTableReferences(db, table, e)),
-              )
-              .toList(),
-          prefetchHooksCallback:
-              ({
-                ownerId = false,
-                profileFileId = false,
-                vaccinationsRefs = false,
-                medicalRecordsRefs = false,
-                petMedicationsRefs = false,
-                appointmentsRefs = false,
-                documentsRefs = false,
-                growthEntriesRefs = false,
-                expensesRefs = false,
-                remindersRefs = false,
-                generatedReportsRefs = false,
-              }) {
-                return PrefetchHooks(
-                  db: db,
-                  explicitlyWatchedTables: [
-                    if (vaccinationsRefs) db.vaccinations,
-                    if (medicalRecordsRefs) db.medicalRecords,
-                    if (petMedicationsRefs) db.petMedications,
-                    if (appointmentsRefs) db.appointments,
-                    if (documentsRefs) db.documents,
-                    if (growthEntriesRefs) db.growthEntries,
-                    if (expensesRefs) db.expenses,
-                    if (remindersRefs) db.reminders,
-                    if (generatedReportsRefs) db.generatedReports,
-                  ],
-                  addJoins:
-                      <
-                        T extends TableManagerState<
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic
-                        >
-                      >(state) {
-                        if (ownerId) {
-                          state =
-                              state.withJoin(
-                                    currentTable: table,
-                                    currentColumn: table.ownerId,
-                                    referencedTable: $$PetsTableReferences
-                                        ._ownerIdTable(db),
-                                    referencedColumn: $$PetsTableReferences
-                                        ._ownerIdTable(db)
-                                        .id,
-                                  )
-                                  as T;
-                        }
-                        if (profileFileId) {
-                          state =
-                              state.withJoin(
-                                    currentTable: table,
-                                    currentColumn: table.profileFileId,
-                                    referencedTable: $$PetsTableReferences
-                                        ._profileFileIdTable(db),
-                                    referencedColumn: $$PetsTableReferences
-                                        ._profileFileIdTable(db)
-                                        .id,
-                                  )
-                                  as T;
-                        }
-
-                        return state;
-                      },
-                  getPrefetchedDataCallback: (items) async {
-                    return [
-                      if (vaccinationsRefs)
-                        await $_getPrefetchedData<Pet, $PetsTable, Vaccination>(
-                          currentTable: table,
-                          referencedTable: $$PetsTableReferences
-                              ._vaccinationsRefsTable(db),
-                          managerFromTypedResult: (p0) => $$PetsTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).vaccinationsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petId == item.id,
-                              ),
-                          typedResults: items,
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
                         ),
-                      if (medicalRecordsRefs)
-                        await $_getPrefetchedData<
-                          Pet,
-                          $PetsTable,
-                          MedicalRecord
-                        >(
-                          currentTable: table,
-                          referencedTable: $$PetsTableReferences
-                              ._medicalRecordsRefsTable(db),
-                          managerFromTypedResult: (p0) => $$PetsTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).medicalRecordsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (petMedicationsRefs)
-                        await $_getPrefetchedData<
-                          Pet,
-                          $PetsTable,
-                          PetMedication
-                        >(
-                          currentTable: table,
-                          referencedTable: $$PetsTableReferences
-                              ._petMedicationsRefsTable(db),
-                          managerFromTypedResult: (p0) => $$PetsTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).petMedicationsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (appointmentsRefs)
-                        await $_getPrefetchedData<Pet, $PetsTable, Appointment>(
-                          currentTable: table,
-                          referencedTable: $$PetsTableReferences
-                              ._appointmentsRefsTable(db),
-                          managerFromTypedResult: (p0) => $$PetsTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).appointmentsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (documentsRefs)
-                        await $_getPrefetchedData<Pet, $PetsTable, Document>(
-                          currentTable: table,
-                          referencedTable: $$PetsTableReferences
-                              ._documentsRefsTable(db),
-                          managerFromTypedResult: (p0) => $$PetsTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).documentsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (growthEntriesRefs)
-                        await $_getPrefetchedData<Pet, $PetsTable, GrowthEntry>(
-                          currentTable: table,
-                          referencedTable: $$PetsTableReferences
-                              ._growthEntriesRefsTable(db),
-                          managerFromTypedResult: (p0) => $$PetsTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).growthEntriesRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (expensesRefs)
-                        await $_getPrefetchedData<Pet, $PetsTable, Expense>(
-                          currentTable: table,
-                          referencedTable: $$PetsTableReferences
-                              ._expensesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$PetsTableReferences(db, table, p0).expensesRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (remindersRefs)
-                        await $_getPrefetchedData<Pet, $PetsTable, Reminder>(
-                          currentTable: table,
-                          referencedTable: $$PetsTableReferences
-                              ._remindersRefsTable(db),
-                          managerFromTypedResult: (p0) => $$PetsTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).remindersRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (generatedReportsRefs)
-                        await $_getPrefetchedData<
-                          Pet,
-                          $PetsTable,
-                          GeneratedReport
-                        >(
-                          currentTable: table,
-                          referencedTable: $$PetsTableReferences
-                              ._generatedReportsRefsTable(db),
-                          managerFromTypedResult: (p0) => $$PetsTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).generatedReportsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                    ];
-                  },
-                );
-              },
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -15271,21 +13999,9 @@ typedef $$PetsTableProcessedTableManager =
       $$PetsTableAnnotationComposer,
       $$PetsTableCreateCompanionBuilder,
       $$PetsTableUpdateCompanionBuilder,
-      (Pet, $$PetsTableReferences),
+      (Pet, BaseReferences<_$AppDatabase, $PetsTable, Pet>),
       Pet,
-      PrefetchHooks Function({
-        bool ownerId,
-        bool profileFileId,
-        bool vaccinationsRefs,
-        bool medicalRecordsRefs,
-        bool petMedicationsRefs,
-        bool appointmentsRefs,
-        bool documentsRefs,
-        bool growthEntriesRefs,
-        bool expensesRefs,
-        bool remindersRefs,
-        bool generatedReportsRefs,
-      })
+      PrefetchHooks Function()
     >;
 typedef $$VaccinationsTableCreateCompanionBuilder =
     VaccinationsCompanion Function({
@@ -15326,28 +14042,6 @@ typedef $$VaccinationsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$VaccinationsTableReferences
-    extends BaseReferences<_$AppDatabase, $VaccinationsTable, Vaccination> {
-  $$VaccinationsTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $PetsTable _petIdTable(_$AppDatabase db) =>
-      db.pets.createAlias('vaccinations__pet_id__pets__id');
-
-  $$PetsTableProcessedTableManager get petId {
-    final $_column = $_itemColumn<String>('pet_id')!;
-
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$VaccinationsTableFilterComposer
     extends Composer<_$AppDatabase, $VaccinationsTable> {
   $$VaccinationsTableFilterComposer({
@@ -15369,6 +14063,11 @@ class $$VaccinationsTableFilterComposer
 
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -15426,29 +14125,6 @@ class $$VaccinationsTableFilterComposer
     column: $table.status,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetsTableFilterComposer get petId {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$VaccinationsTableOrderingComposer
@@ -15472,6 +14148,11 @@ class $$VaccinationsTableOrderingComposer
 
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -15529,29 +14210,6 @@ class $$VaccinationsTableOrderingComposer
     column: $table.status,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetsTableOrderingComposer get petId {
-    final $$PetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$VaccinationsTableAnnotationComposer
@@ -15571,6 +14229,9 @@ class $$VaccinationsTableAnnotationComposer
 
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
 
   GeneratedColumn<String> get vaccineName => $composableBuilder(
     column: $table.vaccineName,
@@ -15616,29 +14277,6 @@ class $$VaccinationsTableAnnotationComposer
 
   GeneratedColumn<String> get status =>
       $composableBuilder(column: $table.status, builder: (column) => column);
-
-  $$PetsTableAnnotationComposer get petId {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$VaccinationsTableTableManager
@@ -15652,21 +14290,25 @@ class $$VaccinationsTableTableManager
           $$VaccinationsTableAnnotationComposer,
           $$VaccinationsTableCreateCompanionBuilder,
           $$VaccinationsTableUpdateCompanionBuilder,
-          (Vaccination, $$VaccinationsTableReferences),
+          (
+            Vaccination,
+            BaseReferences<_$AppDatabase, $VaccinationsTable, Vaccination>,
+          ),
           Vaccination,
-          PrefetchHooks Function({bool petId})
+          PrefetchHooks Function()
         > {
   $$VaccinationsTableTableManager(_$AppDatabase db, $VaccinationsTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$VaccinationsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$VaccinationsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$VaccinationsTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$VaccinationsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$VaccinationsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () =>
+                  $$VaccinationsTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -15739,55 +14381,17 @@ class $$VaccinationsTableTableManager
                 status: status,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$VaccinationsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({petId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (petId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.petId,
-                                referencedTable: $$VaccinationsTableReferences
-                                    ._petIdTable(db),
-                                referencedColumn: $$VaccinationsTableReferences
-                                    ._petIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -15802,9 +14406,12 @@ typedef $$VaccinationsTableProcessedTableManager =
       $$VaccinationsTableAnnotationComposer,
       $$VaccinationsTableCreateCompanionBuilder,
       $$VaccinationsTableUpdateCompanionBuilder,
-      (Vaccination, $$VaccinationsTableReferences),
+      (
+        Vaccination,
+        BaseReferences<_$AppDatabase, $VaccinationsTable, Vaccination>,
+      ),
       Vaccination,
-      PrefetchHooks Function({bool petId})
+      PrefetchHooks Function()
     >;
 typedef $$MedicalRecordsTableCreateCompanionBuilder =
     MedicalRecordsCompanion Function({
@@ -15843,32 +14450,6 @@ typedef $$MedicalRecordsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$MedicalRecordsTableReferences
-    extends BaseReferences<_$AppDatabase, $MedicalRecordsTable, MedicalRecord> {
-  $$MedicalRecordsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $PetsTable _petIdTable(_$AppDatabase db) =>
-      db.pets.createAlias('medical_records__pet_id__pets__id');
-
-  $$PetsTableProcessedTableManager get petId {
-    final $_column = $_itemColumn<String>('pet_id')!;
-
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$MedicalRecordsTableFilterComposer
     extends Composer<_$AppDatabase, $MedicalRecordsTable> {
   $$MedicalRecordsTableFilterComposer({
@@ -15890,6 +14471,11 @@ class $$MedicalRecordsTableFilterComposer
 
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -15942,29 +14528,6 @@ class $$MedicalRecordsTableFilterComposer
     column: $table.notes,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetsTableFilterComposer get petId {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$MedicalRecordsTableOrderingComposer
@@ -15988,6 +14551,11 @@ class $$MedicalRecordsTableOrderingComposer
 
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -16040,29 +14608,6 @@ class $$MedicalRecordsTableOrderingComposer
     column: $table.notes,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetsTableOrderingComposer get petId {
-    final $$PetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$MedicalRecordsTableAnnotationComposer
@@ -16082,6 +14627,9 @@ class $$MedicalRecordsTableAnnotationComposer
 
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
 
   GeneratedColumn<String> get recordType => $composableBuilder(
     column: $table.recordType,
@@ -16120,29 +14668,6 @@ class $$MedicalRecordsTableAnnotationComposer
 
   GeneratedColumn<String> get notes =>
       $composableBuilder(column: $table.notes, builder: (column) => column);
-
-  $$PetsTableAnnotationComposer get petId {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$MedicalRecordsTableTableManager
@@ -16156,9 +14681,12 @@ class $$MedicalRecordsTableTableManager
           $$MedicalRecordsTableAnnotationComposer,
           $$MedicalRecordsTableCreateCompanionBuilder,
           $$MedicalRecordsTableUpdateCompanionBuilder,
-          (MedicalRecord, $$MedicalRecordsTableReferences),
+          (
+            MedicalRecord,
+            BaseReferences<_$AppDatabase, $MedicalRecordsTable, MedicalRecord>,
+          ),
           MedicalRecord,
-          PrefetchHooks Function({bool petId})
+          PrefetchHooks Function()
         > {
   $$MedicalRecordsTableTableManager(
     _$AppDatabase db,
@@ -16167,12 +14695,16 @@ class $$MedicalRecordsTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$MedicalRecordsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$MedicalRecordsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$MedicalRecordsTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$MedicalRecordsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () =>
+                  $$MedicalRecordsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$MedicalRecordsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -16241,56 +14773,17 @@ class $$MedicalRecordsTableTableManager
                 notes: notes,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$MedicalRecordsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({petId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (petId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.petId,
-                                referencedTable: $$MedicalRecordsTableReferences
-                                    ._petIdTable(db),
-                                referencedColumn:
-                                    $$MedicalRecordsTableReferences
-                                        ._petIdTable(db)
-                                        .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -16305,9 +14798,12 @@ typedef $$MedicalRecordsTableProcessedTableManager =
       $$MedicalRecordsTableAnnotationComposer,
       $$MedicalRecordsTableCreateCompanionBuilder,
       $$MedicalRecordsTableUpdateCompanionBuilder,
-      (MedicalRecord, $$MedicalRecordsTableReferences),
+      (
+        MedicalRecord,
+        BaseReferences<_$AppDatabase, $MedicalRecordsTable, MedicalRecord>,
+      ),
       MedicalRecord,
-      PrefetchHooks Function({bool petId})
+      PrefetchHooks Function()
     >;
 typedef $$MedicinesTableCreateCompanionBuilder =
     MedicinesCompanion Function({
@@ -16333,29 +14829,6 @@ typedef $$MedicinesTableUpdateCompanionBuilder =
       Value<String?> notes,
       Value<int> rowid,
     });
-
-final class $$MedicinesTableReferences
-    extends BaseReferences<_$AppDatabase, $MedicinesTable, Medicine> {
-  $$MedicinesTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static MultiTypedResultKey<$PetMedicationsTable, List<PetMedication>>
-  _petMedicationsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.petMedications,
-    aliasName: 'medicines__id__pet_medications__medicine_id',
-  );
-
-  $$PetMedicationsTableProcessedTableManager get petMedicationsRefs {
-    final manager = $$PetMedicationsTableTableManager(
-      $_db,
-      $_db.petMedications,
-    ).filter((f) => f.medicineId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_petMedicationsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
 
 class $$MedicinesTableFilterComposer
     extends Composer<_$AppDatabase, $MedicinesTable> {
@@ -16405,31 +14878,6 @@ class $$MedicinesTableFilterComposer
     column: $table.notes,
     builder: (column) => ColumnFilters(column),
   );
-
-  Expression<bool> petMedicationsRefs(
-    Expression<bool> Function($$PetMedicationsTableFilterComposer f) f,
-  ) {
-    final $$PetMedicationsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.petMedications,
-      getReferencedColumn: (t) => t.medicineId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetMedicationsTableFilterComposer(
-            $db: $db,
-            $table: $db.petMedications,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$MedicinesTableOrderingComposer
@@ -16516,31 +14964,6 @@ class $$MedicinesTableAnnotationComposer
 
   GeneratedColumn<String> get notes =>
       $composableBuilder(column: $table.notes, builder: (column) => column);
-
-  Expression<T> petMedicationsRefs<T extends Object>(
-    Expression<T> Function($$PetMedicationsTableAnnotationComposer a) f,
-  ) {
-    final $$PetMedicationsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.petMedications,
-      getReferencedColumn: (t) => t.medicineId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetMedicationsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.petMedications,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$MedicinesTableTableManager
@@ -16554,21 +14977,21 @@ class $$MedicinesTableTableManager
           $$MedicinesTableAnnotationComposer,
           $$MedicinesTableCreateCompanionBuilder,
           $$MedicinesTableUpdateCompanionBuilder,
-          (Medicine, $$MedicinesTableReferences),
+          (Medicine, BaseReferences<_$AppDatabase, $MedicinesTable, Medicine>),
           Medicine,
-          PrefetchHooks Function({bool petMedicationsRefs})
+          PrefetchHooks Function()
         > {
   $$MedicinesTableTableManager(_$AppDatabase db, $MedicinesTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$MedicinesTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$MedicinesTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$MedicinesTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$MedicinesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$MedicinesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$MedicinesTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -16613,46 +15036,17 @@ class $$MedicinesTableTableManager
                 notes: notes,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$MedicinesTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({petMedicationsRefs = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [
-                if (petMedicationsRefs) db.petMedications,
-              ],
-              addJoins: null,
-              getPrefetchedDataCallback: (items) async {
-                return [
-                  if (petMedicationsRefs)
-                    await $_getPrefetchedData<
-                      Medicine,
-                      $MedicinesTable,
-                      PetMedication
-                    >(
-                      currentTable: table,
-                      referencedTable: $$MedicinesTableReferences
-                          ._petMedicationsRefsTable(db),
-                      managerFromTypedResult: (p0) =>
-                          $$MedicinesTableReferences(
-                            db,
-                            table,
-                            p0,
-                          ).petMedicationsRefs,
-                      referencedItemsForCurrentItem: (item, referencedItems) =>
-                          referencedItems.where((e) => e.medicineId == item.id),
-                      typedResults: items,
-                    ),
-                ];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -16667,9 +15061,9 @@ typedef $$MedicinesTableProcessedTableManager =
       $$MedicinesTableAnnotationComposer,
       $$MedicinesTableCreateCompanionBuilder,
       $$MedicinesTableUpdateCompanionBuilder,
-      (Medicine, $$MedicinesTableReferences),
+      (Medicine, BaseReferences<_$AppDatabase, $MedicinesTable, Medicine>),
       Medicine,
-      PrefetchHooks Function({bool petMedicationsRefs})
+      PrefetchHooks Function()
     >;
 typedef $$PetMedicationsTableCreateCompanionBuilder =
     PetMedicationsCompanion Function({
@@ -16706,107 +15100,6 @@ typedef $$PetMedicationsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$PetMedicationsTableReferences
-    extends BaseReferences<_$AppDatabase, $PetMedicationsTable, PetMedication> {
-  $$PetMedicationsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $PetsTable _petIdTable(_$AppDatabase db) =>
-      db.pets.createAlias('pet_medications__pet_id__pets__id');
-
-  $$PetsTableProcessedTableManager get petId {
-    final $_column = $_itemColumn<String>('pet_id')!;
-
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static $MedicinesTable _medicineIdTable(_$AppDatabase db) =>
-      db.medicines.createAlias('pet_medications__medicine_id__medicines__id');
-
-  $$MedicinesTableProcessedTableManager get medicineId {
-    final $_column = $_itemColumn<String>('medicine_id')!;
-
-    final manager = $$MedicinesTableTableManager(
-      $_db,
-      $_db.medicines,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_medicineIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $MedicationSchedulesTable,
-    List<MedicationSchedule>
-  >
-  _medicationSchedulesRefsTable(_$AppDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.medicationSchedules,
-        aliasName:
-            'pet_medications__id__medication_schedules__pet_medication_id',
-      );
-
-  $$MedicationSchedulesTableProcessedTableManager get medicationSchedulesRefs {
-    final manager =
-        $$MedicationSchedulesTableTableManager(
-          $_db,
-          $_db.medicationSchedules,
-        ).filter(
-          (f) => f.petMedicationId.id.sqlEquals($_itemColumn<String>('id')!),
-        );
-
-    final cache = $_typedResult.readTableOrNull(
-      _medicationSchedulesRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $MedicationAdministrationsTable,
-    List<MedicationAdministration>
-  >
-  _medicationAdministrationsRefsTable(
-    _$AppDatabase db,
-  ) => MultiTypedResultKey.fromTable(
-    db.medicationAdministrations,
-    aliasName:
-        'pet_medications__id__medication_administrations__pet_medication_id',
-  );
-
-  $$MedicationAdministrationsTableProcessedTableManager
-  get medicationAdministrationsRefs {
-    final manager =
-        $$MedicationAdministrationsTableTableManager(
-          $_db,
-          $_db.medicationAdministrations,
-        ).filter(
-          (f) => f.petMedicationId.id.sqlEquals($_itemColumn<String>('id')!),
-        );
-
-    final cache = $_typedResult.readTableOrNull(
-      _medicationAdministrationsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
-
 class $$PetMedicationsTableFilterComposer
     extends Composer<_$AppDatabase, $PetMedicationsTable> {
   $$PetMedicationsTableFilterComposer({
@@ -16828,6 +15121,16 @@ class $$PetMedicationsTableFilterComposer
 
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get medicineId => $composableBuilder(
+    column: $table.medicineId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -16870,104 +15173,6 @@ class $$PetMedicationsTableFilterComposer
     column: $table.status,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetsTableFilterComposer get petId {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$MedicinesTableFilterComposer get medicineId {
-    final $$MedicinesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.medicineId,
-      referencedTable: $db.medicines,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$MedicinesTableFilterComposer(
-            $db: $db,
-            $table: $db.medicines,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<bool> medicationSchedulesRefs(
-    Expression<bool> Function($$MedicationSchedulesTableFilterComposer f) f,
-  ) {
-    final $$MedicationSchedulesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.medicationSchedules,
-      getReferencedColumn: (t) => t.petMedicationId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$MedicationSchedulesTableFilterComposer(
-            $db: $db,
-            $table: $db.medicationSchedules,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> medicationAdministrationsRefs(
-    Expression<bool> Function($$MedicationAdministrationsTableFilterComposer f)
-    f,
-  ) {
-    final $$MedicationAdministrationsTableFilterComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.medicationAdministrations,
-          getReferencedColumn: (t) => t.petMedicationId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$MedicationAdministrationsTableFilterComposer(
-                $db: $db,
-                $table: $db.medicationAdministrations,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
 }
 
 class $$PetMedicationsTableOrderingComposer
@@ -16991,6 +15196,16 @@ class $$PetMedicationsTableOrderingComposer
 
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get medicineId => $composableBuilder(
+    column: $table.medicineId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -17033,52 +15248,6 @@ class $$PetMedicationsTableOrderingComposer
     column: $table.status,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetsTableOrderingComposer get petId {
-    final $$PetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$MedicinesTableOrderingComposer get medicineId {
-    final $$MedicinesTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.medicineId,
-      referencedTable: $db.medicines,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$MedicinesTableOrderingComposer(
-            $db: $db,
-            $table: $db.medicines,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$PetMedicationsTableAnnotationComposer
@@ -17098,6 +15267,14 @@ class $$PetMedicationsTableAnnotationComposer
 
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
+  GeneratedColumn<String> get medicineId => $composableBuilder(
+    column: $table.medicineId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get dosage =>
       $composableBuilder(column: $table.dosage, builder: (column) => column);
@@ -17126,105 +15303,6 @@ class $$PetMedicationsTableAnnotationComposer
 
   GeneratedColumn<String> get status =>
       $composableBuilder(column: $table.status, builder: (column) => column);
-
-  $$PetsTableAnnotationComposer get petId {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$MedicinesTableAnnotationComposer get medicineId {
-    final $$MedicinesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.medicineId,
-      referencedTable: $db.medicines,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$MedicinesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.medicines,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<T> medicationSchedulesRefs<T extends Object>(
-    Expression<T> Function($$MedicationSchedulesTableAnnotationComposer a) f,
-  ) {
-    final $$MedicationSchedulesTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.medicationSchedules,
-          getReferencedColumn: (t) => t.petMedicationId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$MedicationSchedulesTableAnnotationComposer(
-                $db: $db,
-                $table: $db.medicationSchedules,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<T> medicationAdministrationsRefs<T extends Object>(
-    Expression<T> Function($$MedicationAdministrationsTableAnnotationComposer a)
-    f,
-  ) {
-    final $$MedicationAdministrationsTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.medicationAdministrations,
-          getReferencedColumn: (t) => t.petMedicationId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$MedicationAdministrationsTableAnnotationComposer(
-                $db: $db,
-                $table: $db.medicationAdministrations,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
 }
 
 class $$PetMedicationsTableTableManager
@@ -17238,14 +15316,12 @@ class $$PetMedicationsTableTableManager
           $$PetMedicationsTableAnnotationComposer,
           $$PetMedicationsTableCreateCompanionBuilder,
           $$PetMedicationsTableUpdateCompanionBuilder,
-          (PetMedication, $$PetMedicationsTableReferences),
+          (
+            PetMedication,
+            BaseReferences<_$AppDatabase, $PetMedicationsTable, PetMedication>,
+          ),
           PetMedication,
-          PrefetchHooks Function({
-            bool petId,
-            bool medicineId,
-            bool medicationSchedulesRefs,
-            bool medicationAdministrationsRefs,
-          })
+          PrefetchHooks Function()
         > {
   $$PetMedicationsTableTableManager(
     _$AppDatabase db,
@@ -17254,12 +15330,16 @@ class $$PetMedicationsTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$PetMedicationsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$PetMedicationsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$PetMedicationsTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$PetMedicationsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () =>
+                  $$PetMedicationsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$PetMedicationsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -17324,125 +15404,17 @@ class $$PetMedicationsTableTableManager
                 status: status,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$PetMedicationsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback:
-              ({
-                petId = false,
-                medicineId = false,
-                medicationSchedulesRefs = false,
-                medicationAdministrationsRefs = false,
-              }) {
-                return PrefetchHooks(
-                  db: db,
-                  explicitlyWatchedTables: [
-                    if (medicationSchedulesRefs) db.medicationSchedules,
-                    if (medicationAdministrationsRefs)
-                      db.medicationAdministrations,
-                  ],
-                  addJoins:
-                      <
-                        T extends TableManagerState<
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic
-                        >
-                      >(state) {
-                        if (petId) {
-                          state =
-                              state.withJoin(
-                                    currentTable: table,
-                                    currentColumn: table.petId,
-                                    referencedTable:
-                                        $$PetMedicationsTableReferences
-                                            ._petIdTable(db),
-                                    referencedColumn:
-                                        $$PetMedicationsTableReferences
-                                            ._petIdTable(db)
-                                            .id,
-                                  )
-                                  as T;
-                        }
-                        if (medicineId) {
-                          state =
-                              state.withJoin(
-                                    currentTable: table,
-                                    currentColumn: table.medicineId,
-                                    referencedTable:
-                                        $$PetMedicationsTableReferences
-                                            ._medicineIdTable(db),
-                                    referencedColumn:
-                                        $$PetMedicationsTableReferences
-                                            ._medicineIdTable(db)
-                                            .id,
-                                  )
-                                  as T;
-                        }
-
-                        return state;
-                      },
-                  getPrefetchedDataCallback: (items) async {
-                    return [
-                      if (medicationSchedulesRefs)
-                        await $_getPrefetchedData<
-                          PetMedication,
-                          $PetMedicationsTable,
-                          MedicationSchedule
-                        >(
-                          currentTable: table,
-                          referencedTable: $$PetMedicationsTableReferences
-                              ._medicationSchedulesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$PetMedicationsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).medicationSchedulesRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petMedicationId == item.id,
-                              ),
-                          typedResults: items,
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
                         ),
-                      if (medicationAdministrationsRefs)
-                        await $_getPrefetchedData<
-                          PetMedication,
-                          $PetMedicationsTable,
-                          MedicationAdministration
-                        >(
-                          currentTable: table,
-                          referencedTable: $$PetMedicationsTableReferences
-                              ._medicationAdministrationsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$PetMedicationsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).medicationAdministrationsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.petMedicationId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                    ];
-                  },
-                );
-              },
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -17457,14 +15429,12 @@ typedef $$PetMedicationsTableProcessedTableManager =
       $$PetMedicationsTableAnnotationComposer,
       $$PetMedicationsTableCreateCompanionBuilder,
       $$PetMedicationsTableUpdateCompanionBuilder,
-      (PetMedication, $$PetMedicationsTableReferences),
+      (
+        PetMedication,
+        BaseReferences<_$AppDatabase, $PetMedicationsTable, PetMedication>,
+      ),
       PetMedication,
-      PrefetchHooks Function({
-        bool petId,
-        bool medicineId,
-        bool medicationSchedulesRefs,
-        bool medicationAdministrationsRefs,
-      })
+      PrefetchHooks Function()
     >;
 typedef $$MedicationSchedulesTableCreateCompanionBuilder =
     MedicationSchedulesCompanion Function({
@@ -17488,39 +15458,6 @@ typedef $$MedicationSchedulesTableUpdateCompanionBuilder =
       Value<String> recurrenceRule,
       Value<int> rowid,
     });
-
-final class $$MedicationSchedulesTableReferences
-    extends
-        BaseReferences<
-          _$AppDatabase,
-          $MedicationSchedulesTable,
-          MedicationSchedule
-        > {
-  $$MedicationSchedulesTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $PetMedicationsTable _petMedicationIdTable(_$AppDatabase db) =>
-      db.petMedications.createAlias(
-        'medication_schedules__pet_medication_id__pet_medications__id',
-      );
-
-  $$PetMedicationsTableProcessedTableManager get petMedicationId {
-    final $_column = $_itemColumn<String>('pet_medication_id')!;
-
-    final manager = $$PetMedicationsTableTableManager(
-      $_db,
-      $_db.petMedications,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petMedicationIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
 
 class $$MedicationSchedulesTableFilterComposer
     extends Composer<_$AppDatabase, $MedicationSchedulesTable> {
@@ -17546,6 +15483,11 @@ class $$MedicationSchedulesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get petMedicationId => $composableBuilder(
+    column: $table.petMedicationId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get localTime => $composableBuilder(
     column: $table.localTime,
     builder: (column) => ColumnFilters(column),
@@ -17560,29 +15502,6 @@ class $$MedicationSchedulesTableFilterComposer
     column: $table.recurrenceRule,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetMedicationsTableFilterComposer get petMedicationId {
-    final $$PetMedicationsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petMedicationId,
-      referencedTable: $db.petMedications,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetMedicationsTableFilterComposer(
-            $db: $db,
-            $table: $db.petMedications,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$MedicationSchedulesTableOrderingComposer
@@ -17609,6 +15528,11 @@ class $$MedicationSchedulesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get petMedicationId => $composableBuilder(
+    column: $table.petMedicationId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get localTime => $composableBuilder(
     column: $table.localTime,
     builder: (column) => ColumnOrderings(column),
@@ -17623,29 +15547,6 @@ class $$MedicationSchedulesTableOrderingComposer
     column: $table.recurrenceRule,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetMedicationsTableOrderingComposer get petMedicationId {
-    final $$PetMedicationsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petMedicationId,
-      referencedTable: $db.petMedications,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetMedicationsTableOrderingComposer(
-            $db: $db,
-            $table: $db.petMedications,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$MedicationSchedulesTableAnnotationComposer
@@ -17666,6 +15567,11 @@ class $$MedicationSchedulesTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get petMedicationId => $composableBuilder(
+    column: $table.petMedicationId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get localTime =>
       $composableBuilder(column: $table.localTime, builder: (column) => column);
 
@@ -17678,29 +15584,6 @@ class $$MedicationSchedulesTableAnnotationComposer
     column: $table.recurrenceRule,
     builder: (column) => column,
   );
-
-  $$PetMedicationsTableAnnotationComposer get petMedicationId {
-    final $$PetMedicationsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petMedicationId,
-      referencedTable: $db.petMedications,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetMedicationsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.petMedications,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$MedicationSchedulesTableTableManager
@@ -17714,9 +15597,16 @@ class $$MedicationSchedulesTableTableManager
           $$MedicationSchedulesTableAnnotationComposer,
           $$MedicationSchedulesTableCreateCompanionBuilder,
           $$MedicationSchedulesTableUpdateCompanionBuilder,
-          (MedicationSchedule, $$MedicationSchedulesTableReferences),
+          (
+            MedicationSchedule,
+            BaseReferences<
+              _$AppDatabase,
+              $MedicationSchedulesTable,
+              MedicationSchedule
+            >,
+          ),
           MedicationSchedule,
-          PrefetchHooks Function({bool petMedicationId})
+          PrefetchHooks Function()
         > {
   $$MedicationSchedulesTableTableManager(
     _$AppDatabase db,
@@ -17725,15 +15615,18 @@ class $$MedicationSchedulesTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$MedicationSchedulesTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$MedicationSchedulesTableOrderingComposer(
+          createFilteringComposer:
+              () => $$MedicationSchedulesTableFilterComposer(
                 $db: db,
                 $table: table,
               ),
-          createComputedFieldComposer: () =>
-              $$MedicationSchedulesTableAnnotationComposer(
+          createOrderingComposer:
+              () => $$MedicationSchedulesTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer:
+              () => $$MedicationSchedulesTableAnnotationComposer(
                 $db: db,
                 $table: table,
               ),
@@ -17777,57 +15670,17 @@ class $$MedicationSchedulesTableTableManager
                 recurrenceRule: recurrenceRule,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$MedicationSchedulesTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({petMedicationId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (petMedicationId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.petMedicationId,
-                                referencedTable:
-                                    $$MedicationSchedulesTableReferences
-                                        ._petMedicationIdTable(db),
-                                referencedColumn:
-                                    $$MedicationSchedulesTableReferences
-                                        ._petMedicationIdTable(db)
-                                        .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -17842,9 +15695,16 @@ typedef $$MedicationSchedulesTableProcessedTableManager =
       $$MedicationSchedulesTableAnnotationComposer,
       $$MedicationSchedulesTableCreateCompanionBuilder,
       $$MedicationSchedulesTableUpdateCompanionBuilder,
-      (MedicationSchedule, $$MedicationSchedulesTableReferences),
+      (
+        MedicationSchedule,
+        BaseReferences<
+          _$AppDatabase,
+          $MedicationSchedulesTable,
+          MedicationSchedule
+        >,
+      ),
       MedicationSchedule,
-      PrefetchHooks Function({bool petMedicationId})
+      PrefetchHooks Function()
     >;
 typedef $$MedicationAdministrationsTableCreateCompanionBuilder =
     MedicationAdministrationsCompanion Function({
@@ -17871,39 +15731,6 @@ typedef $$MedicationAdministrationsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$MedicationAdministrationsTableReferences
-    extends
-        BaseReferences<
-          _$AppDatabase,
-          $MedicationAdministrationsTable,
-          MedicationAdministration
-        > {
-  $$MedicationAdministrationsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $PetMedicationsTable _petMedicationIdTable(_$AppDatabase db) =>
-      db.petMedications.createAlias(
-        'medication_administrations__pet_medication_id__pet_medications__id',
-      );
-
-  $$PetMedicationsTableProcessedTableManager get petMedicationId {
-    final $_column = $_itemColumn<String>('pet_medication_id')!;
-
-    final manager = $$PetMedicationsTableTableManager(
-      $_db,
-      $_db.petMedications,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petMedicationIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$MedicationAdministrationsTableFilterComposer
     extends Composer<_$AppDatabase, $MedicationAdministrationsTable> {
   $$MedicationAdministrationsTableFilterComposer({
@@ -17928,6 +15755,11 @@ class $$MedicationAdministrationsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get petMedicationId => $composableBuilder(
+    column: $table.petMedicationId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<DateTime> get scheduledFor => $composableBuilder(
     column: $table.scheduledFor,
     builder: (column) => ColumnFilters(column),
@@ -17947,29 +15779,6 @@ class $$MedicationAdministrationsTableFilterComposer
     column: $table.notes,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetMedicationsTableFilterComposer get petMedicationId {
-    final $$PetMedicationsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petMedicationId,
-      referencedTable: $db.petMedications,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetMedicationsTableFilterComposer(
-            $db: $db,
-            $table: $db.petMedications,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$MedicationAdministrationsTableOrderingComposer
@@ -17996,6 +15805,11 @@ class $$MedicationAdministrationsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get petMedicationId => $composableBuilder(
+    column: $table.petMedicationId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<DateTime> get scheduledFor => $composableBuilder(
     column: $table.scheduledFor,
     builder: (column) => ColumnOrderings(column),
@@ -18015,29 +15829,6 @@ class $$MedicationAdministrationsTableOrderingComposer
     column: $table.notes,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetMedicationsTableOrderingComposer get petMedicationId {
-    final $$PetMedicationsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petMedicationId,
-      referencedTable: $db.petMedications,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetMedicationsTableOrderingComposer(
-            $db: $db,
-            $table: $db.petMedications,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$MedicationAdministrationsTableAnnotationComposer
@@ -18058,6 +15849,11 @@ class $$MedicationAdministrationsTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get petMedicationId => $composableBuilder(
+    column: $table.petMedicationId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<DateTime> get scheduledFor => $composableBuilder(
     column: $table.scheduledFor,
     builder: (column) => column,
@@ -18073,29 +15869,6 @@ class $$MedicationAdministrationsTableAnnotationComposer
 
   GeneratedColumn<String> get notes =>
       $composableBuilder(column: $table.notes, builder: (column) => column);
-
-  $$PetMedicationsTableAnnotationComposer get petMedicationId {
-    final $$PetMedicationsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petMedicationId,
-      referencedTable: $db.petMedications,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetMedicationsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.petMedications,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$MedicationAdministrationsTableTableManager
@@ -18111,10 +15884,14 @@ class $$MedicationAdministrationsTableTableManager
           $$MedicationAdministrationsTableUpdateCompanionBuilder,
           (
             MedicationAdministration,
-            $$MedicationAdministrationsTableReferences,
+            BaseReferences<
+              _$AppDatabase,
+              $MedicationAdministrationsTable,
+              MedicationAdministration
+            >,
           ),
           MedicationAdministration,
-          PrefetchHooks Function({bool petMedicationId})
+          PrefetchHooks Function()
         > {
   $$MedicationAdministrationsTableTableManager(
     _$AppDatabase db,
@@ -18123,18 +15900,18 @@ class $$MedicationAdministrationsTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$MedicationAdministrationsTableFilterComposer(
+          createFilteringComposer:
+              () => $$MedicationAdministrationsTableFilterComposer(
                 $db: db,
                 $table: table,
               ),
-          createOrderingComposer: () =>
-              $$MedicationAdministrationsTableOrderingComposer(
+          createOrderingComposer:
+              () => $$MedicationAdministrationsTableOrderingComposer(
                 $db: db,
                 $table: table,
               ),
-          createComputedFieldComposer: () =>
-              $$MedicationAdministrationsTableAnnotationComposer(
+          createComputedFieldComposer:
+              () => $$MedicationAdministrationsTableAnnotationComposer(
                 $db: db,
                 $table: table,
               ),
@@ -18182,57 +15959,17 @@ class $$MedicationAdministrationsTableTableManager
                 notes: notes,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$MedicationAdministrationsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({petMedicationId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (petMedicationId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.petMedicationId,
-                                referencedTable:
-                                    $$MedicationAdministrationsTableReferences
-                                        ._petMedicationIdTable(db),
-                                referencedColumn:
-                                    $$MedicationAdministrationsTableReferences
-                                        ._petMedicationIdTable(db)
-                                        .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -18247,9 +15984,16 @@ typedef $$MedicationAdministrationsTableProcessedTableManager =
       $$MedicationAdministrationsTableAnnotationComposer,
       $$MedicationAdministrationsTableCreateCompanionBuilder,
       $$MedicationAdministrationsTableUpdateCompanionBuilder,
-      (MedicationAdministration, $$MedicationAdministrationsTableReferences),
+      (
+        MedicationAdministration,
+        BaseReferences<
+          _$AppDatabase,
+          $MedicationAdministrationsTable,
+          MedicationAdministration
+        >,
+      ),
       MedicationAdministration,
-      PrefetchHooks Function({bool petMedicationId})
+      PrefetchHooks Function()
     >;
 typedef $$AppointmentsTableCreateCompanionBuilder =
     AppointmentsCompanion Function({
@@ -18286,28 +16030,6 @@ typedef $$AppointmentsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$AppointmentsTableReferences
-    extends BaseReferences<_$AppDatabase, $AppointmentsTable, Appointment> {
-  $$AppointmentsTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $PetsTable _petIdTable(_$AppDatabase db) =>
-      db.pets.createAlias('appointments__pet_id__pets__id');
-
-  $$PetsTableProcessedTableManager get petId {
-    final $_column = $_itemColumn<String>('pet_id')!;
-
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$AppointmentsTableFilterComposer
     extends Composer<_$AppDatabase, $AppointmentsTable> {
   $$AppointmentsTableFilterComposer({
@@ -18329,6 +16051,11 @@ class $$AppointmentsTableFilterComposer
 
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -18376,29 +16103,6 @@ class $$AppointmentsTableFilterComposer
     column: $table.status,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetsTableFilterComposer get petId {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$AppointmentsTableOrderingComposer
@@ -18422,6 +16126,11 @@ class $$AppointmentsTableOrderingComposer
 
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -18469,29 +16178,6 @@ class $$AppointmentsTableOrderingComposer
     column: $table.status,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetsTableOrderingComposer get petId {
-    final $$PetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$AppointmentsTableAnnotationComposer
@@ -18511,6 +16197,9 @@ class $$AppointmentsTableAnnotationComposer
 
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
 
   GeneratedColumn<String> get title =>
       $composableBuilder(column: $table.title, builder: (column) => column);
@@ -18546,29 +16235,6 @@ class $$AppointmentsTableAnnotationComposer
 
   GeneratedColumn<String> get status =>
       $composableBuilder(column: $table.status, builder: (column) => column);
-
-  $$PetsTableAnnotationComposer get petId {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$AppointmentsTableTableManager
@@ -18582,21 +16248,25 @@ class $$AppointmentsTableTableManager
           $$AppointmentsTableAnnotationComposer,
           $$AppointmentsTableCreateCompanionBuilder,
           $$AppointmentsTableUpdateCompanionBuilder,
-          (Appointment, $$AppointmentsTableReferences),
+          (
+            Appointment,
+            BaseReferences<_$AppDatabase, $AppointmentsTable, Appointment>,
+          ),
           Appointment,
-          PrefetchHooks Function({bool petId})
+          PrefetchHooks Function()
         > {
   $$AppointmentsTableTableManager(_$AppDatabase db, $AppointmentsTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$AppointmentsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$AppointmentsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$AppointmentsTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$AppointmentsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$AppointmentsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () =>
+                  $$AppointmentsTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -18661,55 +16331,17 @@ class $$AppointmentsTableTableManager
                 status: status,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$AppointmentsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({petId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (petId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.petId,
-                                referencedTable: $$AppointmentsTableReferences
-                                    ._petIdTable(db),
-                                referencedColumn: $$AppointmentsTableReferences
-                                    ._petIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -18724,9 +16356,12 @@ typedef $$AppointmentsTableProcessedTableManager =
       $$AppointmentsTableAnnotationComposer,
       $$AppointmentsTableCreateCompanionBuilder,
       $$AppointmentsTableUpdateCompanionBuilder,
-      (Appointment, $$AppointmentsTableReferences),
+      (
+        Appointment,
+        BaseReferences<_$AppDatabase, $AppointmentsTable, Appointment>,
+      ),
       Appointment,
-      PrefetchHooks Function({bool petId})
+      PrefetchHooks Function()
     >;
 typedef $$DocumentsTableCreateCompanionBuilder =
     DocumentsCompanion Function({
@@ -18757,45 +16392,6 @@ typedef $$DocumentsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$DocumentsTableReferences
-    extends BaseReferences<_$AppDatabase, $DocumentsTable, Document> {
-  $$DocumentsTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $PetsTable _petIdTable(_$AppDatabase db) =>
-      db.pets.createAlias('documents__pet_id__pets__id');
-
-  $$PetsTableProcessedTableManager? get petId {
-    final $_column = $_itemColumn<String>('pet_id');
-    if ($_column == null) return null;
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static $FileAssetsTable _fileIdTable(_$AppDatabase db) =>
-      db.fileAssets.createAlias('documents__file_id__file_assets__id');
-
-  $$FileAssetsTableProcessedTableManager get fileId {
-    final $_column = $_itemColumn<String>('file_id')!;
-
-    final manager = $$FileAssetsTableTableManager(
-      $_db,
-      $_db.fileAssets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_fileIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$DocumentsTableFilterComposer
     extends Composer<_$AppDatabase, $DocumentsTable> {
   $$DocumentsTableFilterComposer({
@@ -18817,6 +16413,16 @@ class $$DocumentsTableFilterComposer
 
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get fileId => $composableBuilder(
+    column: $table.fileId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -18844,52 +16450,6 @@ class $$DocumentsTableFilterComposer
     column: $table.notes,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetsTableFilterComposer get petId {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableFilterComposer get fileId {
-    final $$FileAssetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.fileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableFilterComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$DocumentsTableOrderingComposer
@@ -18913,6 +16473,16 @@ class $$DocumentsTableOrderingComposer
 
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get fileId => $composableBuilder(
+    column: $table.fileId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -18940,52 +16510,6 @@ class $$DocumentsTableOrderingComposer
     column: $table.notes,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetsTableOrderingComposer get petId {
-    final $$PetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableOrderingComposer get fileId {
-    final $$FileAssetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.fileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$DocumentsTableAnnotationComposer
@@ -19006,6 +16530,12 @@ class $$DocumentsTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
+  GeneratedColumn<String> get fileId =>
+      $composableBuilder(column: $table.fileId, builder: (column) => column);
+
   GeneratedColumn<String> get title =>
       $composableBuilder(column: $table.title, builder: (column) => column);
 
@@ -19022,52 +16552,6 @@ class $$DocumentsTableAnnotationComposer
 
   GeneratedColumn<String> get notes =>
       $composableBuilder(column: $table.notes, builder: (column) => column);
-
-  $$PetsTableAnnotationComposer get petId {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableAnnotationComposer get fileId {
-    final $$FileAssetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.fileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$DocumentsTableTableManager
@@ -19081,21 +16565,21 @@ class $$DocumentsTableTableManager
           $$DocumentsTableAnnotationComposer,
           $$DocumentsTableCreateCompanionBuilder,
           $$DocumentsTableUpdateCompanionBuilder,
-          (Document, $$DocumentsTableReferences),
+          (Document, BaseReferences<_$AppDatabase, $DocumentsTable, Document>),
           Document,
-          PrefetchHooks Function({bool petId, bool fileId})
+          PrefetchHooks Function()
         > {
   $$DocumentsTableTableManager(_$AppDatabase db, $DocumentsTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$DocumentsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$DocumentsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$DocumentsTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$DocumentsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$DocumentsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$DocumentsTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -19148,68 +16632,17 @@ class $$DocumentsTableTableManager
                 notes: notes,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$DocumentsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({petId = false, fileId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (petId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.petId,
-                                referencedTable: $$DocumentsTableReferences
-                                    ._petIdTable(db),
-                                referencedColumn: $$DocumentsTableReferences
-                                    ._petIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
-                    if (fileId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.fileId,
-                                referencedTable: $$DocumentsTableReferences
-                                    ._fileIdTable(db),
-                                referencedColumn: $$DocumentsTableReferences
-                                    ._fileIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -19224,9 +16657,9 @@ typedef $$DocumentsTableProcessedTableManager =
       $$DocumentsTableAnnotationComposer,
       $$DocumentsTableCreateCompanionBuilder,
       $$DocumentsTableUpdateCompanionBuilder,
-      (Document, $$DocumentsTableReferences),
+      (Document, BaseReferences<_$AppDatabase, $DocumentsTable, Document>),
       Document,
-      PrefetchHooks Function({bool petId, bool fileId})
+      PrefetchHooks Function()
     >;
 typedef $$RecordAttachmentsTableCreateCompanionBuilder =
     RecordAttachmentsCompanion Function({
@@ -19250,37 +16683,6 @@ typedef $$RecordAttachmentsTableUpdateCompanionBuilder =
       Value<String?> caption,
       Value<int> rowid,
     });
-
-final class $$RecordAttachmentsTableReferences
-    extends
-        BaseReferences<
-          _$AppDatabase,
-          $RecordAttachmentsTable,
-          RecordAttachment
-        > {
-  $$RecordAttachmentsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $FileAssetsTable _fileIdTable(_$AppDatabase db) =>
-      db.fileAssets.createAlias('record_attachments__file_id__file_assets__id');
-
-  $$FileAssetsTableProcessedTableManager get fileId {
-    final $_column = $_itemColumn<String>('file_id')!;
-
-    final manager = $$FileAssetsTableTableManager(
-      $_db,
-      $_db.fileAssets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_fileIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
 
 class $$RecordAttachmentsTableFilterComposer
     extends Composer<_$AppDatabase, $RecordAttachmentsTable> {
@@ -19306,6 +16708,11 @@ class $$RecordAttachmentsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get fileId => $composableBuilder(
+    column: $table.fileId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get entityType => $composableBuilder(
     column: $table.entityType,
     builder: (column) => ColumnFilters(column),
@@ -19320,29 +16727,6 @@ class $$RecordAttachmentsTableFilterComposer
     column: $table.caption,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$FileAssetsTableFilterComposer get fileId {
-    final $$FileAssetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.fileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableFilterComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$RecordAttachmentsTableOrderingComposer
@@ -19369,6 +16753,11 @@ class $$RecordAttachmentsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get fileId => $composableBuilder(
+    column: $table.fileId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get entityType => $composableBuilder(
     column: $table.entityType,
     builder: (column) => ColumnOrderings(column),
@@ -19383,29 +16772,6 @@ class $$RecordAttachmentsTableOrderingComposer
     column: $table.caption,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$FileAssetsTableOrderingComposer get fileId {
-    final $$FileAssetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.fileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$RecordAttachmentsTableAnnotationComposer
@@ -19426,6 +16792,9 @@ class $$RecordAttachmentsTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get fileId =>
+      $composableBuilder(column: $table.fileId, builder: (column) => column);
+
   GeneratedColumn<String> get entityType => $composableBuilder(
     column: $table.entityType,
     builder: (column) => column,
@@ -19436,29 +16805,6 @@ class $$RecordAttachmentsTableAnnotationComposer
 
   GeneratedColumn<String> get caption =>
       $composableBuilder(column: $table.caption, builder: (column) => column);
-
-  $$FileAssetsTableAnnotationComposer get fileId {
-    final $$FileAssetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.fileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$RecordAttachmentsTableTableManager
@@ -19472,9 +16818,16 @@ class $$RecordAttachmentsTableTableManager
           $$RecordAttachmentsTableAnnotationComposer,
           $$RecordAttachmentsTableCreateCompanionBuilder,
           $$RecordAttachmentsTableUpdateCompanionBuilder,
-          (RecordAttachment, $$RecordAttachmentsTableReferences),
+          (
+            RecordAttachment,
+            BaseReferences<
+              _$AppDatabase,
+              $RecordAttachmentsTable,
+              RecordAttachment
+            >,
+          ),
           RecordAttachment,
-          PrefetchHooks Function({bool fileId})
+          PrefetchHooks Function()
         > {
   $$RecordAttachmentsTableTableManager(
     _$AppDatabase db,
@@ -19483,12 +16836,18 @@ class $$RecordAttachmentsTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$RecordAttachmentsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$RecordAttachmentsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$RecordAttachmentsTableAnnotationComposer(
+          createFilteringComposer:
+              () => $$RecordAttachmentsTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
+          createOrderingComposer:
+              () => $$RecordAttachmentsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer:
+              () => $$RecordAttachmentsTableAnnotationComposer(
                 $db: db,
                 $table: table,
               ),
@@ -19532,57 +16891,17 @@ class $$RecordAttachmentsTableTableManager
                 caption: caption,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$RecordAttachmentsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({fileId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (fileId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.fileId,
-                                referencedTable:
-                                    $$RecordAttachmentsTableReferences
-                                        ._fileIdTable(db),
-                                referencedColumn:
-                                    $$RecordAttachmentsTableReferences
-                                        ._fileIdTable(db)
-                                        .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -19597,9 +16916,16 @@ typedef $$RecordAttachmentsTableProcessedTableManager =
       $$RecordAttachmentsTableAnnotationComposer,
       $$RecordAttachmentsTableCreateCompanionBuilder,
       $$RecordAttachmentsTableUpdateCompanionBuilder,
-      (RecordAttachment, $$RecordAttachmentsTableReferences),
+      (
+        RecordAttachment,
+        BaseReferences<
+          _$AppDatabase,
+          $RecordAttachmentsTable,
+          RecordAttachment
+        >,
+      ),
       RecordAttachment,
-      PrefetchHooks Function({bool fileId})
+      PrefetchHooks Function()
     >;
 typedef $$GrowthEntriesTableCreateCompanionBuilder =
     GrowthEntriesCompanion Function({
@@ -19626,32 +16952,6 @@ typedef $$GrowthEntriesTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$GrowthEntriesTableReferences
-    extends BaseReferences<_$AppDatabase, $GrowthEntriesTable, GrowthEntry> {
-  $$GrowthEntriesTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $PetsTable _petIdTable(_$AppDatabase db) =>
-      db.pets.createAlias('growth_entries__pet_id__pets__id');
-
-  $$PetsTableProcessedTableManager get petId {
-    final $_column = $_itemColumn<String>('pet_id')!;
-
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$GrowthEntriesTableFilterComposer
     extends Composer<_$AppDatabase, $GrowthEntriesTable> {
   $$GrowthEntriesTableFilterComposer({
@@ -19676,6 +16976,11 @@ class $$GrowthEntriesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<DateTime> get measuredAt => $composableBuilder(
     column: $table.measuredAt,
     builder: (column) => ColumnFilters(column),
@@ -19695,29 +17000,6 @@ class $$GrowthEntriesTableFilterComposer
     column: $table.notes,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetsTableFilterComposer get petId {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$GrowthEntriesTableOrderingComposer
@@ -19744,6 +17026,11 @@ class $$GrowthEntriesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<DateTime> get measuredAt => $composableBuilder(
     column: $table.measuredAt,
     builder: (column) => ColumnOrderings(column),
@@ -19763,29 +17050,6 @@ class $$GrowthEntriesTableOrderingComposer
     column: $table.notes,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetsTableOrderingComposer get petId {
-    final $$PetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$GrowthEntriesTableAnnotationComposer
@@ -19806,6 +17070,9 @@ class $$GrowthEntriesTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
   GeneratedColumn<DateTime> get measuredAt => $composableBuilder(
     column: $table.measuredAt,
     builder: (column) => column,
@@ -19823,29 +17090,6 @@ class $$GrowthEntriesTableAnnotationComposer
 
   GeneratedColumn<String> get notes =>
       $composableBuilder(column: $table.notes, builder: (column) => column);
-
-  $$PetsTableAnnotationComposer get petId {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$GrowthEntriesTableTableManager
@@ -19859,21 +17103,28 @@ class $$GrowthEntriesTableTableManager
           $$GrowthEntriesTableAnnotationComposer,
           $$GrowthEntriesTableCreateCompanionBuilder,
           $$GrowthEntriesTableUpdateCompanionBuilder,
-          (GrowthEntry, $$GrowthEntriesTableReferences),
+          (
+            GrowthEntry,
+            BaseReferences<_$AppDatabase, $GrowthEntriesTable, GrowthEntry>,
+          ),
           GrowthEntry,
-          PrefetchHooks Function({bool petId})
+          PrefetchHooks Function()
         > {
   $$GrowthEntriesTableTableManager(_$AppDatabase db, $GrowthEntriesTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$GrowthEntriesTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$GrowthEntriesTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$GrowthEntriesTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$GrowthEntriesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () =>
+                  $$GrowthEntriesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$GrowthEntriesTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -19918,55 +17169,17 @@ class $$GrowthEntriesTableTableManager
                 notes: notes,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$GrowthEntriesTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({petId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (petId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.petId,
-                                referencedTable: $$GrowthEntriesTableReferences
-                                    ._petIdTable(db),
-                                referencedColumn: $$GrowthEntriesTableReferences
-                                    ._petIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -19981,9 +17194,12 @@ typedef $$GrowthEntriesTableProcessedTableManager =
       $$GrowthEntriesTableAnnotationComposer,
       $$GrowthEntriesTableCreateCompanionBuilder,
       $$GrowthEntriesTableUpdateCompanionBuilder,
-      (GrowthEntry, $$GrowthEntriesTableReferences),
+      (
+        GrowthEntry,
+        BaseReferences<_$AppDatabase, $GrowthEntriesTable, GrowthEntry>,
+      ),
       GrowthEntry,
-      PrefetchHooks Function({bool petId})
+      PrefetchHooks Function()
     >;
 typedef $$ExpensesTableCreateCompanionBuilder =
     ExpensesCompanion Function({
@@ -20018,45 +17234,6 @@ typedef $$ExpensesTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$ExpensesTableReferences
-    extends BaseReferences<_$AppDatabase, $ExpensesTable, Expense> {
-  $$ExpensesTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $PetsTable _petIdTable(_$AppDatabase db) =>
-      db.pets.createAlias('expenses__pet_id__pets__id');
-
-  $$PetsTableProcessedTableManager? get petId {
-    final $_column = $_itemColumn<String>('pet_id');
-    if ($_column == null) return null;
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static $FileAssetsTable _receiptFileIdTable(_$AppDatabase db) =>
-      db.fileAssets.createAlias('expenses__receipt_file_id__file_assets__id');
-
-  $$FileAssetsTableProcessedTableManager? get receiptFileId {
-    final $_column = $_itemColumn<String>('receipt_file_id');
-    if ($_column == null) return null;
-    final manager = $$FileAssetsTableTableManager(
-      $_db,
-      $_db.fileAssets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_receiptFileIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$ExpensesTableFilterComposer
     extends Composer<_$AppDatabase, $ExpensesTable> {
   $$ExpensesTableFilterComposer({
@@ -20078,6 +17255,11 @@ class $$ExpensesTableFilterComposer
 
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -20111,56 +17293,15 @@ class $$ExpensesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get receiptFileId => $composableBuilder(
+    column: $table.receiptFileId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get notes => $composableBuilder(
     column: $table.notes,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetsTableFilterComposer get petId {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableFilterComposer get receiptFileId {
-    final $$FileAssetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.receiptFileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableFilterComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$ExpensesTableOrderingComposer
@@ -20184,6 +17325,11 @@ class $$ExpensesTableOrderingComposer
 
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -20217,56 +17363,15 @@ class $$ExpensesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get receiptFileId => $composableBuilder(
+    column: $table.receiptFileId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get notes => $composableBuilder(
     column: $table.notes,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetsTableOrderingComposer get petId {
-    final $$PetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableOrderingComposer get receiptFileId {
-    final $$FileAssetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.receiptFileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$ExpensesTableAnnotationComposer
@@ -20286,6 +17391,9 @@ class $$ExpensesTableAnnotationComposer
 
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
 
   GeneratedColumn<String> get category =>
       $composableBuilder(column: $table.category, builder: (column) => column);
@@ -20313,54 +17421,13 @@ class $$ExpensesTableAnnotationComposer
     builder: (column) => column,
   );
 
+  GeneratedColumn<String> get receiptFileId => $composableBuilder(
+    column: $table.receiptFileId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get notes =>
       $composableBuilder(column: $table.notes, builder: (column) => column);
-
-  $$PetsTableAnnotationComposer get petId {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableAnnotationComposer get receiptFileId {
-    final $$FileAssetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.receiptFileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$ExpensesTableTableManager
@@ -20374,21 +17441,21 @@ class $$ExpensesTableTableManager
           $$ExpensesTableAnnotationComposer,
           $$ExpensesTableCreateCompanionBuilder,
           $$ExpensesTableUpdateCompanionBuilder,
-          (Expense, $$ExpensesTableReferences),
+          (Expense, BaseReferences<_$AppDatabase, $ExpensesTable, Expense>),
           Expense,
-          PrefetchHooks Function({bool petId, bool receiptFileId})
+          PrefetchHooks Function()
         > {
   $$ExpensesTableTableManager(_$AppDatabase db, $ExpensesTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$ExpensesTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$ExpensesTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$ExpensesTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$ExpensesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$ExpensesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$ExpensesTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -20449,68 +17516,17 @@ class $$ExpensesTableTableManager
                 notes: notes,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$ExpensesTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({petId = false, receiptFileId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (petId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.petId,
-                                referencedTable: $$ExpensesTableReferences
-                                    ._petIdTable(db),
-                                referencedColumn: $$ExpensesTableReferences
-                                    ._petIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
-                    if (receiptFileId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.receiptFileId,
-                                referencedTable: $$ExpensesTableReferences
-                                    ._receiptFileIdTable(db),
-                                referencedColumn: $$ExpensesTableReferences
-                                    ._receiptFileIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -20525,9 +17541,9 @@ typedef $$ExpensesTableProcessedTableManager =
       $$ExpensesTableAnnotationComposer,
       $$ExpensesTableCreateCompanionBuilder,
       $$ExpensesTableUpdateCompanionBuilder,
-      (Expense, $$ExpensesTableReferences),
+      (Expense, BaseReferences<_$AppDatabase, $ExpensesTable, Expense>),
       Expense,
-      PrefetchHooks Function({bool petId, bool receiptFileId})
+      PrefetchHooks Function()
     >;
 typedef $$RemindersTableCreateCompanionBuilder =
     RemindersCompanion Function({
@@ -20568,53 +17584,6 @@ typedef $$RemindersTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$RemindersTableReferences
-    extends BaseReferences<_$AppDatabase, $RemindersTable, Reminder> {
-  $$RemindersTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $PetsTable _petIdTable(_$AppDatabase db) =>
-      db.pets.createAlias('reminders__pet_id__pets__id');
-
-  $$PetsTableProcessedTableManager? get petId {
-    final $_column = $_itemColumn<String>('pet_id');
-    if ($_column == null) return null;
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $ScheduledNotificationsTable,
-    List<ScheduledNotification>
-  >
-  _scheduledNotificationsRefsTable(_$AppDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.scheduledNotifications,
-        aliasName: 'reminders__id__scheduled_notifications__reminder_id',
-      );
-
-  $$ScheduledNotificationsTableProcessedTableManager
-  get scheduledNotificationsRefs {
-    final manager = $$ScheduledNotificationsTableTableManager(
-      $_db,
-      $_db.scheduledNotifications,
-    ).filter((f) => f.reminderId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _scheduledNotificationsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
-
 class $$RemindersTableFilterComposer
     extends Composer<_$AppDatabase, $RemindersTable> {
   $$RemindersTableFilterComposer({
@@ -20636,6 +17605,11 @@ class $$RemindersTableFilterComposer
 
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -20693,55 +17667,6 @@ class $$RemindersTableFilterComposer
     column: $table.endsAt,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetsTableFilterComposer get petId {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<bool> scheduledNotificationsRefs(
-    Expression<bool> Function($$ScheduledNotificationsTableFilterComposer f) f,
-  ) {
-    final $$ScheduledNotificationsTableFilterComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.scheduledNotifications,
-          getReferencedColumn: (t) => t.reminderId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$ScheduledNotificationsTableFilterComposer(
-                $db: $db,
-                $table: $db.scheduledNotifications,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
 }
 
 class $$RemindersTableOrderingComposer
@@ -20765,6 +17690,11 @@ class $$RemindersTableOrderingComposer
 
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -20822,29 +17752,6 @@ class $$RemindersTableOrderingComposer
     column: $table.endsAt,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetsTableOrderingComposer get petId {
-    final $$PetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$RemindersTableAnnotationComposer
@@ -20864,6 +17771,9 @@ class $$RemindersTableAnnotationComposer
 
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
 
   GeneratedColumn<String> get kind =>
       $composableBuilder(column: $table.kind, builder: (column) => column);
@@ -20907,55 +17817,6 @@ class $$RemindersTableAnnotationComposer
 
   GeneratedColumn<DateTime> get endsAt =>
       $composableBuilder(column: $table.endsAt, builder: (column) => column);
-
-  $$PetsTableAnnotationComposer get petId {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<T> scheduledNotificationsRefs<T extends Object>(
-    Expression<T> Function($$ScheduledNotificationsTableAnnotationComposer a) f,
-  ) {
-    final $$ScheduledNotificationsTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.scheduledNotifications,
-          getReferencedColumn: (t) => t.reminderId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$ScheduledNotificationsTableAnnotationComposer(
-                $db: $db,
-                $table: $db.scheduledNotifications,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
 }
 
 class $$RemindersTableTableManager
@@ -20969,21 +17830,21 @@ class $$RemindersTableTableManager
           $$RemindersTableAnnotationComposer,
           $$RemindersTableCreateCompanionBuilder,
           $$RemindersTableUpdateCompanionBuilder,
-          (Reminder, $$RemindersTableReferences),
+          (Reminder, BaseReferences<_$AppDatabase, $RemindersTable, Reminder>),
           Reminder,
-          PrefetchHooks Function({bool petId, bool scheduledNotificationsRefs})
+          PrefetchHooks Function()
         > {
   $$RemindersTableTableManager(_$AppDatabase db, $RemindersTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$RemindersTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$RemindersTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$RemindersTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$RemindersTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$RemindersTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$RemindersTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -21056,80 +17917,17 @@ class $$RemindersTableTableManager
                 endsAt: endsAt,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$RemindersTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback:
-              ({petId = false, scheduledNotificationsRefs = false}) {
-                return PrefetchHooks(
-                  db: db,
-                  explicitlyWatchedTables: [
-                    if (scheduledNotificationsRefs) db.scheduledNotifications,
-                  ],
-                  addJoins:
-                      <
-                        T extends TableManagerState<
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic
-                        >
-                      >(state) {
-                        if (petId) {
-                          state =
-                              state.withJoin(
-                                    currentTable: table,
-                                    currentColumn: table.petId,
-                                    referencedTable: $$RemindersTableReferences
-                                        ._petIdTable(db),
-                                    referencedColumn: $$RemindersTableReferences
-                                        ._petIdTable(db)
-                                        .id,
-                                  )
-                                  as T;
-                        }
-
-                        return state;
-                      },
-                  getPrefetchedDataCallback: (items) async {
-                    return [
-                      if (scheduledNotificationsRefs)
-                        await $_getPrefetchedData<
-                          Reminder,
-                          $RemindersTable,
-                          ScheduledNotification
-                        >(
-                          currentTable: table,
-                          referencedTable: $$RemindersTableReferences
-                              ._scheduledNotificationsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$RemindersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).scheduledNotificationsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.reminderId == item.id,
-                              ),
-                          typedResults: items,
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
                         ),
-                    ];
-                  },
-                );
-              },
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -21144,9 +17942,9 @@ typedef $$RemindersTableProcessedTableManager =
       $$RemindersTableAnnotationComposer,
       $$RemindersTableCreateCompanionBuilder,
       $$RemindersTableUpdateCompanionBuilder,
-      (Reminder, $$RemindersTableReferences),
+      (Reminder, BaseReferences<_$AppDatabase, $RemindersTable, Reminder>),
       Reminder,
-      PrefetchHooks Function({bool petId, bool scheduledNotificationsRefs})
+      PrefetchHooks Function()
     >;
 typedef $$ScheduledNotificationsTableCreateCompanionBuilder =
     ScheduledNotificationsCompanion Function({
@@ -21170,37 +17968,6 @@ typedef $$ScheduledNotificationsTableUpdateCompanionBuilder =
       Value<String> status,
       Value<int> rowid,
     });
-
-final class $$ScheduledNotificationsTableReferences
-    extends
-        BaseReferences<
-          _$AppDatabase,
-          $ScheduledNotificationsTable,
-          ScheduledNotification
-        > {
-  $$ScheduledNotificationsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $RemindersTable _reminderIdTable(_$AppDatabase db) => db.reminders
-      .createAlias('scheduled_notifications__reminder_id__reminders__id');
-
-  $$RemindersTableProcessedTableManager get reminderId {
-    final $_column = $_itemColumn<String>('reminder_id')!;
-
-    final manager = $$RemindersTableTableManager(
-      $_db,
-      $_db.reminders,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_reminderIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
 
 class $$ScheduledNotificationsTableFilterComposer
     extends Composer<_$AppDatabase, $ScheduledNotificationsTable> {
@@ -21226,6 +17993,11 @@ class $$ScheduledNotificationsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get reminderId => $composableBuilder(
+    column: $table.reminderId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<int> get platformNotificationId => $composableBuilder(
     column: $table.platformNotificationId,
     builder: (column) => ColumnFilters(column),
@@ -21240,29 +18012,6 @@ class $$ScheduledNotificationsTableFilterComposer
     column: $table.status,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$RemindersTableFilterComposer get reminderId {
-    final $$RemindersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.reminderId,
-      referencedTable: $db.reminders,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$RemindersTableFilterComposer(
-            $db: $db,
-            $table: $db.reminders,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$ScheduledNotificationsTableOrderingComposer
@@ -21289,6 +18038,11 @@ class $$ScheduledNotificationsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get reminderId => $composableBuilder(
+    column: $table.reminderId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<int> get platformNotificationId => $composableBuilder(
     column: $table.platformNotificationId,
     builder: (column) => ColumnOrderings(column),
@@ -21303,29 +18057,6 @@ class $$ScheduledNotificationsTableOrderingComposer
     column: $table.status,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$RemindersTableOrderingComposer get reminderId {
-    final $$RemindersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.reminderId,
-      referencedTable: $db.reminders,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$RemindersTableOrderingComposer(
-            $db: $db,
-            $table: $db.reminders,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$ScheduledNotificationsTableAnnotationComposer
@@ -21346,6 +18077,11 @@ class $$ScheduledNotificationsTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get reminderId => $composableBuilder(
+    column: $table.reminderId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<int> get platformNotificationId => $composableBuilder(
     column: $table.platformNotificationId,
     builder: (column) => column,
@@ -21358,29 +18094,6 @@ class $$ScheduledNotificationsTableAnnotationComposer
 
   GeneratedColumn<String> get status =>
       $composableBuilder(column: $table.status, builder: (column) => column);
-
-  $$RemindersTableAnnotationComposer get reminderId {
-    final $$RemindersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.reminderId,
-      referencedTable: $db.reminders,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$RemindersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.reminders,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$ScheduledNotificationsTableTableManager
@@ -21394,9 +18107,16 @@ class $$ScheduledNotificationsTableTableManager
           $$ScheduledNotificationsTableAnnotationComposer,
           $$ScheduledNotificationsTableCreateCompanionBuilder,
           $$ScheduledNotificationsTableUpdateCompanionBuilder,
-          (ScheduledNotification, $$ScheduledNotificationsTableReferences),
+          (
+            ScheduledNotification,
+            BaseReferences<
+              _$AppDatabase,
+              $ScheduledNotificationsTable,
+              ScheduledNotification
+            >,
+          ),
           ScheduledNotification,
-          PrefetchHooks Function({bool reminderId})
+          PrefetchHooks Function()
         > {
   $$ScheduledNotificationsTableTableManager(
     _$AppDatabase db,
@@ -21405,18 +18125,18 @@ class $$ScheduledNotificationsTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$ScheduledNotificationsTableFilterComposer(
+          createFilteringComposer:
+              () => $$ScheduledNotificationsTableFilterComposer(
                 $db: db,
                 $table: table,
               ),
-          createOrderingComposer: () =>
-              $$ScheduledNotificationsTableOrderingComposer(
+          createOrderingComposer:
+              () => $$ScheduledNotificationsTableOrderingComposer(
                 $db: db,
                 $table: table,
               ),
-          createComputedFieldComposer: () =>
-              $$ScheduledNotificationsTableAnnotationComposer(
+          createComputedFieldComposer:
+              () => $$ScheduledNotificationsTableAnnotationComposer(
                 $db: db,
                 $table: table,
               ),
@@ -21460,57 +18180,17 @@ class $$ScheduledNotificationsTableTableManager
                 status: status,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$ScheduledNotificationsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({reminderId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (reminderId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.reminderId,
-                                referencedTable:
-                                    $$ScheduledNotificationsTableReferences
-                                        ._reminderIdTable(db),
-                                referencedColumn:
-                                    $$ScheduledNotificationsTableReferences
-                                        ._reminderIdTable(db)
-                                        .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -21525,9 +18205,16 @@ typedef $$ScheduledNotificationsTableProcessedTableManager =
       $$ScheduledNotificationsTableAnnotationComposer,
       $$ScheduledNotificationsTableCreateCompanionBuilder,
       $$ScheduledNotificationsTableUpdateCompanionBuilder,
-      (ScheduledNotification, $$ScheduledNotificationsTableReferences),
+      (
+        ScheduledNotification,
+        BaseReferences<
+          _$AppDatabase,
+          $ScheduledNotificationsTable,
+          ScheduledNotification
+        >,
+      ),
       ScheduledNotification,
-      PrefetchHooks Function({bool reminderId})
+      PrefetchHooks Function()
     >;
 typedef $$GeneratedReportsTableCreateCompanionBuilder =
     GeneratedReportsCompanion Function({
@@ -21554,50 +18241,6 @@ typedef $$GeneratedReportsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$GeneratedReportsTableReferences
-    extends
-        BaseReferences<_$AppDatabase, $GeneratedReportsTable, GeneratedReport> {
-  $$GeneratedReportsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $PetsTable _petIdTable(_$AppDatabase db) =>
-      db.pets.createAlias('generated_reports__pet_id__pets__id');
-
-  $$PetsTableProcessedTableManager? get petId {
-    final $_column = $_itemColumn<String>('pet_id');
-    if ($_column == null) return null;
-    final manager = $$PetsTableTableManager(
-      $_db,
-      $_db.pets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_petIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static $FileAssetsTable _fileIdTable(_$AppDatabase db) =>
-      db.fileAssets.createAlias('generated_reports__file_id__file_assets__id');
-
-  $$FileAssetsTableProcessedTableManager get fileId {
-    final $_column = $_itemColumn<String>('file_id')!;
-
-    final manager = $$FileAssetsTableTableManager(
-      $_db,
-      $_db.fileAssets,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_fileIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$GeneratedReportsTableFilterComposer
     extends Composer<_$AppDatabase, $GeneratedReportsTable> {
   $$GeneratedReportsTableFilterComposer({
@@ -21622,6 +18265,16 @@ class $$GeneratedReportsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get fileId => $composableBuilder(
+    column: $table.fileId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get reportType => $composableBuilder(
     column: $table.reportType,
     builder: (column) => ColumnFilters(column),
@@ -21636,52 +18289,6 @@ class $$GeneratedReportsTableFilterComposer
     column: $table.periodEnd,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$PetsTableFilterComposer get petId {
-    final $$PetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableFilterComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableFilterComposer get fileId {
-    final $$FileAssetsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.fileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableFilterComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$GeneratedReportsTableOrderingComposer
@@ -21708,6 +18315,16 @@ class $$GeneratedReportsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get fileId => $composableBuilder(
+    column: $table.fileId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get reportType => $composableBuilder(
     column: $table.reportType,
     builder: (column) => ColumnOrderings(column),
@@ -21722,52 +18339,6 @@ class $$GeneratedReportsTableOrderingComposer
     column: $table.periodEnd,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$PetsTableOrderingComposer get petId {
-    final $$PetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableOrderingComposer get fileId {
-    final $$FileAssetsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.fileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableOrderingComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$GeneratedReportsTableAnnotationComposer
@@ -21788,6 +18359,12 @@ class $$GeneratedReportsTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
+  GeneratedColumn<String> get fileId =>
+      $composableBuilder(column: $table.fileId, builder: (column) => column);
+
   GeneratedColumn<String> get reportType => $composableBuilder(
     column: $table.reportType,
     builder: (column) => column,
@@ -21800,52 +18377,6 @@ class $$GeneratedReportsTableAnnotationComposer
 
   GeneratedColumn<DateTime> get periodEnd =>
       $composableBuilder(column: $table.periodEnd, builder: (column) => column);
-
-  $$PetsTableAnnotationComposer get petId {
-    final $$PetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.petId,
-      referencedTable: $db.pets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.pets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  $$FileAssetsTableAnnotationComposer get fileId {
-    final $$FileAssetsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.fileId,
-      referencedTable: $db.fileAssets,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$FileAssetsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.fileAssets,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$GeneratedReportsTableTableManager
@@ -21859,9 +18390,16 @@ class $$GeneratedReportsTableTableManager
           $$GeneratedReportsTableAnnotationComposer,
           $$GeneratedReportsTableCreateCompanionBuilder,
           $$GeneratedReportsTableUpdateCompanionBuilder,
-          (GeneratedReport, $$GeneratedReportsTableReferences),
+          (
+            GeneratedReport,
+            BaseReferences<
+              _$AppDatabase,
+              $GeneratedReportsTable,
+              GeneratedReport
+            >,
+          ),
           GeneratedReport,
-          PrefetchHooks Function({bool petId, bool fileId})
+          PrefetchHooks Function()
         > {
   $$GeneratedReportsTableTableManager(
     _$AppDatabase db,
@@ -21870,12 +18408,19 @@ class $$GeneratedReportsTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$GeneratedReportsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$GeneratedReportsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$GeneratedReportsTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () =>
+                  $$GeneratedReportsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$GeneratedReportsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer:
+              () => $$GeneratedReportsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -21920,72 +18465,17 @@ class $$GeneratedReportsTableTableManager
                 periodEnd: periodEnd,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable(table),
-                  $$GeneratedReportsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({petId = false, fileId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (petId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.petId,
-                                referencedTable:
-                                    $$GeneratedReportsTableReferences
-                                        ._petIdTable(db),
-                                referencedColumn:
-                                    $$GeneratedReportsTableReferences
-                                        ._petIdTable(db)
-                                        .id,
-                              )
-                              as T;
-                    }
-                    if (fileId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.fileId,
-                                referencedTable:
-                                    $$GeneratedReportsTableReferences
-                                        ._fileIdTable(db),
-                                referencedColumn:
-                                    $$GeneratedReportsTableReferences
-                                        ._fileIdTable(db)
-                                        .id,
-                              )
-                              as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -22000,9 +18490,12 @@ typedef $$GeneratedReportsTableProcessedTableManager =
       $$GeneratedReportsTableAnnotationComposer,
       $$GeneratedReportsTableCreateCompanionBuilder,
       $$GeneratedReportsTableUpdateCompanionBuilder,
-      (GeneratedReport, $$GeneratedReportsTableReferences),
+      (
+        GeneratedReport,
+        BaseReferences<_$AppDatabase, $GeneratedReportsTable, GeneratedReport>,
+      ),
       GeneratedReport,
-      PrefetchHooks Function({bool petId, bool fileId})
+      PrefetchHooks Function()
     >;
 typedef $$AppSettingsTableCreateCompanionBuilder =
     AppSettingsCompanion Function({
@@ -22143,12 +18636,13 @@ class $$AppSettingsTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$AppSettingsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$AppSettingsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$AppSettingsTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$AppSettingsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$AppSettingsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () =>
+                  $$AppSettingsTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -22181,9 +18675,16 @@ class $$AppSettingsTableTableManager
                 valueJson: valueJson,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
-              .toList(),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -22460,12 +18961,16 @@ class $$BackupRecordsTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$BackupRecordsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$BackupRecordsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$BackupRecordsTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer:
+              () => $$BackupRecordsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () =>
+                  $$BackupRecordsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$BackupRecordsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
           updateCompanionCallback:
               ({
                 Value<DateTime> createdAt = const Value.absent(),
@@ -22526,9 +19031,16 @@ class $$BackupRecordsTableTableManager
                 failureCode: failureCode,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
-              .toList(),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -22549,6 +19061,268 @@ typedef $$BackupRecordsTableProcessedTableManager =
         BaseReferences<_$AppDatabase, $BackupRecordsTable, BackupRecord>,
       ),
       BackupRecord,
+      PrefetchHooks Function()
+    >;
+typedef $$MemoriesTableCreateCompanionBuilder =
+    MemoriesCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      required String id,
+      required String petId,
+      Value<String?> title,
+      Value<String?> description,
+      Value<String?> imageFileId,
+      Value<DateTime> date,
+      Value<int> rowid,
+    });
+typedef $$MemoriesTableUpdateCompanionBuilder =
+    MemoriesCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<String> id,
+      Value<String> petId,
+      Value<String?> title,
+      Value<String?> description,
+      Value<String?> imageFileId,
+      Value<DateTime> date,
+      Value<int> rowid,
+    });
+
+class $$MemoriesTableFilterComposer
+    extends Composer<_$AppDatabase, $MemoriesTable> {
+  $$MemoriesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get imageFileId => $composableBuilder(
+    column: $table.imageFileId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$MemoriesTableOrderingComposer
+    extends Composer<_$AppDatabase, $MemoriesTable> {
+  $$MemoriesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get imageFileId => $composableBuilder(
+    column: $table.imageFileId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$MemoriesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $MemoriesTable> {
+  $$MemoriesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get imageFileId => $composableBuilder(
+    column: $table.imageFileId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get date =>
+      $composableBuilder(column: $table.date, builder: (column) => column);
+}
+
+class $$MemoriesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $MemoriesTable,
+          Memory,
+          $$MemoriesTableFilterComposer,
+          $$MemoriesTableOrderingComposer,
+          $$MemoriesTableAnnotationComposer,
+          $$MemoriesTableCreateCompanionBuilder,
+          $$MemoriesTableUpdateCompanionBuilder,
+          (Memory, BaseReferences<_$AppDatabase, $MemoriesTable, Memory>),
+          Memory,
+          PrefetchHooks Function()
+        > {
+  $$MemoriesTableTableManager(_$AppDatabase db, $MemoriesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer:
+              () => $$MemoriesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$MemoriesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$MemoriesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<String> id = const Value.absent(),
+                Value<String> petId = const Value.absent(),
+                Value<String?> title = const Value.absent(),
+                Value<String?> description = const Value.absent(),
+                Value<String?> imageFileId = const Value.absent(),
+                Value<DateTime> date = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MemoriesCompanion(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                title: title,
+                description: description,
+                imageFileId: imageFileId,
+                date: date,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                required String id,
+                required String petId,
+                Value<String?> title = const Value.absent(),
+                Value<String?> description = const Value.absent(),
+                Value<String?> imageFileId = const Value.absent(),
+                Value<DateTime> date = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MemoriesCompanion.insert(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                title: title,
+                description: description,
+                imageFileId: imageFileId,
+                date: date,
+                rowid: rowid,
+              ),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$MemoriesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $MemoriesTable,
+      Memory,
+      $$MemoriesTableFilterComposer,
+      $$MemoriesTableOrderingComposer,
+      $$MemoriesTableAnnotationComposer,
+      $$MemoriesTableCreateCompanionBuilder,
+      $$MemoriesTableUpdateCompanionBuilder,
+      (Memory, BaseReferences<_$AppDatabase, $MemoriesTable, Memory>),
+      Memory,
       PrefetchHooks Function()
     >;
 
@@ -22598,4 +19372,6 @@ class $AppDatabaseManager {
       $$AppSettingsTableTableManager(_db, _db.appSettings);
   $$BackupRecordsTableTableManager get backupRecords =>
       $$BackupRecordsTableTableManager(_db, _db.backupRecords);
+  $$MemoriesTableTableManager get memories =>
+      $$MemoriesTableTableManager(_db, _db.memories);
 }
