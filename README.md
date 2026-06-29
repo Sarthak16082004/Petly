@@ -1,27 +1,113 @@
-# Petly
+<div align="center">
+  <img src="assets/images/logo.png" alt="Petly Logo" width="120" />
+  <h1>🐾 Petly</h1>
+  <p><b>Your All-in-One Local-First Pet Companion App</b></p>
+  
+  <p>
+    <a href="https://flutter.dev/"><img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" /></a>
+    <a href="https://dart.dev/"><img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart" /></a>
+    <a href="https://riverpod.dev/"><img src="https://img.shields.io/badge/Riverpod-State_Management-blue?style=for-the-badge" alt="Riverpod" /></a>
+    <a href="https://drift.simonbinder.eu/"><img src="https://img.shields.io/badge/Drift-SQLite-green?style=for-the-badge" alt="Drift" /></a>
+  </p>
+</div>
 
-Petly is a local-first Flutter application for securely managing pet health,
-care, documents, reminders, growth, and expenses on Android and iOS.
+---
 
-## Current implementation
+## 📖 About Petly
 
-- Flutter 3.44 / Dart 3.12 project scaffold
-- Material 3 light and dark themes
-- Riverpod dependency injection and reactive state
-- Drift SQLite schema for all planned modules
-- Owner onboarding stored locally
-- Pet creation, editing, listing, details, and archival
-- Five-tab responsive application shell
+**Petly** is a beautiful, local-first mobile application built with Flutter, designed to help pet owners seamlessly manage their furry friends' health, care schedules, and expenses. 
 
-The full technical design lives in
-[`docs/phase-1-design.md`](docs/phase-1-design.md).
+With a stunning **glassmorphic** and **bento-grid UI** inspired by modern design principles, Petly keeps all your pet's data securely stored right on your device, ensuring complete privacy and offline accessibility.
 
-## Development
+<br/>
 
-```shell
-flutter pub get
-dart run build_runner build --delete-conflicting-outputs
-flutter analyze
-flutter test
-flutter run
+## ✨ Key Features
+
+- **🐕 Comprehensive Pet Profiles:** Manage multiple pets with stunning dedicated profile screens featuring dynamic, color-coded bento grids for quick access to their data.
+- **💊 Medicines & Reminders:** Log active and past prescriptions. Keep track of dosages and easily view course progress.
+- **💉 Vaccinations & Health:** Keep an active log of your pet's vaccination history and upcoming due dates.
+- **📈 Growth Tracking:** Monitor your pet's weight over time to ensure they are growing healthy and strong.
+- **💰 Expense Management:** Track vet bills, food costs, and toys to stay on top of your pet-care budget.
+- **🎨 Glassmorphic UI:** A meticulously crafted, premium user interface featuring soft floating navigation bars, gorgeous gradients, and dynamic theming (Dark & Light mode support).
+- **🔒 Local-First (Offline):** Powered by an embedded SQLite database (Drift). Your pet's sensitive medical data never leaves your device unless you choose to back it up.
+
+<br/>
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Flutter](https://flutter.dev/) (3.44+) / Dart
+- **State Management:** [Riverpod](https://riverpod.dev/) (Reactive caching & dependency injection)
+- **Local Database:** [Drift](https://drift.simonbinder.eu/) (Robust, type-safe SQLite ORM)
+- **Routing:** [GoRouter](https://pub.dev/packages/go_router) (Declarative deep-linkable routing with nested Stateful Shells)
+- **Design:** Material 3, Google Fonts (Geist & Inter)
+
+<br/>
+
+## 🚀 Getting Started
+
+Follow these instructions to get a copy of Petly running on your local machine for development and testing.
+
+### Prerequisites
+- [Flutter SDK](https://docs.flutter.dev/get-started/install) installed
+- A configured IDE (VS Code, Android Studio, or IntelliJ)
+- An Android or iOS device / emulator
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Sarthak16082004/Petly.git
+   cd Petly
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Generate Drift & Riverpod code:**
+   Petly heavily relies on code generation for its database schema and providers.
+   ```bash
+   dart run build_runner build --delete-conflicting-outputs
+   ```
+
+4. **Run the app:**
+   ```bash
+   flutter run
+   ```
+
+<br/>
+
+## 🏗️ Project Architecture
+
+The app follows a feature-first architectural pattern to keep the codebase modular and scalable:
+
+```text
+lib/
+ ├── app/               # App-wide configurations (Theme, Routing, App Shell)
+ ├── core/              # Global utilities, DB configuration, extensions, shared widgets
+ ├── features/          # Feature modules (Dashboard, Pets, Medicines, Vaccinations, etc.)
+ │   ├── domain/        # Entities and repository interfaces
+ │   ├── data/          # Drift implementations and local data sources
+ │   └── presentation/  # UI screens, widgets, and Riverpod State Providers
+ └── main.dart          # Application entry point
 ```
+
+<br/>
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! 
+Feel free to check out the [issues page](https://github.com/Sarthak16082004/Petly/issues) if you want to contribute.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+<div align="center">
+  <i>Made with ❤️ for Pets</i>
+</div>
