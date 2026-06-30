@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:petly/app/shell/app_shell.dart';
 import 'package:petly/features/appointments/presentation/appointment_form_screen.dart';
 import 'package:petly/features/memories/presentation/memories_screen.dart';
+import 'package:petly/features/pets/presentation/pet_id_card_screen.dart';
 import 'package:petly/features/appointments/presentation/appointments_screen.dart';
 import 'package:petly/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:petly/features/expenses/presentation/expense_form_screen.dart';
@@ -22,6 +23,8 @@ import 'package:petly/features/shared/presentation/records_screen.dart';
 import 'package:petly/features/shared/presentation/settings_screen.dart';
 import 'package:petly/features/vaccinations/presentation/vaccination_form_screen.dart';
 import 'package:petly/features/vaccinations/presentation/vaccinations_screen.dart';
+import 'package:petly/features/dewormings/presentation/dewormings_screen.dart';
+import 'package:petly/features/dewormings/presentation/deworming_form_screen.dart';
 import 'package:petly/features/medicines/presentation/medicines_screen.dart';
 import 'package:petly/features/medicines/presentation/medicine_form_screen.dart';
 
@@ -98,6 +101,22 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                       ],
                     ),
 
+                    // Dewormings
+                    GoRoute(
+                      path: 'dewormings',
+                      parentNavigatorKey: rootNavigatorKey,
+                      builder: (ctx, s) => DewormingsScreen(
+                          petId: s.pathParameters['petId']!),
+                      routes: [
+                        GoRoute(
+                          path: 'new',
+                          parentNavigatorKey: rootNavigatorKey,
+                          builder: (ctx, s) => DewormingFormScreen(
+                              petId: s.pathParameters['petId']!),
+                        ),
+                      ],
+                    ),
+
                     // Medical history
                     GoRoute(
                       path: 'medical',
@@ -122,7 +141,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                       ],
                     ),
 
-                    // Appointments
+                        // ID Card
+                        GoRoute(
+                          path: 'id',
+                          parentNavigatorKey: rootNavigatorKey,
+                          builder: (ctx, s) => PetIdCardScreen(
+                            petId: s.pathParameters['petId']!,
+                          ),
+                        ),
+                        
+                        // Appointments
                     GoRoute(
                       path: 'appointments',
                       parentNavigatorKey: rootNavigatorKey,

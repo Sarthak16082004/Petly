@@ -328,3 +328,17 @@ class Memories extends Table with TimestampColumns {
   @override
   Set<Column<Object>> get primaryKey => {id};
 }
+
+class Dewormings extends Table with TimestampColumns {
+  TextColumn get id => text()();
+  TextColumn get petId =>
+      text().references(Pets, #id, onDelete: KeyAction.cascade)();
+  TextColumn get medicationName => text()();
+  DateTimeColumn get administeredOn => dateTime()();
+  DateTimeColumn get nextDueOn => dateTime().nullable()();
+  TextColumn get notes => text().nullable()();
+  TextColumn get status => text().withDefault(const Constant('completed'))();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}

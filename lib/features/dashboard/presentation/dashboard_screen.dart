@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:petly/app/theme/app_theme.dart';
 import 'package:petly/core/extensions/extensions.dart';
+import 'package:petly/features/appointments/domain/appointment.dart';
 import 'package:petly/features/dashboard/presentation/upcoming_events_provider.dart';
+import 'package:petly/features/expenses/presentation/expense_providers.dart';
 import 'package:petly/features/owner_profile/presentation/owner_providers.dart';
 import 'package:petly/features/pets/presentation/pet_providers.dart';
 
@@ -80,10 +82,21 @@ class DashboardScreen extends ConsumerWidget {
 
                 // Upcoming Section
                 _UpcomingSection(upcomingEvents: upcomingEvents),
-                const SizedBox(height: 32),
-
-                // Health Summary (Bento extra)
-                const _HealthSummarySection(),
+                
+                if (pets.value != null && pets.value!.isNotEmpty) ...[
+                  const SizedBox(height: 32),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Petly Insights',
+                          style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: theme.colorScheme.onSurface)),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  const _InsightsSection(),
+                ],
               ]),
             ),
           ),
@@ -526,58 +539,62 @@ class _UpcomingSection extends StatelessWidget {
   }
 }
 
-class _HealthSummarySection extends StatelessWidget {
-  const _HealthSummarySection();
+class _InsightsSection extends ConsumerWidget {
+  const _InsightsSection();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            height: 160,
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: theme.colorScheme.surfaceContainer,
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: theme.colorScheme.outlineVariant.withOpacity(0.3)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Monthly Activity', style: theme.textTheme.labelMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
-                Text('12,480 steps', style: theme.textTheme.titleLarge?.copyWith(color: theme.colorScheme.primary)),
-                const Spacer(),
-                const Icon(Icons.show_chart, color: Colors.grey, size: 40),
+    final expensesAsync = ref.watch(allExpensesProvider);
+
+    return expensesAsync.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (_, __) => const SizedBox.shrink(),
+      data: (expenses) {
+        final total = expenses.fold(0.0, (sum, e) => sum + e.amountDecimal);
+        
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                theme.colorScheme.primaryContainer,
+                theme.colorScheme.tertiaryContainer,
               ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: theme.colorScheme.outlineVariant.withOpacity(0.3)),
           ),
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Container(
-            height: 160,
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: theme.colorScheme.secondary.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: theme.colorScheme.secondary.withOpacity(0.2)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Vaccinations', style: theme.textTheme.labelMedium?.copyWith(color: theme.colorScheme.secondary)),
-                Text('Up to date', style: theme.textTheme.titleLarge?.copyWith(color: theme.colorScheme.secondary)),
-                const Spacer(),
-                Icon(Icons.check_circle, color: theme.colorScheme.secondary, size: 40),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.lightbulb_outline, color: theme.colorScheme.primary),
+                  const SizedBox(width: 8),
+                  Text('Quick Insight', style: theme.textTheme.labelLarge?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold)),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Total Lifetime Expenses',
+                style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                expenses.isEmpty ? 'No expenses logged yet' : '\$${total.toStringAsFixed(2)}',
+                style: theme.textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: theme.colorScheme.onSurface,
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 }

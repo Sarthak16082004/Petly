@@ -1,5 +1,5 @@
 import 'package:drift/drift.dart';
-import 'package:petly/core/database/app_database.dart';
+import 'package:petly/core/database/app_database.dart' as db;
 import 'package:petly/features/memories/domain/memories_repository.dart';
 import 'package:petly/features/memories/domain/memory.dart';
 import 'package:uuid/uuid.dart';
@@ -7,10 +7,10 @@ import 'package:uuid/uuid.dart';
 class DriftMemoriesRepository implements MemoriesRepository {
   DriftMemoriesRepository(this._db, this._uuid);
 
-  final AppDatabase _db;
+  final db.AppDatabase _db;
   final Uuid _uuid;
 
-  Memory _mapMemory(Memorie m) {
+  Memory _mapMemory(db.Memory m) {
     return Memory(
       id: m.id,
       petId: m.petId,
@@ -30,7 +30,7 @@ class DriftMemoriesRepository implements MemoriesRepository {
 
   @override
   Future<void> addMemory(Memory memory) async {
-    final companion = MemoriesCompanion.insert(
+    final companion = db.MemoriesCompanion.insert(
       id: memory.id.isEmpty ? _uuid.v4() : memory.id,
       petId: memory.petId,
       title: Value(memory.title),
@@ -43,7 +43,7 @@ class DriftMemoriesRepository implements MemoriesRepository {
 
   @override
   Future<void> updateMemory(Memory memory) async {
-    final companion = MemoriesCompanion(
+    final companion = db.MemoriesCompanion(
       title: Value(memory.title),
       description: Value(memory.description),
       imageFileId: Value(memory.imageFileId),

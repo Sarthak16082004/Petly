@@ -12894,6 +12894,576 @@ class MemoriesCompanion extends UpdateCompanion<Memory> {
   }
 }
 
+class $DewormingsTable extends Dewormings
+    with TableInfo<$DewormingsTable, Deworming> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $DewormingsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _petIdMeta = const VerificationMeta('petId');
+  @override
+  late final GeneratedColumn<String> petId = GeneratedColumn<String>(
+    'pet_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _medicationNameMeta = const VerificationMeta(
+    'medicationName',
+  );
+  @override
+  late final GeneratedColumn<String> medicationName = GeneratedColumn<String>(
+    'medication_name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _administeredOnMeta = const VerificationMeta(
+    'administeredOn',
+  );
+  @override
+  late final GeneratedColumn<DateTime> administeredOn =
+      GeneratedColumn<DateTime>(
+        'administered_on',
+        aliasedName,
+        false,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: true,
+      );
+  static const VerificationMeta _nextDueOnMeta = const VerificationMeta(
+    'nextDueOn',
+  );
+  @override
+  late final GeneratedColumn<DateTime> nextDueOn = GeneratedColumn<DateTime>(
+    'next_due_on',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('completed'),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    medicationName,
+    administeredOn,
+    nextDueOn,
+    notes,
+    status,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'dewormings';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Deworming> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pet_id')) {
+      context.handle(
+        _petIdMeta,
+        petId.isAcceptableOrUnknown(data['pet_id']!, _petIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_petIdMeta);
+    }
+    if (data.containsKey('medication_name')) {
+      context.handle(
+        _medicationNameMeta,
+        medicationName.isAcceptableOrUnknown(
+          data['medication_name']!,
+          _medicationNameMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_medicationNameMeta);
+    }
+    if (data.containsKey('administered_on')) {
+      context.handle(
+        _administeredOnMeta,
+        administeredOn.isAcceptableOrUnknown(
+          data['administered_on']!,
+          _administeredOnMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_administeredOnMeta);
+    }
+    if (data.containsKey('next_due_on')) {
+      context.handle(
+        _nextDueOnMeta,
+        nextDueOn.isAcceptableOrUnknown(data['next_due_on']!, _nextDueOnMeta),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Deworming map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Deworming(
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      medicationName:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}medication_name'],
+          )!,
+      administeredOn:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}administered_on'],
+          )!,
+      nextDueOn: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}next_due_on'],
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+      status:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}status'],
+          )!,
+    );
+  }
+
+  @override
+  $DewormingsTable createAlias(String alias) {
+    return $DewormingsTable(attachedDatabase, alias);
+  }
+}
+
+class Deworming extends DataClass implements Insertable<Deworming> {
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final String id;
+  final String petId;
+  final String medicationName;
+  final DateTime administeredOn;
+  final DateTime? nextDueOn;
+  final String? notes;
+  final String status;
+  const Deworming({
+    required this.createdAt,
+    required this.updatedAt,
+    required this.id,
+    required this.petId,
+    required this.medicationName,
+    required this.administeredOn,
+    this.nextDueOn,
+    this.notes,
+    required this.status,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['id'] = Variable<String>(id);
+    map['pet_id'] = Variable<String>(petId);
+    map['medication_name'] = Variable<String>(medicationName);
+    map['administered_on'] = Variable<DateTime>(administeredOn);
+    if (!nullToAbsent || nextDueOn != null) {
+      map['next_due_on'] = Variable<DateTime>(nextDueOn);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    map['status'] = Variable<String>(status);
+    return map;
+  }
+
+  DewormingsCompanion toCompanion(bool nullToAbsent) {
+    return DewormingsCompanion(
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      id: Value(id),
+      petId: Value(petId),
+      medicationName: Value(medicationName),
+      administeredOn: Value(administeredOn),
+      nextDueOn:
+          nextDueOn == null && nullToAbsent
+              ? const Value.absent()
+              : Value(nextDueOn),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
+      status: Value(status),
+    );
+  }
+
+  factory Deworming.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Deworming(
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      id: serializer.fromJson<String>(json['id']),
+      petId: serializer.fromJson<String>(json['petId']),
+      medicationName: serializer.fromJson<String>(json['medicationName']),
+      administeredOn: serializer.fromJson<DateTime>(json['administeredOn']),
+      nextDueOn: serializer.fromJson<DateTime?>(json['nextDueOn']),
+      notes: serializer.fromJson<String?>(json['notes']),
+      status: serializer.fromJson<String>(json['status']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'id': serializer.toJson<String>(id),
+      'petId': serializer.toJson<String>(petId),
+      'medicationName': serializer.toJson<String>(medicationName),
+      'administeredOn': serializer.toJson<DateTime>(administeredOn),
+      'nextDueOn': serializer.toJson<DateTime?>(nextDueOn),
+      'notes': serializer.toJson<String?>(notes),
+      'status': serializer.toJson<String>(status),
+    };
+  }
+
+  Deworming copyWith({
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? id,
+    String? petId,
+    String? medicationName,
+    DateTime? administeredOn,
+    Value<DateTime?> nextDueOn = const Value.absent(),
+    Value<String?> notes = const Value.absent(),
+    String? status,
+  }) => Deworming(
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    id: id ?? this.id,
+    petId: petId ?? this.petId,
+    medicationName: medicationName ?? this.medicationName,
+    administeredOn: administeredOn ?? this.administeredOn,
+    nextDueOn: nextDueOn.present ? nextDueOn.value : this.nextDueOn,
+    notes: notes.present ? notes.value : this.notes,
+    status: status ?? this.status,
+  );
+  Deworming copyWithCompanion(DewormingsCompanion data) {
+    return Deworming(
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      id: data.id.present ? data.id.value : this.id,
+      petId: data.petId.present ? data.petId.value : this.petId,
+      medicationName:
+          data.medicationName.present
+              ? data.medicationName.value
+              : this.medicationName,
+      administeredOn:
+          data.administeredOn.present
+              ? data.administeredOn.value
+              : this.administeredOn,
+      nextDueOn: data.nextDueOn.present ? data.nextDueOn.value : this.nextDueOn,
+      notes: data.notes.present ? data.notes.value : this.notes,
+      status: data.status.present ? data.status.value : this.status,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Deworming(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('medicationName: $medicationName, ')
+          ..write('administeredOn: $administeredOn, ')
+          ..write('nextDueOn: $nextDueOn, ')
+          ..write('notes: $notes, ')
+          ..write('status: $status')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    medicationName,
+    administeredOn,
+    nextDueOn,
+    notes,
+    status,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Deworming &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.id == this.id &&
+          other.petId == this.petId &&
+          other.medicationName == this.medicationName &&
+          other.administeredOn == this.administeredOn &&
+          other.nextDueOn == this.nextDueOn &&
+          other.notes == this.notes &&
+          other.status == this.status);
+}
+
+class DewormingsCompanion extends UpdateCompanion<Deworming> {
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<String> id;
+  final Value<String> petId;
+  final Value<String> medicationName;
+  final Value<DateTime> administeredOn;
+  final Value<DateTime?> nextDueOn;
+  final Value<String?> notes;
+  final Value<String> status;
+  final Value<int> rowid;
+  const DewormingsCompanion({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.id = const Value.absent(),
+    this.petId = const Value.absent(),
+    this.medicationName = const Value.absent(),
+    this.administeredOn = const Value.absent(),
+    this.nextDueOn = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.status = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  DewormingsCompanion.insert({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    required String id,
+    required String petId,
+    required String medicationName,
+    required DateTime administeredOn,
+    this.nextDueOn = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.status = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       petId = Value(petId),
+       medicationName = Value(medicationName),
+       administeredOn = Value(administeredOn);
+  static Insertable<Deworming> custom({
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<String>? id,
+    Expression<String>? petId,
+    Expression<String>? medicationName,
+    Expression<DateTime>? administeredOn,
+    Expression<DateTime>? nextDueOn,
+    Expression<String>? notes,
+    Expression<String>? status,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (id != null) 'id': id,
+      if (petId != null) 'pet_id': petId,
+      if (medicationName != null) 'medication_name': medicationName,
+      if (administeredOn != null) 'administered_on': administeredOn,
+      if (nextDueOn != null) 'next_due_on': nextDueOn,
+      if (notes != null) 'notes': notes,
+      if (status != null) 'status': status,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  DewormingsCompanion copyWith({
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<String>? id,
+    Value<String>? petId,
+    Value<String>? medicationName,
+    Value<DateTime>? administeredOn,
+    Value<DateTime?>? nextDueOn,
+    Value<String?>? notes,
+    Value<String>? status,
+    Value<int>? rowid,
+  }) {
+    return DewormingsCompanion(
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      id: id ?? this.id,
+      petId: petId ?? this.petId,
+      medicationName: medicationName ?? this.medicationName,
+      administeredOn: administeredOn ?? this.administeredOn,
+      nextDueOn: nextDueOn ?? this.nextDueOn,
+      notes: notes ?? this.notes,
+      status: status ?? this.status,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (petId.present) {
+      map['pet_id'] = Variable<String>(petId.value);
+    }
+    if (medicationName.present) {
+      map['medication_name'] = Variable<String>(medicationName.value);
+    }
+    if (administeredOn.present) {
+      map['administered_on'] = Variable<DateTime>(administeredOn.value);
+    }
+    if (nextDueOn.present) {
+      map['next_due_on'] = Variable<DateTime>(nextDueOn.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DewormingsCompanion(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('medicationName: $medicationName, ')
+          ..write('administeredOn: $administeredOn, ')
+          ..write('nextDueOn: $nextDueOn, ')
+          ..write('notes: $notes, ')
+          ..write('status: $status, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -12923,6 +13493,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $AppSettingsTable appSettings = $AppSettingsTable(this);
   late final $BackupRecordsTable backupRecords = $BackupRecordsTable(this);
   late final $MemoriesTable memories = $MemoriesTable(this);
+  late final $DewormingsTable dewormings = $DewormingsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -12948,6 +13519,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     appSettings,
     backupRecords,
     memories,
+    dewormings,
   ];
 }
 
@@ -19325,6 +19897,290 @@ typedef $$MemoriesTableProcessedTableManager =
       Memory,
       PrefetchHooks Function()
     >;
+typedef $$DewormingsTableCreateCompanionBuilder =
+    DewormingsCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      required String id,
+      required String petId,
+      required String medicationName,
+      required DateTime administeredOn,
+      Value<DateTime?> nextDueOn,
+      Value<String?> notes,
+      Value<String> status,
+      Value<int> rowid,
+    });
+typedef $$DewormingsTableUpdateCompanionBuilder =
+    DewormingsCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<String> id,
+      Value<String> petId,
+      Value<String> medicationName,
+      Value<DateTime> administeredOn,
+      Value<DateTime?> nextDueOn,
+      Value<String?> notes,
+      Value<String> status,
+      Value<int> rowid,
+    });
+
+class $$DewormingsTableFilterComposer
+    extends Composer<_$AppDatabase, $DewormingsTable> {
+  $$DewormingsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get medicationName => $composableBuilder(
+    column: $table.medicationName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get administeredOn => $composableBuilder(
+    column: $table.administeredOn,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get nextDueOn => $composableBuilder(
+    column: $table.nextDueOn,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$DewormingsTableOrderingComposer
+    extends Composer<_$AppDatabase, $DewormingsTable> {
+  $$DewormingsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get medicationName => $composableBuilder(
+    column: $table.medicationName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get administeredOn => $composableBuilder(
+    column: $table.administeredOn,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get nextDueOn => $composableBuilder(
+    column: $table.nextDueOn,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$DewormingsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $DewormingsTable> {
+  $$DewormingsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
+  GeneratedColumn<String> get medicationName => $composableBuilder(
+    column: $table.medicationName,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get administeredOn => $composableBuilder(
+    column: $table.administeredOn,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get nextDueOn =>
+      $composableBuilder(column: $table.nextDueOn, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+}
+
+class $$DewormingsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $DewormingsTable,
+          Deworming,
+          $$DewormingsTableFilterComposer,
+          $$DewormingsTableOrderingComposer,
+          $$DewormingsTableAnnotationComposer,
+          $$DewormingsTableCreateCompanionBuilder,
+          $$DewormingsTableUpdateCompanionBuilder,
+          (
+            Deworming,
+            BaseReferences<_$AppDatabase, $DewormingsTable, Deworming>,
+          ),
+          Deworming,
+          PrefetchHooks Function()
+        > {
+  $$DewormingsTableTableManager(_$AppDatabase db, $DewormingsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer:
+              () => $$DewormingsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$DewormingsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$DewormingsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<String> id = const Value.absent(),
+                Value<String> petId = const Value.absent(),
+                Value<String> medicationName = const Value.absent(),
+                Value<DateTime> administeredOn = const Value.absent(),
+                Value<DateTime?> nextDueOn = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => DewormingsCompanion(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                medicationName: medicationName,
+                administeredOn: administeredOn,
+                nextDueOn: nextDueOn,
+                notes: notes,
+                status: status,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                required String id,
+                required String petId,
+                required String medicationName,
+                required DateTime administeredOn,
+                Value<DateTime?> nextDueOn = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => DewormingsCompanion.insert(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                medicationName: medicationName,
+                administeredOn: administeredOn,
+                nextDueOn: nextDueOn,
+                notes: notes,
+                status: status,
+                rowid: rowid,
+              ),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$DewormingsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $DewormingsTable,
+      Deworming,
+      $$DewormingsTableFilterComposer,
+      $$DewormingsTableOrderingComposer,
+      $$DewormingsTableAnnotationComposer,
+      $$DewormingsTableCreateCompanionBuilder,
+      $$DewormingsTableUpdateCompanionBuilder,
+      (Deworming, BaseReferences<_$AppDatabase, $DewormingsTable, Deworming>),
+      Deworming,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -19374,4 +20230,6 @@ class $AppDatabaseManager {
       $$BackupRecordsTableTableManager(_db, _db.backupRecords);
   $$MemoriesTableTableManager get memories =>
       $$MemoriesTableTableManager(_db, _db.memories);
+  $$DewormingsTableTableManager get dewormings =>
+      $$DewormingsTableTableManager(_db, _db.dewormings);
 }

@@ -26,6 +26,7 @@ part 'app_database.g.dart';
     AppSettings,
     BackupRecords,
     Memories,
+    Dewormings,
   ],
 )
 class AppDatabase extends _$AppDatabase {

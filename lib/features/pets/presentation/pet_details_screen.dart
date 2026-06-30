@@ -64,6 +64,17 @@ class PetDetailsScreen extends ConsumerWidget {
                         color: colorScheme.surfaceContainer.withOpacity(0.5),
                         shape: BoxShape.circle,
                       ),
+                      child: const Icon(Icons.qr_code_2_rounded),
+                    ),
+                    onPressed: () => context.push('/pets/$petId/id'),
+                  ),
+                  IconButton(
+                    icon: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: colorScheme.surfaceContainer.withOpacity(0.5),
+                        shape: BoxShape.circle,
+                      ),
                       child: const Icon(Icons.edit_outlined),
                     ),
                     onPressed: () => context.push('/pets/$petId/edit'),
@@ -250,6 +261,13 @@ class PetDetailsScreen extends ConsumerWidget {
                             icon: Icons.photo_library,
                             color: const Color(0xFFec4899), // Pink
                             onTap: () => context.push('/pets/$petId/memories'),
+                          ),
+                          _BentoCard(
+                            title: 'Deworming',
+                            subtitle: 'Parasite control',
+                            icon: Icons.bug_report,
+                            color: const Color(0xFFa855f7), // Purple variant
+                            onTap: () => context.push('/pets/$petId/dewormings'),
                           ),
                         ],
                       ),

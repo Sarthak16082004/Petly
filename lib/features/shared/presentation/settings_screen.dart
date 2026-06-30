@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:petly/core/extensions/extensions.dart';
+import 'package:petly/app/theme/theme_provider.dart';
 import 'package:petly/features/owner_profile/presentation/owner_providers.dart';
 import 'package:petly/features/shared/data/backup_service.dart';
 
@@ -24,10 +26,17 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const _SettingsTile(
-            icon: Icons.palette_outlined,
-            title: 'Appearance',
-            subtitle: 'System theme',
+          ListTile(
+            leading: const Icon(Icons.palette_outlined),
+            title: const Text('Appearance'),
+            subtitle: Text(ref.watch(themeModeProvider).name.capitalize()),
+            trailing: const Icon(Icons.chevron_right_rounded),
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => const _ThemeSelectionSheet(),
+              );
+            },
           ),
           const _SettingsTile(
             icon: Icons.notifications_outlined,
@@ -88,6 +97,53 @@ class _SettingsTile extends StatelessWidget {
       subtitle: Text(subtitle),
       trailing: const Icon(Icons.chevron_right_rounded),
       onTap: onTap,
+    );
+  }
+}
+
+class _ThemeSelectionSheet extends ConsumerWidget {
+  const _ThemeSelectionSheet();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentTheme = ref.watch(themeModeProvider);
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text('Select Theme', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          ),
+          RadioListTile<ThemeMode>(
+            title: const Text('System default'),
+            value: ThemeMode.system,
+            groupValue: currentTheme,
+            onChanged: (val) {
+              if (val != null) ref.read(themeModeProvider.notifier).setThemeMode(val);
+              Navigator.pop(context);
+            },
+          ),
+          RadioListTile<ThemeMode>(
+            title: const Text('Light'),
+            value: ThemeMode.light,
+            groupValue: currentTheme,
+            onChanged: (val) {
+              if (val != null) ref.read(themeModeProvider.notifier).setThemeMode(val);
+              Navigator.pop(context);
+            },
+          ),
+          RadioListTile<ThemeMode>(
+            title: const Text('Dark'),
+            value: ThemeMode.dark,
+            groupValue: currentTheme,
+            onChanged: (val) {
+              if (val != null) ref.read(themeModeProvider.notifier).setThemeMode(val);
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
     );
   }
 }
