@@ -8,6 +8,7 @@ import 'package:petly/features/dashboard/presentation/upcoming_events_provider.d
 import 'package:petly/features/expenses/presentation/expense_providers.dart';
 import 'package:petly/features/owner_profile/presentation/owner_providers.dart';
 import 'package:petly/features/pets/presentation/pet_providers.dart';
+import 'package:petly/app/theme/theme_provider.dart';
 
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
@@ -19,6 +20,7 @@ class DashboardScreen extends ConsumerWidget {
     final upcomingEvents = ref.watch(upcomingEventsProvider);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final themeMode = ref.watch(themeModeProvider);
 
     return Scaffold(
       body: CustomScrollView(
@@ -53,8 +55,11 @@ class DashboardScreen extends ConsumerWidget {
             ),
             actions: [
               IconButton(
-                icon: const Icon(Icons.dark_mode_outlined),
-                onPressed: () {},
+                icon: Icon(themeMode == ThemeMode.dark ? Icons.light_mode_outlined : Icons.dark_mode_outlined),
+                onPressed: () {
+                  final newMode = themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+                  ref.read(themeModeProvider.notifier).setThemeMode(newMode);
+                },
               ),
               IconButton(
                 icon: const Icon(Icons.notifications_outlined),
@@ -469,7 +474,7 @@ class _UpcomingSection extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
-                                appt.date.isTomorrow ? 'Tomorrow' : appt.date.toRelativeDate(),
+                                appt.date.toRelativeDate(),
                                 style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.primary),
                               ),
                             ),

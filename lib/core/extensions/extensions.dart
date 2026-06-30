@@ -8,10 +8,15 @@ extension DateTimeFormatting on DateTime {
   String toDisplayShortDate() => DateFormat('MMM d').format(this);
   String toRelativeDate() {
     final now = DateTime.now();
-    final diff = now.difference(this);
-    if (diff.inDays == 0) return 'Today';
-    if (diff.inDays == 1) return 'Yesterday';
-    if (diff.inDays < 7) return '${diff.inDays}d ago';
+    final today = DateTime(now.year, now.month, now.day);
+    final dateToCheck = DateTime(year, month, day);
+    final diffDays = today.difference(dateToCheck).inDays;
+    
+    if (diffDays == 0) return 'Today';
+    if (diffDays == 1) return 'Yesterday';
+    if (diffDays == -1) return 'Tomorrow';
+    if (diffDays > 1 && diffDays < 7) return '${diffDays}d ago';
+    if (diffDays < -1 && diffDays > -7) return 'In ${-diffDays}d';
     return toDisplayDate();
   }
 
