@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -132,17 +133,25 @@ class PetDetailsScreen extends ConsumerWidget {
                                       offset: const Offset(0, 10),
                                     )
                                   ],
+                                  image: value.profilePicturePath != null 
+                                    ? DecorationImage(
+                                        image: FileImage(File(value.profilePicturePath!)),
+                                        fit: BoxFit.cover,
+                                      ) 
+                                    : null,
                                 ),
-                                child: Center(
-                                  child: Text(
-                                    value.name.initials,
-                                    style: TextStyle(
-                                      color: colorScheme.onSurfaceVariant,
-                                      fontSize: 48,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
+                                child: value.profilePicturePath == null 
+                                  ? Center(
+                                      child: Text(
+                                        value.name.initials,
+                                        style: TextStyle(
+                                          color: colorScheme.onSurfaceVariant,
+                                          fontSize: 48,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )
+                                  : null,
                               ),
                             ),
                             const SizedBox(height: 16),
@@ -168,35 +177,54 @@ class PetDetailsScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // 4-Stat Row
-                      Row(
+                      Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
                         children: [
-                          Expanded(
+                          FractionallySizedBox(
+                            widthFactor: 0.22,
                             child: _StatCard(
                               label: 'Species',
                               value: value.species,
                             ),
                           ),
-                          const SizedBox(width: 12),
-                          Expanded(
+                          FractionallySizedBox(
+                            widthFactor: 0.22,
                             child: _StatCard(
                               label: 'Age',
-                              value: value.birthDate?.toAgeString() ?? 'Unknown',
+                              value: value.birthDate?.toAgeString() ?? '—',
                             ),
                           ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: _StatCard(
-                              label: 'Weight',
-                              value: latestWeight == null ? '—' : latestWeight.weightGrams.toWeightDisplay('kg'),
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
+                          FractionallySizedBox(
+                            widthFactor: 0.22,
                             child: _StatCard(
                               label: 'Sex',
-                              value: value.sex ?? 'Unknown',
+                              value: value.sex ?? '—',
                             ),
                           ),
+                          FractionallySizedBox(
+                            widthFactor: 0.22,
+                            child: _StatCard(
+                              label: 'Weight',
+                              value: value.weight?.toString() ?? '—',
+                            ),
+                          ),
+                          if (value.size != null && value.size!.isNotEmpty)
+                            FractionallySizedBox(
+                              widthFactor: 0.22,
+                              child: _StatCard(
+                                label: 'Size',
+                                value: value.size!,
+                              ),
+                            ),
+                          if (value.color != null && value.color!.isNotEmpty)
+                            FractionallySizedBox(
+                              widthFactor: 0.22,
+                              child: _StatCard(
+                                label: 'Color',
+                                value: value.color!,
+                              ),
+                            ),
                         ],
                       ),
                       const SizedBox(height: 32),

@@ -34,13 +34,20 @@ class AppDatabase extends _$AppDatabase {
     : super(executor ?? driftDatabase(name: 'petly'));
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (migrator) async {
       await customStatement('PRAGMA foreign_keys = ON');
       await migrator.createAll();
+    },
+    onUpgrade: (migrator, from, to) async {
+      if (from < 2) {
+        await migrator.addColumn(pets, pets.size);
+        await migrator.addColumn(pets, pets.weight);
+        await migrator.addColumn(pets, pets.profilePicturePath);
+      }
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');

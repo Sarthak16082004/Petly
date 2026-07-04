@@ -1349,6 +1349,24 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _sizeMeta = const VerificationMeta('size');
+  @override
+  late final GeneratedColumn<String> size = GeneratedColumn<String>(
+    'size',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _weightMeta = const VerificationMeta('weight');
+  @override
+  late final GeneratedColumn<double> weight = GeneratedColumn<double>(
+    'weight',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _microchipNumberMeta = const VerificationMeta(
     'microchipNumber',
   );
@@ -1394,6 +1412,17 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _profilePicturePathMeta =
+      const VerificationMeta('profilePicturePath');
+  @override
+  late final GeneratedColumn<String> profilePicturePath =
+      GeneratedColumn<String>(
+        'profile_picture_path',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
   static const VerificationMeta _profileFileIdMeta = const VerificationMeta(
     'profileFileId',
   );
@@ -1439,10 +1468,13 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
     birthDate,
     adoptionDate,
     color,
+    size,
+    weight,
     microchipNumber,
     bloodType,
     neutered,
     notes,
+    profilePicturePath,
     profileFileId,
     status,
     archivedAt,
@@ -1533,6 +1565,18 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
         color.isAcceptableOrUnknown(data['color']!, _colorMeta),
       );
     }
+    if (data.containsKey('size')) {
+      context.handle(
+        _sizeMeta,
+        size.isAcceptableOrUnknown(data['size']!, _sizeMeta),
+      );
+    }
+    if (data.containsKey('weight')) {
+      context.handle(
+        _weightMeta,
+        weight.isAcceptableOrUnknown(data['weight']!, _weightMeta),
+      );
+    }
     if (data.containsKey('microchip_number')) {
       context.handle(
         _microchipNumberMeta,
@@ -1558,6 +1602,15 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
       context.handle(
         _notesMeta,
         notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    if (data.containsKey('profile_picture_path')) {
+      context.handle(
+        _profilePicturePathMeta,
+        profilePicturePath.isAcceptableOrUnknown(
+          data['profile_picture_path']!,
+          _profilePicturePathMeta,
+        ),
       );
     }
     if (data.containsKey('profile_file_id')) {
@@ -1640,6 +1693,14 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
         DriftSqlType.string,
         data['${effectivePrefix}color'],
       ),
+      size: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}size'],
+      ),
+      weight: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}weight'],
+      ),
       microchipNumber: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}microchip_number'],
@@ -1655,6 +1716,10 @@ class $PetsTable extends Pets with TableInfo<$PetsTable, Pet> {
       notes: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}notes'],
+      ),
+      profilePicturePath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}profile_picture_path'],
       ),
       profileFileId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
@@ -1690,10 +1755,13 @@ class Pet extends DataClass implements Insertable<Pet> {
   final DateTime? birthDate;
   final DateTime? adoptionDate;
   final String? color;
+  final String? size;
+  final double? weight;
   final String? microchipNumber;
   final String? bloodType;
   final bool? neutered;
   final String? notes;
+  final String? profilePicturePath;
   final String? profileFileId;
   final String status;
   final DateTime? archivedAt;
@@ -1709,10 +1777,13 @@ class Pet extends DataClass implements Insertable<Pet> {
     this.birthDate,
     this.adoptionDate,
     this.color,
+    this.size,
+    this.weight,
     this.microchipNumber,
     this.bloodType,
     this.neutered,
     this.notes,
+    this.profilePicturePath,
     this.profileFileId,
     required this.status,
     this.archivedAt,
@@ -1741,6 +1812,12 @@ class Pet extends DataClass implements Insertable<Pet> {
     if (!nullToAbsent || color != null) {
       map['color'] = Variable<String>(color);
     }
+    if (!nullToAbsent || size != null) {
+      map['size'] = Variable<String>(size);
+    }
+    if (!nullToAbsent || weight != null) {
+      map['weight'] = Variable<double>(weight);
+    }
     if (!nullToAbsent || microchipNumber != null) {
       map['microchip_number'] = Variable<String>(microchipNumber);
     }
@@ -1752,6 +1829,9 @@ class Pet extends DataClass implements Insertable<Pet> {
     }
     if (!nullToAbsent || notes != null) {
       map['notes'] = Variable<String>(notes);
+    }
+    if (!nullToAbsent || profilePicturePath != null) {
+      map['profile_picture_path'] = Variable<String>(profilePicturePath);
     }
     if (!nullToAbsent || profileFileId != null) {
       map['profile_file_id'] = Variable<String>(profileFileId);
@@ -1784,6 +1864,9 @@ class Pet extends DataClass implements Insertable<Pet> {
               : Value(adoptionDate),
       color:
           color == null && nullToAbsent ? const Value.absent() : Value(color),
+      size: size == null && nullToAbsent ? const Value.absent() : Value(size),
+      weight:
+          weight == null && nullToAbsent ? const Value.absent() : Value(weight),
       microchipNumber:
           microchipNumber == null && nullToAbsent
               ? const Value.absent()
@@ -1798,6 +1881,10 @@ class Pet extends DataClass implements Insertable<Pet> {
               : Value(neutered),
       notes:
           notes == null && nullToAbsent ? const Value.absent() : Value(notes),
+      profilePicturePath:
+          profilePicturePath == null && nullToAbsent
+              ? const Value.absent()
+              : Value(profilePicturePath),
       profileFileId:
           profileFileId == null && nullToAbsent
               ? const Value.absent()
@@ -1827,10 +1914,15 @@ class Pet extends DataClass implements Insertable<Pet> {
       birthDate: serializer.fromJson<DateTime?>(json['birthDate']),
       adoptionDate: serializer.fromJson<DateTime?>(json['adoptionDate']),
       color: serializer.fromJson<String?>(json['color']),
+      size: serializer.fromJson<String?>(json['size']),
+      weight: serializer.fromJson<double?>(json['weight']),
       microchipNumber: serializer.fromJson<String?>(json['microchipNumber']),
       bloodType: serializer.fromJson<String?>(json['bloodType']),
       neutered: serializer.fromJson<bool?>(json['neutered']),
       notes: serializer.fromJson<String?>(json['notes']),
+      profilePicturePath: serializer.fromJson<String?>(
+        json['profilePicturePath'],
+      ),
       profileFileId: serializer.fromJson<String?>(json['profileFileId']),
       status: serializer.fromJson<String>(json['status']),
       archivedAt: serializer.fromJson<DateTime?>(json['archivedAt']),
@@ -1851,10 +1943,13 @@ class Pet extends DataClass implements Insertable<Pet> {
       'birthDate': serializer.toJson<DateTime?>(birthDate),
       'adoptionDate': serializer.toJson<DateTime?>(adoptionDate),
       'color': serializer.toJson<String?>(color),
+      'size': serializer.toJson<String?>(size),
+      'weight': serializer.toJson<double?>(weight),
       'microchipNumber': serializer.toJson<String?>(microchipNumber),
       'bloodType': serializer.toJson<String?>(bloodType),
       'neutered': serializer.toJson<bool?>(neutered),
       'notes': serializer.toJson<String?>(notes),
+      'profilePicturePath': serializer.toJson<String?>(profilePicturePath),
       'profileFileId': serializer.toJson<String?>(profileFileId),
       'status': serializer.toJson<String>(status),
       'archivedAt': serializer.toJson<DateTime?>(archivedAt),
@@ -1873,10 +1968,13 @@ class Pet extends DataClass implements Insertable<Pet> {
     Value<DateTime?> birthDate = const Value.absent(),
     Value<DateTime?> adoptionDate = const Value.absent(),
     Value<String?> color = const Value.absent(),
+    Value<String?> size = const Value.absent(),
+    Value<double?> weight = const Value.absent(),
     Value<String?> microchipNumber = const Value.absent(),
     Value<String?> bloodType = const Value.absent(),
     Value<bool?> neutered = const Value.absent(),
     Value<String?> notes = const Value.absent(),
+    Value<String?> profilePicturePath = const Value.absent(),
     Value<String?> profileFileId = const Value.absent(),
     String? status,
     Value<DateTime?> archivedAt = const Value.absent(),
@@ -1892,11 +1990,17 @@ class Pet extends DataClass implements Insertable<Pet> {
     birthDate: birthDate.present ? birthDate.value : this.birthDate,
     adoptionDate: adoptionDate.present ? adoptionDate.value : this.adoptionDate,
     color: color.present ? color.value : this.color,
+    size: size.present ? size.value : this.size,
+    weight: weight.present ? weight.value : this.weight,
     microchipNumber:
         microchipNumber.present ? microchipNumber.value : this.microchipNumber,
     bloodType: bloodType.present ? bloodType.value : this.bloodType,
     neutered: neutered.present ? neutered.value : this.neutered,
     notes: notes.present ? notes.value : this.notes,
+    profilePicturePath:
+        profilePicturePath.present
+            ? profilePicturePath.value
+            : this.profilePicturePath,
     profileFileId:
         profileFileId.present ? profileFileId.value : this.profileFileId,
     status: status ?? this.status,
@@ -1918,6 +2022,8 @@ class Pet extends DataClass implements Insertable<Pet> {
               ? data.adoptionDate.value
               : this.adoptionDate,
       color: data.color.present ? data.color.value : this.color,
+      size: data.size.present ? data.size.value : this.size,
+      weight: data.weight.present ? data.weight.value : this.weight,
       microchipNumber:
           data.microchipNumber.present
               ? data.microchipNumber.value
@@ -1925,6 +2031,10 @@ class Pet extends DataClass implements Insertable<Pet> {
       bloodType: data.bloodType.present ? data.bloodType.value : this.bloodType,
       neutered: data.neutered.present ? data.neutered.value : this.neutered,
       notes: data.notes.present ? data.notes.value : this.notes,
+      profilePicturePath:
+          data.profilePicturePath.present
+              ? data.profilePicturePath.value
+              : this.profilePicturePath,
       profileFileId:
           data.profileFileId.present
               ? data.profileFileId.value
@@ -1949,10 +2059,13 @@ class Pet extends DataClass implements Insertable<Pet> {
           ..write('birthDate: $birthDate, ')
           ..write('adoptionDate: $adoptionDate, ')
           ..write('color: $color, ')
+          ..write('size: $size, ')
+          ..write('weight: $weight, ')
           ..write('microchipNumber: $microchipNumber, ')
           ..write('bloodType: $bloodType, ')
           ..write('neutered: $neutered, ')
           ..write('notes: $notes, ')
+          ..write('profilePicturePath: $profilePicturePath, ')
           ..write('profileFileId: $profileFileId, ')
           ..write('status: $status, ')
           ..write('archivedAt: $archivedAt')
@@ -1961,7 +2074,7 @@ class Pet extends DataClass implements Insertable<Pet> {
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     createdAt,
     updatedAt,
     id,
@@ -1973,14 +2086,17 @@ class Pet extends DataClass implements Insertable<Pet> {
     birthDate,
     adoptionDate,
     color,
+    size,
+    weight,
     microchipNumber,
     bloodType,
     neutered,
     notes,
+    profilePicturePath,
     profileFileId,
     status,
     archivedAt,
-  );
+  ]);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1996,10 +2112,13 @@ class Pet extends DataClass implements Insertable<Pet> {
           other.birthDate == this.birthDate &&
           other.adoptionDate == this.adoptionDate &&
           other.color == this.color &&
+          other.size == this.size &&
+          other.weight == this.weight &&
           other.microchipNumber == this.microchipNumber &&
           other.bloodType == this.bloodType &&
           other.neutered == this.neutered &&
           other.notes == this.notes &&
+          other.profilePicturePath == this.profilePicturePath &&
           other.profileFileId == this.profileFileId &&
           other.status == this.status &&
           other.archivedAt == this.archivedAt);
@@ -2017,10 +2136,13 @@ class PetsCompanion extends UpdateCompanion<Pet> {
   final Value<DateTime?> birthDate;
   final Value<DateTime?> adoptionDate;
   final Value<String?> color;
+  final Value<String?> size;
+  final Value<double?> weight;
   final Value<String?> microchipNumber;
   final Value<String?> bloodType;
   final Value<bool?> neutered;
   final Value<String?> notes;
+  final Value<String?> profilePicturePath;
   final Value<String?> profileFileId;
   final Value<String> status;
   final Value<DateTime?> archivedAt;
@@ -2037,10 +2159,13 @@ class PetsCompanion extends UpdateCompanion<Pet> {
     this.birthDate = const Value.absent(),
     this.adoptionDate = const Value.absent(),
     this.color = const Value.absent(),
+    this.size = const Value.absent(),
+    this.weight = const Value.absent(),
     this.microchipNumber = const Value.absent(),
     this.bloodType = const Value.absent(),
     this.neutered = const Value.absent(),
     this.notes = const Value.absent(),
+    this.profilePicturePath = const Value.absent(),
     this.profileFileId = const Value.absent(),
     this.status = const Value.absent(),
     this.archivedAt = const Value.absent(),
@@ -2058,10 +2183,13 @@ class PetsCompanion extends UpdateCompanion<Pet> {
     this.birthDate = const Value.absent(),
     this.adoptionDate = const Value.absent(),
     this.color = const Value.absent(),
+    this.size = const Value.absent(),
+    this.weight = const Value.absent(),
     this.microchipNumber = const Value.absent(),
     this.bloodType = const Value.absent(),
     this.neutered = const Value.absent(),
     this.notes = const Value.absent(),
+    this.profilePicturePath = const Value.absent(),
     this.profileFileId = const Value.absent(),
     this.status = const Value.absent(),
     this.archivedAt = const Value.absent(),
@@ -2082,10 +2210,13 @@ class PetsCompanion extends UpdateCompanion<Pet> {
     Expression<DateTime>? birthDate,
     Expression<DateTime>? adoptionDate,
     Expression<String>? color,
+    Expression<String>? size,
+    Expression<double>? weight,
     Expression<String>? microchipNumber,
     Expression<String>? bloodType,
     Expression<bool>? neutered,
     Expression<String>? notes,
+    Expression<String>? profilePicturePath,
     Expression<String>? profileFileId,
     Expression<String>? status,
     Expression<DateTime>? archivedAt,
@@ -2103,10 +2234,14 @@ class PetsCompanion extends UpdateCompanion<Pet> {
       if (birthDate != null) 'birth_date': birthDate,
       if (adoptionDate != null) 'adoption_date': adoptionDate,
       if (color != null) 'color': color,
+      if (size != null) 'size': size,
+      if (weight != null) 'weight': weight,
       if (microchipNumber != null) 'microchip_number': microchipNumber,
       if (bloodType != null) 'blood_type': bloodType,
       if (neutered != null) 'neutered': neutered,
       if (notes != null) 'notes': notes,
+      if (profilePicturePath != null)
+        'profile_picture_path': profilePicturePath,
       if (profileFileId != null) 'profile_file_id': profileFileId,
       if (status != null) 'status': status,
       if (archivedAt != null) 'archived_at': archivedAt,
@@ -2126,10 +2261,13 @@ class PetsCompanion extends UpdateCompanion<Pet> {
     Value<DateTime?>? birthDate,
     Value<DateTime?>? adoptionDate,
     Value<String?>? color,
+    Value<String?>? size,
+    Value<double?>? weight,
     Value<String?>? microchipNumber,
     Value<String?>? bloodType,
     Value<bool?>? neutered,
     Value<String?>? notes,
+    Value<String?>? profilePicturePath,
     Value<String?>? profileFileId,
     Value<String>? status,
     Value<DateTime?>? archivedAt,
@@ -2147,10 +2285,13 @@ class PetsCompanion extends UpdateCompanion<Pet> {
       birthDate: birthDate ?? this.birthDate,
       adoptionDate: adoptionDate ?? this.adoptionDate,
       color: color ?? this.color,
+      size: size ?? this.size,
+      weight: weight ?? this.weight,
       microchipNumber: microchipNumber ?? this.microchipNumber,
       bloodType: bloodType ?? this.bloodType,
       neutered: neutered ?? this.neutered,
       notes: notes ?? this.notes,
+      profilePicturePath: profilePicturePath ?? this.profilePicturePath,
       profileFileId: profileFileId ?? this.profileFileId,
       status: status ?? this.status,
       archivedAt: archivedAt ?? this.archivedAt,
@@ -2194,6 +2335,12 @@ class PetsCompanion extends UpdateCompanion<Pet> {
     if (color.present) {
       map['color'] = Variable<String>(color.value);
     }
+    if (size.present) {
+      map['size'] = Variable<String>(size.value);
+    }
+    if (weight.present) {
+      map['weight'] = Variable<double>(weight.value);
+    }
     if (microchipNumber.present) {
       map['microchip_number'] = Variable<String>(microchipNumber.value);
     }
@@ -2205,6 +2352,9 @@ class PetsCompanion extends UpdateCompanion<Pet> {
     }
     if (notes.present) {
       map['notes'] = Variable<String>(notes.value);
+    }
+    if (profilePicturePath.present) {
+      map['profile_picture_path'] = Variable<String>(profilePicturePath.value);
     }
     if (profileFileId.present) {
       map['profile_file_id'] = Variable<String>(profileFileId.value);
@@ -2235,10 +2385,13 @@ class PetsCompanion extends UpdateCompanion<Pet> {
           ..write('birthDate: $birthDate, ')
           ..write('adoptionDate: $adoptionDate, ')
           ..write('color: $color, ')
+          ..write('size: $size, ')
+          ..write('weight: $weight, ')
           ..write('microchipNumber: $microchipNumber, ')
           ..write('bloodType: $bloodType, ')
           ..write('neutered: $neutered, ')
           ..write('notes: $notes, ')
+          ..write('profilePicturePath: $profilePicturePath, ')
           ..write('profileFileId: $profileFileId, ')
           ..write('status: $status, ')
           ..write('archivedAt: $archivedAt, ')
@@ -14134,10 +14287,13 @@ typedef $$PetsTableCreateCompanionBuilder =
       Value<DateTime?> birthDate,
       Value<DateTime?> adoptionDate,
       Value<String?> color,
+      Value<String?> size,
+      Value<double?> weight,
       Value<String?> microchipNumber,
       Value<String?> bloodType,
       Value<bool?> neutered,
       Value<String?> notes,
+      Value<String?> profilePicturePath,
       Value<String?> profileFileId,
       Value<String> status,
       Value<DateTime?> archivedAt,
@@ -14156,10 +14312,13 @@ typedef $$PetsTableUpdateCompanionBuilder =
       Value<DateTime?> birthDate,
       Value<DateTime?> adoptionDate,
       Value<String?> color,
+      Value<String?> size,
+      Value<double?> weight,
       Value<String?> microchipNumber,
       Value<String?> bloodType,
       Value<bool?> neutered,
       Value<String?> notes,
+      Value<String?> profilePicturePath,
       Value<String?> profileFileId,
       Value<String> status,
       Value<DateTime?> archivedAt,
@@ -14229,6 +14388,16 @@ class $$PetsTableFilterComposer extends Composer<_$AppDatabase, $PetsTable> {
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get size => $composableBuilder(
+    column: $table.size,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get weight => $composableBuilder(
+    column: $table.weight,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get microchipNumber => $composableBuilder(
     column: $table.microchipNumber,
     builder: (column) => ColumnFilters(column),
@@ -14246,6 +14415,11 @@ class $$PetsTableFilterComposer extends Composer<_$AppDatabase, $PetsTable> {
 
   ColumnFilters<String> get notes => $composableBuilder(
     column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get profilePicturePath => $composableBuilder(
+    column: $table.profilePicturePath,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -14328,6 +14502,16 @@ class $$PetsTableOrderingComposer extends Composer<_$AppDatabase, $PetsTable> {
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get size => $composableBuilder(
+    column: $table.size,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get weight => $composableBuilder(
+    column: $table.weight,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get microchipNumber => $composableBuilder(
     column: $table.microchipNumber,
     builder: (column) => ColumnOrderings(column),
@@ -14345,6 +14529,11 @@ class $$PetsTableOrderingComposer extends Composer<_$AppDatabase, $PetsTable> {
 
   ColumnOrderings<String> get notes => $composableBuilder(
     column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get profilePicturePath => $composableBuilder(
+    column: $table.profilePicturePath,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -14408,6 +14597,12 @@ class $$PetsTableAnnotationComposer
   GeneratedColumn<String> get color =>
       $composableBuilder(column: $table.color, builder: (column) => column);
 
+  GeneratedColumn<String> get size =>
+      $composableBuilder(column: $table.size, builder: (column) => column);
+
+  GeneratedColumn<double> get weight =>
+      $composableBuilder(column: $table.weight, builder: (column) => column);
+
   GeneratedColumn<String> get microchipNumber => $composableBuilder(
     column: $table.microchipNumber,
     builder: (column) => column,
@@ -14421,6 +14616,11 @@ class $$PetsTableAnnotationComposer
 
   GeneratedColumn<String> get notes =>
       $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<String> get profilePicturePath => $composableBuilder(
+    column: $table.profilePicturePath,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get profileFileId => $composableBuilder(
     column: $table.profileFileId,
@@ -14475,10 +14675,13 @@ class $$PetsTableTableManager
                 Value<DateTime?> birthDate = const Value.absent(),
                 Value<DateTime?> adoptionDate = const Value.absent(),
                 Value<String?> color = const Value.absent(),
+                Value<String?> size = const Value.absent(),
+                Value<double?> weight = const Value.absent(),
                 Value<String?> microchipNumber = const Value.absent(),
                 Value<String?> bloodType = const Value.absent(),
                 Value<bool?> neutered = const Value.absent(),
                 Value<String?> notes = const Value.absent(),
+                Value<String?> profilePicturePath = const Value.absent(),
                 Value<String?> profileFileId = const Value.absent(),
                 Value<String> status = const Value.absent(),
                 Value<DateTime?> archivedAt = const Value.absent(),
@@ -14495,10 +14698,13 @@ class $$PetsTableTableManager
                 birthDate: birthDate,
                 adoptionDate: adoptionDate,
                 color: color,
+                size: size,
+                weight: weight,
                 microchipNumber: microchipNumber,
                 bloodType: bloodType,
                 neutered: neutered,
                 notes: notes,
+                profilePicturePath: profilePicturePath,
                 profileFileId: profileFileId,
                 status: status,
                 archivedAt: archivedAt,
@@ -14517,10 +14723,13 @@ class $$PetsTableTableManager
                 Value<DateTime?> birthDate = const Value.absent(),
                 Value<DateTime?> adoptionDate = const Value.absent(),
                 Value<String?> color = const Value.absent(),
+                Value<String?> size = const Value.absent(),
+                Value<double?> weight = const Value.absent(),
                 Value<String?> microchipNumber = const Value.absent(),
                 Value<String?> bloodType = const Value.absent(),
                 Value<bool?> neutered = const Value.absent(),
                 Value<String?> notes = const Value.absent(),
+                Value<String?> profilePicturePath = const Value.absent(),
                 Value<String?> profileFileId = const Value.absent(),
                 Value<String> status = const Value.absent(),
                 Value<DateTime?> archivedAt = const Value.absent(),
@@ -14537,10 +14746,13 @@ class $$PetsTableTableManager
                 birthDate: birthDate,
                 adoptionDate: adoptionDate,
                 color: color,
+                size: size,
+                weight: weight,
                 microchipNumber: microchipNumber,
                 bloodType: bloodType,
                 neutered: neutered,
                 notes: notes,
+                profilePicturePath: profilePicturePath,
                 profileFileId: profileFileId,
                 status: status,
                 archivedAt: archivedAt,

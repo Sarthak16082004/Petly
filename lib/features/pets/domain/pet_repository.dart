@@ -13,6 +13,10 @@ abstract interface class PetRepository {
     String? breed,
     String? sex,
     DateTime? birthDate,
+    String? color,
+    String? size,
+    double? weight,
+    String? profilePicturePath,
     String? notes,
   });
 

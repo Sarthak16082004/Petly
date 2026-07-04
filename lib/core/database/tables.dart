@@ -47,10 +47,13 @@ class Pets extends Table with TimestampColumns {
   DateTimeColumn get birthDate => dateTime().nullable()();
   DateTimeColumn get adoptionDate => dateTime().nullable()();
   TextColumn get color => text().nullable()();
+  TextColumn get size => text().nullable()();
+  RealColumn get weight => real().nullable()();
   TextColumn get microchipNumber => text().nullable()();
   TextColumn get bloodType => text().nullable()();
   BoolColumn get neutered => boolean().nullable()();
   TextColumn get notes => text().nullable()();
+  TextColumn get profilePicturePath => text().nullable()();
   TextColumn get profileFileId => text().nullable().references(
     FileAssets,
     #id,

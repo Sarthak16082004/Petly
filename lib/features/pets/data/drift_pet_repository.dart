@@ -35,6 +35,10 @@ class DriftPetRepository implements PetRepository {
     String? breed,
     String? sex,
     DateTime? birthDate,
+    String? color,
+    String? size,
+    double? weight,
+    String? profilePicturePath,
     String? notes,
   }) async {
     final existing = id == null
@@ -55,6 +59,10 @@ class DriftPetRepository implements PetRepository {
             breed: Value(_clean(breed)),
             sex: Value(_clean(sex)),
             birthDate: Value(birthDate),
+            color: Value(_clean(color)),
+            size: Value(_clean(size)),
+            weight: Value(weight),
+            profilePicturePath: Value(_clean(profilePicturePath)),
             notes: Value(_clean(notes)),
             createdAt: Value(existing?.createdAt ?? now),
             updatedAt: Value(now),
@@ -85,6 +93,10 @@ class DriftPetRepository implements PetRepository {
     breed: row.breed,
     sex: row.sex,
     birthDate: row.birthDate,
+    color: row.color,
+    size: row.size,
+    weight: row.weight,
+    profilePicturePath: row.profilePicturePath,
     notes: row.notes,
   );
 

@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:petly/features/owner_profile/presentation/owner_providers.dart';
 import 'package:petly/features/pets/domain/pet.dart';
@@ -20,9 +22,13 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
   final _name = TextEditingController();
   final _breed = TextEditingController();
   final _notes = TextEditingController();
+  final _color = TextEditingController();
+  final _weight = TextEditingController();
   String _species = 'Dog';
   String? _sex;
+  String? _size;
   DateTime? _birthDate;
+  String? _profilePicturePath;
   bool _saving = false;
   bool _loaded = false;
 
@@ -31,6 +37,8 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
     _name.dispose();
     _breed.dispose();
     _notes.dispose();
+    _color.dispose();
+    _weight.dispose();
     super.dispose();
   }
 
@@ -40,9 +48,13 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
     _name.text = pet.name;
     _breed.text = pet.breed ?? '';
     _notes.text = pet.notes ?? '';
+    _color.text = pet.color ?? '';
+    _weight.text = pet.weight?.toString() ?? '';
     _species = pet.species;
     _sex = pet.sex;
+    _size = pet.size;
     _birthDate = pet.birthDate;
+    _profilePicturePath = pet.profilePicturePath;
   }
 
   Future<void> _pickBirthDate() async {
@@ -53,6 +65,14 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       lastDate: DateTime.now(),
     );
     if (result != null) setState(() => _birthDate = result);
+  }
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() => _profilePicturePath = pickedFile.path);
+    }
   }
 
   Future<void> _save() async {
@@ -72,6 +92,10 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
             breed: _breed.text,
             sex: _sex,
             birthDate: _birthDate,
+            color: _color.text,
+            size: _size,
+            weight: double.tryParse(_weight.text),
+            profilePicturePath: _profilePicturePath,
             notes: _notes.text,
           );
       if (widget.petId != null) ref.invalidate(petProvider(widget.petId!));
@@ -107,13 +131,19 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
               children: [
                 Center(
-                  child: CircleAvatar(
-                    radius: 44,
-                    child: Icon(
-                      _species == 'Cat'
-                          ? Icons.cruelty_free_outlined
-                          : Icons.pets_outlined,
-                      size: 40,
+                  child: GestureDetector(
+                    onTap: _pickImage,
+                    child: CircleAvatar(
+                      radius: 44,
+                      backgroundImage: _profilePicturePath != null 
+                        ? FileImage(File(_profilePicturePath!)) 
+                        : null,
+                      child: _profilePicturePath == null ? Icon(
+                        _species == 'Cat'
+                            ? Icons.cruelty_free_outlined
+                            : Icons.pets_outlined,
+                        size: 40,
+                      ) : null,
                     ),
                   ),
                 ),
@@ -175,6 +205,36 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
                           ? 'Not set'
                           : DateFormat.yMMMd().format(_birthDate!),
                     ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: _color,
+                  textCapitalization: TextCapitalization.words,
+                  decoration: const InputDecoration(
+                    labelText: 'Color (optional)',
+                  ),
+                ),
+                const SizedBox(height: 16),
+                DropdownButtonFormField<String>(
+                  initialValue: _size,
+                  decoration: const InputDecoration(
+                    labelText: 'Size (optional)',
+                  ),
+                  items: const ['Small', 'Medium', 'Large']
+                      .map(
+                        (value) =>
+                            DropdownMenuItem(value: value, child: Text(value)),
+                      )
+                      .toList(),
+                  onChanged: (value) => setState(() => _size = value),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: _weight,
+                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(
+                    labelText: 'Weight (optional)',
                   ),
                 ),
                 const SizedBox(height: 16),

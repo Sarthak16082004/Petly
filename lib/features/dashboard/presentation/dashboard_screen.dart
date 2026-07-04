@@ -438,7 +438,7 @@ class _UpcomingSection extends StatelessWidget {
                 ),
               );
             }
-            final appt = items.first;
+            final UpcomingEvent appt = items.first as UpcomingEvent;
             return Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(

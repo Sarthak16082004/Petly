@@ -8,6 +8,10 @@ class Pet {
     this.breed,
     this.sex,
     this.birthDate,
+    this.color,
+    this.size,
+    this.weight,
+    this.profilePicturePath,
     this.notes,
   });
 
@@ -19,5 +23,9 @@ class Pet {
   final String? breed;
   final String? sex;
   final DateTime? birthDate;
+  final String? color;
+  final String? size;
+  final double? weight;
+  final String? profilePicturePath;
   final String? notes;
 }
