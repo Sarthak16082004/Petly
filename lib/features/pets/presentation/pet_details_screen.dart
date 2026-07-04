@@ -206,7 +206,9 @@ class PetDetailsScreen extends ConsumerWidget {
                             widthFactor: 0.22,
                             child: _StatCard(
                               label: 'Weight',
-                              value: value.weight?.toString() ?? '—',
+                              value: latestWeight != null 
+                                  ? latestWeight.weightGrams.toWeightDisplay('kg') 
+                                  : (value.weight?.toString() ?? '—'),
                             ),
                           ),
                           if (value.size != null && value.size!.isNotEmpty)
