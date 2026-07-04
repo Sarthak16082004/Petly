@@ -52,11 +52,32 @@ class DriftGrowthRepository implements GrowthRepository {
             updatedAt: Value(now),
           ),
         );
+    
+    await _syncLatestWeightToPet(petId);
   }
 
   @override
-  Future<void> delete(String id) =>
-      (_db.delete(_db.growthEntries)..where((r) => r.id.equals(id))).go();
+  Future<void> delete(String id) async {
+    final entry = await getById(id);
+    if (entry != null) {
+      await (_db.delete(_db.growthEntries)..where((r) => r.id.equals(id))).go();
+      await _syncLatestWeightToPet(entry.petId);
+    }
+  }
+
+  Future<void> _syncLatestWeightToPet(String petId) async {
+    final latest = await (_db.select(_db.growthEntries)
+          ..where((r) => r.petId.equals(petId))
+          ..orderBy([(r) => OrderingTerm.desc(r.measuredAt)])
+          ..limit(1))
+        .getSingleOrNull();
+
+    final double? weightKg = latest != null ? latest.weightGrams / 1000.0 : null;
+
+    await (_db.update(_db.pets)..where((p) => p.id.equals(petId))).write(
+      PetsCompanion(weight: Value(weightKg)),
+    );
+  }
 
   domain.GrowthEntry _map(GrowthEntry r) => domain.GrowthEntry(
         id: r.id,
