@@ -23,14 +23,14 @@ With a stunning **glassmorphic** and **bento-grid UI** inspired by modern design
 
 ## ✨ Key Features
 
-- **🐕 Comprehensive Pet Profiles:** Manage multiple pets with stunning dedicated profile screens featuring dynamic, color-coded bento grids for quick access to their data.
+- **🐕 Comprehensive Pet Profiles:** Manage multiple pets with stunning dedicated profile screens featuring dynamic, color-coded bento grids. Now supports **custom profile pictures**, coat colors, sizes, and a **dynamically synced live weight**.
+- **📆 Interactive Calendar Dashboard:** A fully interactive Google Calendar-style screen featuring a swipeable month grid and a unified timeline. It intelligently aggregates all your **Appointments**, **Vaccinations**, **Dewormings**, and smart **Medication Schedules** for any given day.
 - **📸 Memories Gallery:** A Pinterest-style photo grid to save and look back on precious moments with your pets.
-- **📅 Unified Upcoming Timeline:** A smart dashboard widget that combines appointments, medications, and vaccines into a single chronological timeline.
-- **💾 Secure Backup System:** Easily export your entire local database and images to a secure zip file to share or save to the cloud.
-- **💊 Medicines & Reminders:** Log active and past prescriptions. Keep track of dosages and easily view course progress.
-- **💉 Vaccinations & Health:** Keep an active log of your pet's vaccination history and upcoming due dates.
-- **📈 Growth Tracking:** Monitor your pet's weight over time to ensure they are growing healthy and strong.
+- **💊 Medicines & Reminders:** Log active and past prescriptions with Daily, Weekly, and Monthly recurrence tracking. Keep track of dosages and automatically see them on your calendar.
+- **💉 Vaccinations & Dewormings:** Keep an active log of your pet's health history and view upcoming due dates dynamically inserted into your schedule.
+- **📈 Growth Tracking:** Monitor your pet's weight over time to ensure they are growing healthy and strong. The pet's main profile automatically syncs to display the latest weight reading.
 - **💰 Expense Management:** Track vet bills, food costs, and toys to stay on top of your pet-care budget.
+- **💾 Secure Backup System:** Easily export your entire local database and images to a secure zip file to share or save to the cloud.
 - **🎨 Glassmorphic UI:** A meticulously crafted, premium user interface featuring soft floating navigation bars, gorgeous gradients, and dynamic theming (Dark & Light mode support).
 - **🔒 Local-First (Offline):** Powered by an embedded SQLite database (Drift). Your pet's sensitive medical data never leaves your device unless you choose to back it up.
 
