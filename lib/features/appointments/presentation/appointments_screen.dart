@@ -130,15 +130,18 @@ class _AppointmentCard extends StatelessWidget {
                     children: [
                       Text(a.title, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
                       const SizedBox(height: 4),
-                      Row(children: [
-                        InfoChip(label: a.appointmentType, color: AppTheme.appointmentColor),
-                        const SizedBox(width: 6),
-                        InfoChip(
-                          label: a.startsAt.toDisplayTime(),
-                          icon: Icons.access_time_rounded,
-                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                        ),
-                      ]),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 4,
+                        children: [
+                          InfoChip(label: a.appointmentType, color: AppTheme.appointmentColor),
+                          InfoChip(
+                            label: a.startsAt.toDisplayTime(),
+                            icon: Icons.access_time_rounded,
+                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                          ),
+                        ],
+                      ),
                       if (a.providerName != null)
                         Padding(
                           padding: const EdgeInsets.only(top: 4),

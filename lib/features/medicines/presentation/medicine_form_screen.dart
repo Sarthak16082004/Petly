@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:petly/core/database/app_database.dart';
+import 'package:petly/features/medicines/data/medicine_repository.dart';
+import 'package:uuid/uuid.dart';
 
 class MedicineFormScreen extends ConsumerStatefulWidget {
   const MedicineFormScreen({required this.petId, super.key});
@@ -14,6 +17,7 @@ class _MedicineFormScreenState extends ConsumerState<MedicineFormScreen> {
   final _formKey = GlobalKey<FormState>();
   String _medName = '';
   String _dosage = '';
+  String _frequency = 'Daily';
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +49,7 @@ class _MedicineFormScreenState extends ConsumerState<MedicineFormScreen> {
                     borderSide: BorderSide.none,
                   ),
                 ),
+                validator: (v) => v == null || v.isEmpty ? 'Required' : null,
                 onSaved: (v) => _medName = v ?? '',
               ),
               const SizedBox(height: 16),
@@ -58,25 +63,34 @@ class _MedicineFormScreenState extends ConsumerState<MedicineFormScreen> {
                     borderSide: BorderSide.none,
                   ),
                 ),
+                validator: (v) => v == null || v.isEmpty ? 'Required' : null,
                 onSaved: (v) => _dosage = v ?? '',
               ),
               const SizedBox(height: 32),
               
-              // Segmented selection mockup for frequency
               Text('Frequency', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
               const SizedBox(height: 16),
               Row(
                 children: [
                   Expanded(
-                    child: _FreqPill(label: 'Daily', isSelected: true),
+                    child: GestureDetector(
+                      onTap: () => setState(() => _frequency = 'Daily'),
+                      child: _FreqPill(label: 'Daily', isSelected: _frequency == 'Daily'),
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: _FreqPill(label: 'Weekly', isSelected: false),
+                    child: GestureDetector(
+                      onTap: () => setState(() => _frequency = 'Weekly'),
+                      child: _FreqPill(label: 'Weekly', isSelected: _frequency == 'Weekly'),
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: _FreqPill(label: 'Monthly', isSelected: false),
+                    child: GestureDetector(
+                      onTap: () => setState(() => _frequency = 'Monthly'),
+                      child: _FreqPill(label: 'Monthly', isSelected: _frequency == 'Monthly'),
+                    ),
                   ),
                 ],
               ),
@@ -85,11 +99,58 @@ class _MedicineFormScreenState extends ConsumerState<MedicineFormScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    _formKey.currentState?.save();
-                    // Mock save action
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Medication saved')));
-                    context.pop();
+                  onPressed: () async {
+                    if (_formKey.currentState?.validate() ?? false) {
+                      _formKey.currentState?.save();
+                      
+                      final medId = const Uuid().v4();
+                      final petMedId = const Uuid().v4();
+                      final now = DateTime.now();
+
+                      final medicine = Medicine(
+                        id: medId,
+                        name: _medName,
+                        createdAt: now,
+                        updatedAt: now,
+                      );
+
+                      final petMed = PetMedication(
+                        id: petMedId,
+                        petId: widget.petId,
+                        medicineId: medId,
+                        dosage: _dosage,
+                        startDate: now,
+                        asNeeded: false,
+                        status: 'active',
+                        createdAt: now,
+                        updatedAt: now,
+                      );
+
+                      String rrule = 'FREQ=DAILY';
+                      if (_frequency == 'Weekly') rrule = 'FREQ=WEEKLY';
+                      if (_frequency == 'Monthly') rrule = 'FREQ=MONTHLY';
+
+                      final schedule = MedicationSchedule(
+                        id: const Uuid().v4(),
+                        petMedicationId: petMedId,
+                        localTime: '09:00',
+                        timezoneId: 'UTC',
+                        recurrenceRule: rrule,
+                        createdAt: now,
+                        updatedAt: now,
+                      );
+
+                      await ref.read(medicineRepositoryProvider).addPetMedication(
+                        medication: petMed,
+                        medicine: medicine,
+                        schedules: [schedule],
+                      );
+
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Medication saved')));
+                        context.pop();
+                      }
+                    }
                   },
                   child: const Text('Save Medication'),
                 ),
