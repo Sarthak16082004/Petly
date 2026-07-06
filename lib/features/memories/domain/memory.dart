@@ -6,6 +6,7 @@ class Memory {
     this.title,
     this.description,
     this.imageFileId,
+    this.filePath,
   });
 
   final String id;
@@ -13,5 +14,6 @@ class Memory {
   final String? title;
   final String? description;
   final String? imageFileId;
+  final String? filePath;
   final DateTime date;
 }

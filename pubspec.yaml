@@ -38,6 +38,7 @@ dependencies:
   # File handling
   image_picker: ^1.1.2
   share_plus: ^10.1.4
+  video_player: ^2.9.2
 
   # PDF
   pdf: ^3.12.0

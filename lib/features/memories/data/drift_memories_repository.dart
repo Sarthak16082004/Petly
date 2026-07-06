@@ -10,22 +10,34 @@ class DriftMemoriesRepository implements MemoriesRepository {
   final db.AppDatabase _db;
   final Uuid _uuid;
 
-  Memory _mapMemory(db.Memory m) {
+  Memory _mapMemory(db.Memory m, {String? filePath}) {
     return Memory(
       id: m.id,
       petId: m.petId,
       title: m.title,
       description: m.description,
       imageFileId: m.imageFileId,
+      filePath: filePath,
       date: m.date,
     );
   }
 
   @override
   Stream<List<Memory>> watchMemoriesByPet(String petId) {
-    return (_db.select(_db.memories)..where((tbl) => tbl.petId.equals(petId)))
-        .watch()
-        .map((rows) => rows.map(_mapMemory).toList());
+    final query = _db.select(_db.memories).join([
+      leftOuterJoin(
+        _db.fileAssets,
+        _db.fileAssets.id.equalsExp(_db.memories.imageFileId),
+      )
+    ])..where(_db.memories.petId.equals(petId));
+
+    return query.watch().map((rows) {
+      return rows.map((row) {
+        final memory = row.readTable(_db.memories);
+        final fileAsset = row.readTableOrNull(_db.fileAssets);
+        return _mapMemory(memory, filePath: fileAsset?.relativePath);
+      }).toList();
+    });
   }
 
   @override
