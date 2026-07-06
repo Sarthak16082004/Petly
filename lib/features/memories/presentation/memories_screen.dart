@@ -107,19 +107,26 @@ class MemoriesScreen extends ConsumerWidget {
     );
 
     if (result == true) {
-      // Move to persistent storage using the MediaStorageService
-      final storageService = ref.read(mediaStorageServiceProvider);
-      final fileAssetId = await storageService.saveMediaFile(xfile.path, category: 'memories');
-      
-      final newMemory = Memory(
-        id: '',
-        petId: petId,
-        date: DateTime.now(),
-        title: titleController.text,
-        description: descController.text,
-        imageFileId: fileAssetId, // Using the new fileAssetId instead of raw absolute path
-      );
-      await ref.read(memoriesRepositoryProvider).addMemory(newMemory);
+      try {
+        // Move to persistent storage using the MediaStorageService
+        final storageService = ref.read(mediaStorageServiceProvider);
+        final fileAssetId = await storageService.saveMediaFile(xfile.path, category: 'memories');
+        
+        final newMemory = Memory(
+          id: '',
+          petId: petId,
+          date: DateTime.now(),
+          title: titleController.text,
+          description: descController.text,
+          imageFileId: fileAssetId,
+        );
+        await ref.read(memoriesRepositoryProvider).addMemory(newMemory);
+      } catch (e, stack) {
+        debugPrint('Error saving memory: $e\n$stack');
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to save: $e')));
+        }
+      }
     }
   }
 
