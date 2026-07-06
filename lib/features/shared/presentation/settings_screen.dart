@@ -11,6 +11,13 @@ class SettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final owner = ref.watch(ownerProvider).value;
+
+    void showComingSoon(String feature) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('$feature coming soon!')),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
       body: ListView(
@@ -23,6 +30,7 @@ class SettingsScreen extends ConsumerWidget {
               title: Text(owner?.displayName ?? 'Owner profile'),
               subtitle: Text(owner?.email ?? 'Stored only on this device'),
               trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () => showComingSoon('Owner profile'),
             ),
           ),
           const SizedBox(height: 20),
@@ -38,15 +46,17 @@ class SettingsScreen extends ConsumerWidget {
               );
             },
           ),
-          const _SettingsTile(
+          _SettingsTile(
             icon: Icons.notifications_outlined,
             title: 'Notifications',
             subtitle: 'Reminder permissions and timing',
+            onTap: () => showComingSoon('Notifications'),
           ),
-          const _SettingsTile(
+          _SettingsTile(
             icon: Icons.lock_outline_rounded,
             title: 'Privacy & security',
             subtitle: 'Local app protection',
+            onTap: () => showComingSoon('Privacy & security'),
           ),
           _SettingsTile(
             icon: Icons.cloud_upload_outlined,
@@ -65,10 +75,11 @@ class SettingsScreen extends ConsumerWidget {
               }
             },
           ),
-          const _SettingsTile(
+          _SettingsTile(
             icon: Icons.info_outline_rounded,
             title: 'About Petly',
             subtitle: 'Version 0.1.0',
+            onTap: () => showComingSoon('About Petly'),
           ),
         ],
       ),
