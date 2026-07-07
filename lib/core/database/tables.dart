@@ -400,3 +400,19 @@ class GroomingLogs extends Table with TimestampColumns {
   @override
   Set<Column<Object>> get primaryKey => {id};
 }
+
+// Emergency & Vets Table
+
+class VetContacts extends Table with TimestampColumns {
+  TextColumn get id => text()();
+  TextColumn get petId => text().references(Pets, #id, onDelete: KeyAction.cascade)();
+  TextColumn get name => text()(); // e.g., Dr. Smith or "Poison Control"
+  TextColumn get clinicName => text().nullable()();
+  TextColumn get phoneNumber => text()();
+  TextColumn get address => text().nullable()();
+  BoolColumn get isEmergency => boolean().withDefault(const Constant(false))();
+  TextColumn get notes => text().nullable()();
+  
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}

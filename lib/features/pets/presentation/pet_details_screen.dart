@@ -231,6 +231,44 @@ class PetDetailsScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 32),
 
+                      InkWell(
+                        onTap: () => context.push('/pets/$petId/emergency'),
+                        borderRadius: BorderRadius.circular(16),
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.redAccent.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(color: Colors.redAccent.withOpacity(0.5)),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.redAccent.withOpacity(0.2),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(Icons.emergency, color: Colors.redAccent),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Emergency & Vets', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, color: Colors.redAccent)),
+                                    Text('Quick dial and vitals', style: theme.textTheme.bodyMedium?.copyWith(color: Colors.redAccent.withOpacity(0.8))),
+                                  ],
+                                ),
+                              ),
+                              const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.redAccent),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+
                       Text('Health & Care', style: theme.textTheme.titleLarge),
                       const SizedBox(height: 16),
 

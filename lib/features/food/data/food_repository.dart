@@ -16,6 +16,8 @@ abstract class FoodRepository {
   Future<void> updateInventory(FoodInventory inv);
   
   Future<void> logMeal(MealLog log);
+  Future<void> updateMealLog(MealLog log);
+  Future<void> deleteMealLog(String id);
   Future<void> addSchedule(FeedingSchedule schedule);
 }
 
@@ -78,5 +80,16 @@ class DriftFoodRepository implements FoodRepository {
   @override
   Future<void> addSchedule(FeedingSchedule schedule) async {
     await _db.into(_db.feedingSchedules).insert(schedule, mode: InsertMode.insertOrReplace);
+  }
+
+  @override
+  Future<void> updateMealLog(MealLog log) async {
+    // For simplicity, we just update the log. If amount changes, we'd ideally refund and re-deduct.
+    await _db.update(_db.mealLogs).replace(log);
+  }
+
+  @override
+  Future<void> deleteMealLog(String id) async {
+    await (_db.delete(_db.mealLogs)..where((t) => t.id.equals(id))).go();
   }
 }

@@ -187,7 +187,33 @@ class FoodScreen extends ConsumerWidget {
                       ),
                       title: Text('${meal.amountGrams.toStringAsFixed(0)}g'),
                       subtitle: Text(DateFormat.yMMMd().add_jm().format(meal.fedAt)),
-                      trailing: meal.notes != null ? const Icon(Icons.notes, size: 16) : null,
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (meal.notes != null) const Icon(Icons.notes, size: 16),
+                          PopupMenuButton<String>(
+                            icon: const Icon(Icons.more_vert),
+                            onSelected: (value) async {
+                              if (value == 'edit') {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => MealLogFormScreen(petId: petId, logToEdit: meal),
+                                ));
+                              } else if (value == 'delete') {
+                                await ref.read(foodRepositoryProvider).deleteMealLog(meal.id);
+                              }
+                            },
+                            itemBuilder: (context) => [
+                              const PopupMenuItem(value: 'edit', child: Text('Edit')),
+                              const PopupMenuItem(value: 'delete', child: Text('Delete', style: TextStyle(color: Colors.red))),
+                            ],
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MealLogFormScreen(petId: petId, logToEdit: meal),
+                        ));
+                      },
                     );
                   },
                   childCount: meals.length,

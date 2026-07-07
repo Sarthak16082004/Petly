@@ -31,6 +31,7 @@ part 'app_database.g.dart';
     MealLogs,
     FeedingSchedules,
     GroomingLogs,
+    VetContacts,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -38,7 +39,7 @@ class AppDatabase extends _$AppDatabase {
     : super(executor ?? driftDatabase(name: 'petly'));
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -57,6 +58,9 @@ class AppDatabase extends _$AppDatabase {
         await migrator.createTable(mealLogs);
         await migrator.createTable(feedingSchedules);
         await migrator.createTable(groomingLogs);
+      }
+      if (from < 4) {
+        await migrator.createTable(vetContacts);
       }
     },
     beforeOpen: (details) async {

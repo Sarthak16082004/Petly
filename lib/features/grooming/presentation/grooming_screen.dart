@@ -64,41 +64,65 @@ class GroomingScreen extends ConsumerWidget {
                 elevation: 0,
                 color: colorScheme.surfaceContainerHighest.withOpacity(0.4),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: colorScheme.primary.withOpacity(0.1),
-                          shape: BoxShape.circle,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(16),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => GroomingFormScreen(petId: petId, logToEdit: log),
+                    ));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: colorScheme.primary.withOpacity(0.1),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(Icons.content_cut_rounded, color: colorScheme.primary),
                         ),
-                        child: Icon(Icons.content_cut_rounded, color: colorScheme.primary),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(log.groomingType, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-                            const SizedBox(height: 4),
-                            Text(DateFormat.yMMMd().format(log.date), style: theme.textTheme.bodySmall?.copyWith(color: colorScheme.onSurface.withOpacity(0.6))),
-                            if (log.groomerName != null && log.groomerName!.isNotEmpty) ...[
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(log.groomingType, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
                               const SizedBox(height: 4),
-                              Text('Groomer: ${log.groomerName}', style: theme.textTheme.bodySmall),
+                              Text(DateFormat.yMMMd().format(log.date), style: theme.textTheme.bodySmall?.copyWith(color: colorScheme.onSurface.withOpacity(0.6))),
+                              if (log.groomerName != null && log.groomerName!.isNotEmpty) ...[
+                                const SizedBox(height: 4),
+                                Text('Groomer: ${log.groomerName}', style: theme.textTheme.bodySmall),
+                              ],
+                              if (log.notes != null && log.notes!.isNotEmpty) ...[
+                                const SizedBox(height: 8),
+                                Text(log.notes!, style: theme.textTheme.bodyMedium),
+                              ]
                             ],
-                            if (log.notes != null && log.notes!.isNotEmpty) ...[
-                              const SizedBox(height: 8),
-                              Text(log.notes!, style: theme.textTheme.bodyMedium),
-                            ]
+                          ),
+                        ),
+                        if (log.cost != null) ...[
+                          Text('\$${log.cost!.toStringAsFixed(2)}', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, color: colorScheme.primary)),
+                        ],
+                        PopupMenuButton<String>(
+                          icon: const Icon(Icons.more_vert),
+                          onSelected: (value) async {
+                            if (value == 'edit') {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => GroomingFormScreen(petId: petId, logToEdit: log),
+                              ));
+                            } else if (value == 'delete') {
+                              await ref.read(groomingRepositoryProvider).deleteGroomingLog(log.id);
+                            }
+                          },
+                          itemBuilder: (context) => [
+                            const PopupMenuItem(value: 'edit', child: Text('Edit')),
+                            const PopupMenuItem(value: 'delete', child: Text('Delete', style: TextStyle(color: Colors.red))),
                           ],
                         ),
-                      ),
-                      if (log.cost != null) ...[
-                        Text('\$${log.cost!.toStringAsFixed(2)}', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, color: colorScheme.primary)),
-                      ]
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );

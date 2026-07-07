@@ -15836,6 +15836,625 @@ class GroomingLogsCompanion extends UpdateCompanion<GroomingLog> {
   }
 }
 
+class $VetContactsTable extends VetContacts
+    with TableInfo<$VetContactsTable, VetContact> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $VetContactsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _petIdMeta = const VerificationMeta('petId');
+  @override
+  late final GeneratedColumn<String> petId = GeneratedColumn<String>(
+    'pet_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _clinicNameMeta = const VerificationMeta(
+    'clinicName',
+  );
+  @override
+  late final GeneratedColumn<String> clinicName = GeneratedColumn<String>(
+    'clinic_name',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _phoneNumberMeta = const VerificationMeta(
+    'phoneNumber',
+  );
+  @override
+  late final GeneratedColumn<String> phoneNumber = GeneratedColumn<String>(
+    'phone_number',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _addressMeta = const VerificationMeta(
+    'address',
+  );
+  @override
+  late final GeneratedColumn<String> address = GeneratedColumn<String>(
+    'address',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _isEmergencyMeta = const VerificationMeta(
+    'isEmergency',
+  );
+  @override
+  late final GeneratedColumn<bool> isEmergency = GeneratedColumn<bool>(
+    'is_emergency',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_emergency" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    name,
+    clinicName,
+    phoneNumber,
+    address,
+    isEmergency,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'vet_contacts';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<VetContact> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pet_id')) {
+      context.handle(
+        _petIdMeta,
+        petId.isAcceptableOrUnknown(data['pet_id']!, _petIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_petIdMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('clinic_name')) {
+      context.handle(
+        _clinicNameMeta,
+        clinicName.isAcceptableOrUnknown(data['clinic_name']!, _clinicNameMeta),
+      );
+    }
+    if (data.containsKey('phone_number')) {
+      context.handle(
+        _phoneNumberMeta,
+        phoneNumber.isAcceptableOrUnknown(
+          data['phone_number']!,
+          _phoneNumberMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_phoneNumberMeta);
+    }
+    if (data.containsKey('address')) {
+      context.handle(
+        _addressMeta,
+        address.isAcceptableOrUnknown(data['address']!, _addressMeta),
+      );
+    }
+    if (data.containsKey('is_emergency')) {
+      context.handle(
+        _isEmergencyMeta,
+        isEmergency.isAcceptableOrUnknown(
+          data['is_emergency']!,
+          _isEmergencyMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  VetContact map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return VetContact(
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      name:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}name'],
+          )!,
+      clinicName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}clinic_name'],
+      ),
+      phoneNumber:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}phone_number'],
+          )!,
+      address: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}address'],
+      ),
+      isEmergency:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.bool,
+            data['${effectivePrefix}is_emergency'],
+          )!,
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $VetContactsTable createAlias(String alias) {
+    return $VetContactsTable(attachedDatabase, alias);
+  }
+}
+
+class VetContact extends DataClass implements Insertable<VetContact> {
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final String id;
+  final String petId;
+  final String name;
+  final String? clinicName;
+  final String phoneNumber;
+  final String? address;
+  final bool isEmergency;
+  final String? notes;
+  const VetContact({
+    required this.createdAt,
+    required this.updatedAt,
+    required this.id,
+    required this.petId,
+    required this.name,
+    this.clinicName,
+    required this.phoneNumber,
+    this.address,
+    required this.isEmergency,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['id'] = Variable<String>(id);
+    map['pet_id'] = Variable<String>(petId);
+    map['name'] = Variable<String>(name);
+    if (!nullToAbsent || clinicName != null) {
+      map['clinic_name'] = Variable<String>(clinicName);
+    }
+    map['phone_number'] = Variable<String>(phoneNumber);
+    if (!nullToAbsent || address != null) {
+      map['address'] = Variable<String>(address);
+    }
+    map['is_emergency'] = Variable<bool>(isEmergency);
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  VetContactsCompanion toCompanion(bool nullToAbsent) {
+    return VetContactsCompanion(
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      id: Value(id),
+      petId: Value(petId),
+      name: Value(name),
+      clinicName:
+          clinicName == null && nullToAbsent
+              ? const Value.absent()
+              : Value(clinicName),
+      phoneNumber: Value(phoneNumber),
+      address:
+          address == null && nullToAbsent
+              ? const Value.absent()
+              : Value(address),
+      isEmergency: Value(isEmergency),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
+    );
+  }
+
+  factory VetContact.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return VetContact(
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      id: serializer.fromJson<String>(json['id']),
+      petId: serializer.fromJson<String>(json['petId']),
+      name: serializer.fromJson<String>(json['name']),
+      clinicName: serializer.fromJson<String?>(json['clinicName']),
+      phoneNumber: serializer.fromJson<String>(json['phoneNumber']),
+      address: serializer.fromJson<String?>(json['address']),
+      isEmergency: serializer.fromJson<bool>(json['isEmergency']),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'id': serializer.toJson<String>(id),
+      'petId': serializer.toJson<String>(petId),
+      'name': serializer.toJson<String>(name),
+      'clinicName': serializer.toJson<String?>(clinicName),
+      'phoneNumber': serializer.toJson<String>(phoneNumber),
+      'address': serializer.toJson<String?>(address),
+      'isEmergency': serializer.toJson<bool>(isEmergency),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  VetContact copyWith({
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? id,
+    String? petId,
+    String? name,
+    Value<String?> clinicName = const Value.absent(),
+    String? phoneNumber,
+    Value<String?> address = const Value.absent(),
+    bool? isEmergency,
+    Value<String?> notes = const Value.absent(),
+  }) => VetContact(
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    id: id ?? this.id,
+    petId: petId ?? this.petId,
+    name: name ?? this.name,
+    clinicName: clinicName.present ? clinicName.value : this.clinicName,
+    phoneNumber: phoneNumber ?? this.phoneNumber,
+    address: address.present ? address.value : this.address,
+    isEmergency: isEmergency ?? this.isEmergency,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  VetContact copyWithCompanion(VetContactsCompanion data) {
+    return VetContact(
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      id: data.id.present ? data.id.value : this.id,
+      petId: data.petId.present ? data.petId.value : this.petId,
+      name: data.name.present ? data.name.value : this.name,
+      clinicName:
+          data.clinicName.present ? data.clinicName.value : this.clinicName,
+      phoneNumber:
+          data.phoneNumber.present ? data.phoneNumber.value : this.phoneNumber,
+      address: data.address.present ? data.address.value : this.address,
+      isEmergency:
+          data.isEmergency.present ? data.isEmergency.value : this.isEmergency,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('VetContact(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('name: $name, ')
+          ..write('clinicName: $clinicName, ')
+          ..write('phoneNumber: $phoneNumber, ')
+          ..write('address: $address, ')
+          ..write('isEmergency: $isEmergency, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    name,
+    clinicName,
+    phoneNumber,
+    address,
+    isEmergency,
+    notes,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is VetContact &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.id == this.id &&
+          other.petId == this.petId &&
+          other.name == this.name &&
+          other.clinicName == this.clinicName &&
+          other.phoneNumber == this.phoneNumber &&
+          other.address == this.address &&
+          other.isEmergency == this.isEmergency &&
+          other.notes == this.notes);
+}
+
+class VetContactsCompanion extends UpdateCompanion<VetContact> {
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<String> id;
+  final Value<String> petId;
+  final Value<String> name;
+  final Value<String?> clinicName;
+  final Value<String> phoneNumber;
+  final Value<String?> address;
+  final Value<bool> isEmergency;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const VetContactsCompanion({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.id = const Value.absent(),
+    this.petId = const Value.absent(),
+    this.name = const Value.absent(),
+    this.clinicName = const Value.absent(),
+    this.phoneNumber = const Value.absent(),
+    this.address = const Value.absent(),
+    this.isEmergency = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  VetContactsCompanion.insert({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    required String id,
+    required String petId,
+    required String name,
+    this.clinicName = const Value.absent(),
+    required String phoneNumber,
+    this.address = const Value.absent(),
+    this.isEmergency = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       petId = Value(petId),
+       name = Value(name),
+       phoneNumber = Value(phoneNumber);
+  static Insertable<VetContact> custom({
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<String>? id,
+    Expression<String>? petId,
+    Expression<String>? name,
+    Expression<String>? clinicName,
+    Expression<String>? phoneNumber,
+    Expression<String>? address,
+    Expression<bool>? isEmergency,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (id != null) 'id': id,
+      if (petId != null) 'pet_id': petId,
+      if (name != null) 'name': name,
+      if (clinicName != null) 'clinic_name': clinicName,
+      if (phoneNumber != null) 'phone_number': phoneNumber,
+      if (address != null) 'address': address,
+      if (isEmergency != null) 'is_emergency': isEmergency,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  VetContactsCompanion copyWith({
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<String>? id,
+    Value<String>? petId,
+    Value<String>? name,
+    Value<String?>? clinicName,
+    Value<String>? phoneNumber,
+    Value<String?>? address,
+    Value<bool>? isEmergency,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return VetContactsCompanion(
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      id: id ?? this.id,
+      petId: petId ?? this.petId,
+      name: name ?? this.name,
+      clinicName: clinicName ?? this.clinicName,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      address: address ?? this.address,
+      isEmergency: isEmergency ?? this.isEmergency,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (petId.present) {
+      map['pet_id'] = Variable<String>(petId.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (clinicName.present) {
+      map['clinic_name'] = Variable<String>(clinicName.value);
+    }
+    if (phoneNumber.present) {
+      map['phone_number'] = Variable<String>(phoneNumber.value);
+    }
+    if (address.present) {
+      map['address'] = Variable<String>(address.value);
+    }
+    if (isEmergency.present) {
+      map['is_emergency'] = Variable<bool>(isEmergency.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('VetContactsCompanion(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('name: $name, ')
+          ..write('clinicName: $clinicName, ')
+          ..write('phoneNumber: $phoneNumber, ')
+          ..write('address: $address, ')
+          ..write('isEmergency: $isEmergency, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -15874,6 +16493,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     this,
   );
   late final $GroomingLogsTable groomingLogs = $GroomingLogsTable(this);
+  late final $VetContactsTable vetContacts = $VetContactsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -15904,6 +16524,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     mealLogs,
     feedingSchedules,
     groomingLogs,
+    vetContacts,
   ];
 }
 
@@ -23770,6 +24391,315 @@ typedef $$GroomingLogsTableProcessedTableManager =
       GroomingLog,
       PrefetchHooks Function()
     >;
+typedef $$VetContactsTableCreateCompanionBuilder =
+    VetContactsCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      required String id,
+      required String petId,
+      required String name,
+      Value<String?> clinicName,
+      required String phoneNumber,
+      Value<String?> address,
+      Value<bool> isEmergency,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$VetContactsTableUpdateCompanionBuilder =
+    VetContactsCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<String> id,
+      Value<String> petId,
+      Value<String> name,
+      Value<String?> clinicName,
+      Value<String> phoneNumber,
+      Value<String?> address,
+      Value<bool> isEmergency,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+class $$VetContactsTableFilterComposer
+    extends Composer<_$AppDatabase, $VetContactsTable> {
+  $$VetContactsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get clinicName => $composableBuilder(
+    column: $table.clinicName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get phoneNumber => $composableBuilder(
+    column: $table.phoneNumber,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get address => $composableBuilder(
+    column: $table.address,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isEmergency => $composableBuilder(
+    column: $table.isEmergency,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$VetContactsTableOrderingComposer
+    extends Composer<_$AppDatabase, $VetContactsTable> {
+  $$VetContactsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get clinicName => $composableBuilder(
+    column: $table.clinicName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get phoneNumber => $composableBuilder(
+    column: $table.phoneNumber,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get address => $composableBuilder(
+    column: $table.address,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get isEmergency => $composableBuilder(
+    column: $table.isEmergency,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$VetContactsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $VetContactsTable> {
+  $$VetContactsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get clinicName => $composableBuilder(
+    column: $table.clinicName,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get phoneNumber => $composableBuilder(
+    column: $table.phoneNumber,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get address =>
+      $composableBuilder(column: $table.address, builder: (column) => column);
+
+  GeneratedColumn<bool> get isEmergency => $composableBuilder(
+    column: $table.isEmergency,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+}
+
+class $$VetContactsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $VetContactsTable,
+          VetContact,
+          $$VetContactsTableFilterComposer,
+          $$VetContactsTableOrderingComposer,
+          $$VetContactsTableAnnotationComposer,
+          $$VetContactsTableCreateCompanionBuilder,
+          $$VetContactsTableUpdateCompanionBuilder,
+          (
+            VetContact,
+            BaseReferences<_$AppDatabase, $VetContactsTable, VetContact>,
+          ),
+          VetContact,
+          PrefetchHooks Function()
+        > {
+  $$VetContactsTableTableManager(_$AppDatabase db, $VetContactsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer:
+              () => $$VetContactsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$VetContactsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () =>
+                  $$VetContactsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<String> id = const Value.absent(),
+                Value<String> petId = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String?> clinicName = const Value.absent(),
+                Value<String> phoneNumber = const Value.absent(),
+                Value<String?> address = const Value.absent(),
+                Value<bool> isEmergency = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => VetContactsCompanion(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                name: name,
+                clinicName: clinicName,
+                phoneNumber: phoneNumber,
+                address: address,
+                isEmergency: isEmergency,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                required String id,
+                required String petId,
+                required String name,
+                Value<String?> clinicName = const Value.absent(),
+                required String phoneNumber,
+                Value<String?> address = const Value.absent(),
+                Value<bool> isEmergency = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => VetContactsCompanion.insert(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                name: name,
+                clinicName: clinicName,
+                phoneNumber: phoneNumber,
+                address: address,
+                isEmergency: isEmergency,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$VetContactsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $VetContactsTable,
+      VetContact,
+      $$VetContactsTableFilterComposer,
+      $$VetContactsTableOrderingComposer,
+      $$VetContactsTableAnnotationComposer,
+      $$VetContactsTableCreateCompanionBuilder,
+      $$VetContactsTableUpdateCompanionBuilder,
+      (
+        VetContact,
+        BaseReferences<_$AppDatabase, $VetContactsTable, VetContact>,
+      ),
+      VetContact,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -23829,4 +24759,6 @@ class $AppDatabaseManager {
       $$FeedingSchedulesTableTableManager(_db, _db.feedingSchedules);
   $$GroomingLogsTableTableManager get groomingLogs =>
       $$GroomingLogsTableTableManager(_db, _db.groomingLogs);
+  $$VetContactsTableTableManager get vetContacts =>
+      $$VetContactsTableTableManager(_db, _db.vetContacts);
 }

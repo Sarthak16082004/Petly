@@ -7,6 +7,7 @@ import 'package:petly/features/memories/presentation/memories_screen.dart';
 import 'package:petly/features/pets/presentation/pet_id_card_screen.dart';
 import 'package:petly/features/appointments/presentation/appointments_screen.dart';
 import 'package:petly/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:petly/features/emergency/presentation/emergency_dashboard_screen.dart';
 import 'package:petly/features/expenses/presentation/expense_form_screen.dart';
 import 'package:petly/features/expenses/presentation/expenses_screen.dart';
 import 'package:petly/features/growth/presentation/growth_form_screen.dart';
@@ -151,6 +152,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                             petId: s.pathParameters['petId']!,
                           ),
                         ),
+                        
+                        // Emergency & Vets
+                        GoRoute(
+                          path: 'emergency',
+                          parentNavigatorKey: rootNavigatorKey,
+                          builder: (ctx, s) => EmergencyDashboardScreen(
+                            petId: s.pathParameters['petId']!,
+                          ),
+                        ),
+                        
                         // Diet & Food
                         GoRoute(
                           path: 'food',

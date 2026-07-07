@@ -6,8 +6,9 @@ import 'package:petly/features/grooming/data/grooming_repository.dart';
 import 'package:uuid/uuid.dart';
 
 class GroomingFormScreen extends ConsumerStatefulWidget {
-  const GroomingFormScreen({required this.petId, super.key});
+  const GroomingFormScreen({required this.petId, this.logToEdit, super.key});
   final String petId;
+  final GroomingLog? logToEdit;
 
   @override
   ConsumerState<GroomingFormScreen> createState() => _GroomingFormScreenState();
@@ -16,16 +17,30 @@ class GroomingFormScreen extends ConsumerStatefulWidget {
 class _GroomingFormScreenState extends ConsumerState<GroomingFormScreen> {
   final _formKey = GlobalKey<FormState>();
   
-  String _type = 'Bath';
+  late String _type;
   final _types = ['Bath', 'Haircut', 'Nail Trim', 'Ear Cleaning', 'Teeth Brushing', 'Full Groom', 'Other'];
   
-  DateTime _date = DateTime.now();
+  late DateTime _date;
   final _groomerController = TextEditingController();
   final _costController = TextEditingController();
   final _notesController = TextEditingController();
   
-  bool _setReminder = false;
+  late bool _setReminder;
   DateTime? _nextDueDate;
+
+  @override
+  void initState() {
+    super.initState();
+    final edit = widget.logToEdit;
+    _type = edit?.groomingType ?? 'Bath';
+    _date = edit?.date ?? DateTime.now();
+    if (edit?.groomerName != null) _groomerController.text = edit!.groomerName!;
+    if (edit?.cost != null) _costController.text = edit!.cost.toString();
+    if (edit?.notes != null) _notesController.text = edit!.notes!;
+    
+    _nextDueDate = edit?.nextDueDate;
+    _setReminder = _nextDueDate != null;
+  }
 
   @override
   void dispose() {
@@ -39,8 +54,10 @@ class _GroomingFormScreenState extends ConsumerState<GroomingFormScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     final repo = ref.read(groomingRepositoryProvider);
+    final isEditing = widget.logToEdit != null;
+    
     final log = GroomingLog(
-      id: const Uuid().v4(),
+      id: isEditing ? widget.logToEdit!.id : const Uuid().v4(),
       petId: widget.petId,
       groomingType: _type,
       date: _date,
@@ -48,11 +65,16 @@ class _GroomingFormScreenState extends ConsumerState<GroomingFormScreen> {
       cost: double.tryParse(_costController.text),
       notes: _notesController.text.trim().isEmpty ? null : _notesController.text.trim(),
       nextDueDate: _setReminder ? _nextDueDate : null,
-      createdAt: DateTime.now(),
+      createdAt: isEditing ? widget.logToEdit!.createdAt : DateTime.now(),
       updatedAt: DateTime.now(),
     );
 
-    await repo.addGroomingLog(log);
+    if (isEditing) {
+      await repo.updateGroomingLog(log);
+    } else {
+      await repo.addGroomingLog(log);
+    }
+    
     if (mounted) {
       Navigator.of(context).pop();
     }

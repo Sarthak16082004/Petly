@@ -6,8 +6,9 @@ import 'package:petly/features/food/data/food_repository.dart';
 import 'package:uuid/uuid.dart';
 
 class MealLogFormScreen extends ConsumerStatefulWidget {
-  const MealLogFormScreen({required this.petId, super.key});
+  const MealLogFormScreen({required this.petId, this.logToEdit, super.key});
   final String petId;
+  final MealLog? logToEdit;
 
   @override
   ConsumerState<MealLogFormScreen> createState() => _MealLogFormScreenState();
@@ -16,10 +17,20 @@ class MealLogFormScreen extends ConsumerStatefulWidget {
 class _MealLogFormScreenState extends ConsumerState<MealLogFormScreen> {
   final _formKey = GlobalKey<FormState>();
   
-  DateTime _time = DateTime.now();
+  late DateTime _time;
   String? _selectedFoodId;
   final _amountController = TextEditingController();
   final _notesController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    final edit = widget.logToEdit;
+    _time = edit?.fedAt ?? DateTime.now();
+    _selectedFoodId = edit?.foodId;
+    if (edit?.amountGrams != null) _amountController.text = edit!.amountGrams.toString();
+    if (edit?.notes != null) _notesController.text = edit!.notes!;
+  }
 
   @override
   void dispose() {
@@ -32,18 +43,29 @@ class _MealLogFormScreenState extends ConsumerState<MealLogFormScreen> {
     if (!_formKey.currentState!.validate()) return;
     
     final repo = ref.read(foodRepositoryProvider);
+    final isEditing = widget.logToEdit != null;
+    
     final log = MealLog(
-      id: const Uuid().v4(),
+      id: isEditing ? widget.logToEdit!.id : const Uuid().v4(),
       petId: widget.petId,
       foodId: _selectedFoodId,
       fedAt: _time,
       amountGrams: double.parse(_amountController.text),
       notes: _notesController.text.trim().isEmpty ? null : _notesController.text.trim(),
-      createdAt: DateTime.now(),
+      createdAt: isEditing ? widget.logToEdit!.createdAt : DateTime.now(),
       updatedAt: DateTime.now(),
     );
 
-    await repo.logMeal(log);
+    // Note: logMeal already uses insertOrReplace, but for editing we might not want to deduct inventory again 
+    // if the amount hasn't changed. For simplicity, we just use the existing logMeal method, but we should 
+    // ideally use updateMealLog if we add one to the repository. For now, logMeal will overwrite and re-deduct.
+    // Wait, logMeal will deduct inventory again if we edit it. That's a bug!
+    // I need to add updateMealLog to food_repository.
+    if (isEditing) {
+      await repo.updateMealLog(log);
+    } else {
+      await repo.logMeal(log);
+    }
     if (mounted) {
       Navigator.of(context).pop();
     }
