@@ -186,7 +186,7 @@ class EmergencyDashboardScreen extends ConsumerWidget {
                                 ],
                               ),
                               if (contact.address != null || contact.notes != null) const SizedBox(height: 8),
-                              if (contact.address != null && contact.contactType != 'Personal') ...[
+                              if (contact.address != null && contact.contactType == 'Clinic') ...[
                                 Row(
                                   children: [
                                     const Icon(Icons.location_on, size: 16),
@@ -248,26 +248,19 @@ class EmergencyDashboardScreen extends ConsumerWidget {
                                       label: const Text('Call'),
                                     ),
                                   ),
-                                  if (contact.address != null && contact.contactType != 'Personal') ...[
+                                  if (contact.address != null && contact.contactType == 'Clinic') ...[
                                     const SizedBox(width: 8),
                                     Expanded(
                                       child: OutlinedButton.icon(
                                         onPressed: () async {
                                           final query = Uri.encodeComponent(contact.address!);
-                                          // Try native geo intent first
-                                          final geoUrl = Uri.parse('geo:0,0?q=$query');
-                                          if (await canLaunchUrl(geoUrl)) {
-                                            await launchUrl(geoUrl);
-                                          } else {
-                                            // Fallback to web browser maps
-                                            final webUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$query');
-                                            if (await canLaunchUrl(webUrl)) {
-                                              await launchUrl(webUrl);
-                                            }
+                                          final url = Uri.parse('https://www.google.com/maps/dir/?api=1&destination=$query');
+                                          if (await canLaunchUrl(url)) {
+                                            await launchUrl(url);
                                           }
                                         },
-                                        icon: const Icon(Icons.map),
-                                        label: const Text('Map'),
+                                        icon: const Icon(Icons.directions),
+                                        label: const Text('Directions'),
                                       ),
                                     ),
                                   ]

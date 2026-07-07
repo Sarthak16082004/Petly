@@ -130,9 +130,9 @@ class _VetContactFormScreenState extends ConsumerState<VetContactFormScreen> {
               // Contact Type Selector
               SegmentedButton<String>(
                 segments: const [
-                  ButtonSegment(value: 'Veterinarian', label: Text('Vet'), icon: Icon(Icons.pets)),
-                  ButtonSegment(value: 'Clinic', label: Text('Clinic'), icon: Icon(Icons.local_hospital)),
-                  ButtonSegment(value: 'Personal', label: Text('Personal'), icon: Icon(Icons.person)),
+                  ButtonSegment(value: 'Veterinarian', label: Text('Vet')),
+                  ButtonSegment(value: 'Clinic', label: Text('Clinic')),
+                  ButtonSegment(value: 'Personal', label: Text('Personal')),
                 ],
                 selected: {_contactType},
                 onSelectionChanged: (val) {
