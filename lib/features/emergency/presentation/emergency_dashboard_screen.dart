@@ -161,7 +161,9 @@ class EmergencyDashboardScreen extends ConsumerWidget {
                                           Text(contact.clinicName!, style: theme.textTheme.bodyMedium?.copyWith(color: colorScheme.onSurface.withOpacity(0.7))),
                                         ],
                                         const SizedBox(height: 8),
-                                        Text(contact.phoneNumber, style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500)),
+                                        Text(contact.contactType, style: theme.textTheme.labelMedium?.copyWith(color: colorScheme.primary)),
+                                        const SizedBox(height: 4),
+                                        Text(contact.phoneNumber.split(',').join('\n'), style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500)),
                                       ],
                                     ),
                                   ),
@@ -184,7 +186,7 @@ class EmergencyDashboardScreen extends ConsumerWidget {
                                 ],
                               ),
                               if (contact.address != null || contact.notes != null) const SizedBox(height: 8),
-                              if (contact.address != null) ...[
+                              if (contact.address != null && contact.contactType != 'Personal') ...[
                                 Row(
                                   children: [
                                     const Icon(Icons.location_on, size: 16),
@@ -203,9 +205,39 @@ class EmergencyDashboardScreen extends ConsumerWidget {
                                   Expanded(
                                     child: FilledButton.icon(
                                       onPressed: () async {
-                                        final url = Uri.parse('tel:${contact.phoneNumber}');
-                                        if (await canLaunchUrl(url)) {
-                                          await launchUrl(url);
+                                        final numbers = contact.phoneNumber.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty).toList();
+                                        if (numbers.length == 1) {
+                                          final url = Uri.parse('tel:${numbers.first}');
+                                          if (await canLaunchUrl(url)) {
+                                            await launchUrl(url);
+                                          }
+                                        } else if (numbers.isNotEmpty) {
+                                          // Show bottom sheet to pick number
+                                          showModalBottomSheet(
+                                            context: context,
+                                            builder: (ctx) => SafeArea(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.all(16.0),
+                                                    child: Text('Select number to call', style: theme.textTheme.titleMedium),
+                                                  ),
+                                                  ...numbers.map((num) => ListTile(
+                                                    leading: const Icon(Icons.phone),
+                                                    title: Text(num),
+                                                    onTap: () async {
+                                                      Navigator.pop(ctx);
+                                                      final url = Uri.parse('tel:$num');
+                                                      if (await canLaunchUrl(url)) {
+                                                        await launchUrl(url);
+                                                      }
+                                                    },
+                                                  )).toList(),
+                                                ],
+                                              ),
+                                            ),
+                                          );
                                         }
                                       },
                                       style: FilledButton.styleFrom(
@@ -216,15 +248,22 @@ class EmergencyDashboardScreen extends ConsumerWidget {
                                       label: const Text('Call'),
                                     ),
                                   ),
-                                  if (contact.address != null) ...[
+                                  if (contact.address != null && contact.contactType != 'Personal') ...[
                                     const SizedBox(width: 8),
                                     Expanded(
                                       child: OutlinedButton.icon(
                                         onPressed: () async {
                                           final query = Uri.encodeComponent(contact.address!);
-                                          final url = Uri.parse('https://www.google.com/maps/search/?api=1&query=$query');
-                                          if (await canLaunchUrl(url)) {
-                                            await launchUrl(url);
+                                          // Try native geo intent first
+                                          final geoUrl = Uri.parse('geo:0,0?q=$query');
+                                          if (await canLaunchUrl(geoUrl)) {
+                                            await launchUrl(geoUrl);
+                                          } else {
+                                            // Fallback to web browser maps
+                                            final webUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$query');
+                                            if (await canLaunchUrl(webUrl)) {
+                                              await launchUrl(webUrl);
+                                            }
                                           }
                                         },
                                         icon: const Icon(Icons.map),

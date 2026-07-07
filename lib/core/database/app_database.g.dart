@@ -15893,6 +15893,18 @@ class $VetContactsTable extends VetContacts
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _contactTypeMeta = const VerificationMeta(
+    'contactType',
+  );
+  @override
+  late final GeneratedColumn<String> contactType = GeneratedColumn<String>(
+    'contact_type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('Veterinarian'),
+  );
   static const VerificationMeta _clinicNameMeta = const VerificationMeta(
     'clinicName',
   );
@@ -15957,6 +15969,7 @@ class $VetContactsTable extends VetContacts
     id,
     petId,
     name,
+    contactType,
     clinicName,
     phoneNumber,
     address,
@@ -16007,6 +16020,15 @@ class $VetContactsTable extends VetContacts
       );
     } else if (isInserting) {
       context.missing(_nameMeta);
+    }
+    if (data.containsKey('contact_type')) {
+      context.handle(
+        _contactTypeMeta,
+        contactType.isAcceptableOrUnknown(
+          data['contact_type']!,
+          _contactTypeMeta,
+        ),
+      );
     }
     if (data.containsKey('clinic_name')) {
       context.handle(
@@ -16080,6 +16102,11 @@ class $VetContactsTable extends VetContacts
             DriftSqlType.string,
             data['${effectivePrefix}name'],
           )!,
+      contactType:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}contact_type'],
+          )!,
       clinicName: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}clinic_name'],
@@ -16117,6 +16144,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
   final String id;
   final String petId;
   final String name;
+  final String contactType;
   final String? clinicName;
   final String phoneNumber;
   final String? address;
@@ -16128,6 +16156,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
     required this.id,
     required this.petId,
     required this.name,
+    required this.contactType,
     this.clinicName,
     required this.phoneNumber,
     this.address,
@@ -16142,6 +16171,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
     map['id'] = Variable<String>(id);
     map['pet_id'] = Variable<String>(petId);
     map['name'] = Variable<String>(name);
+    map['contact_type'] = Variable<String>(contactType);
     if (!nullToAbsent || clinicName != null) {
       map['clinic_name'] = Variable<String>(clinicName);
     }
@@ -16163,6 +16193,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
       id: Value(id),
       petId: Value(petId),
       name: Value(name),
+      contactType: Value(contactType),
       clinicName:
           clinicName == null && nullToAbsent
               ? const Value.absent()
@@ -16189,6 +16220,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
       id: serializer.fromJson<String>(json['id']),
       petId: serializer.fromJson<String>(json['petId']),
       name: serializer.fromJson<String>(json['name']),
+      contactType: serializer.fromJson<String>(json['contactType']),
       clinicName: serializer.fromJson<String?>(json['clinicName']),
       phoneNumber: serializer.fromJson<String>(json['phoneNumber']),
       address: serializer.fromJson<String?>(json['address']),
@@ -16205,6 +16237,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
       'id': serializer.toJson<String>(id),
       'petId': serializer.toJson<String>(petId),
       'name': serializer.toJson<String>(name),
+      'contactType': serializer.toJson<String>(contactType),
       'clinicName': serializer.toJson<String?>(clinicName),
       'phoneNumber': serializer.toJson<String>(phoneNumber),
       'address': serializer.toJson<String?>(address),
@@ -16219,6 +16252,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
     String? id,
     String? petId,
     String? name,
+    String? contactType,
     Value<String?> clinicName = const Value.absent(),
     String? phoneNumber,
     Value<String?> address = const Value.absent(),
@@ -16230,6 +16264,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
     id: id ?? this.id,
     petId: petId ?? this.petId,
     name: name ?? this.name,
+    contactType: contactType ?? this.contactType,
     clinicName: clinicName.present ? clinicName.value : this.clinicName,
     phoneNumber: phoneNumber ?? this.phoneNumber,
     address: address.present ? address.value : this.address,
@@ -16243,6 +16278,8 @@ class VetContact extends DataClass implements Insertable<VetContact> {
       id: data.id.present ? data.id.value : this.id,
       petId: data.petId.present ? data.petId.value : this.petId,
       name: data.name.present ? data.name.value : this.name,
+      contactType:
+          data.contactType.present ? data.contactType.value : this.contactType,
       clinicName:
           data.clinicName.present ? data.clinicName.value : this.clinicName,
       phoneNumber:
@@ -16262,6 +16299,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
           ..write('id: $id, ')
           ..write('petId: $petId, ')
           ..write('name: $name, ')
+          ..write('contactType: $contactType, ')
           ..write('clinicName: $clinicName, ')
           ..write('phoneNumber: $phoneNumber, ')
           ..write('address: $address, ')
@@ -16278,6 +16316,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
     id,
     petId,
     name,
+    contactType,
     clinicName,
     phoneNumber,
     address,
@@ -16293,6 +16332,7 @@ class VetContact extends DataClass implements Insertable<VetContact> {
           other.id == this.id &&
           other.petId == this.petId &&
           other.name == this.name &&
+          other.contactType == this.contactType &&
           other.clinicName == this.clinicName &&
           other.phoneNumber == this.phoneNumber &&
           other.address == this.address &&
@@ -16306,6 +16346,7 @@ class VetContactsCompanion extends UpdateCompanion<VetContact> {
   final Value<String> id;
   final Value<String> petId;
   final Value<String> name;
+  final Value<String> contactType;
   final Value<String?> clinicName;
   final Value<String> phoneNumber;
   final Value<String?> address;
@@ -16318,6 +16359,7 @@ class VetContactsCompanion extends UpdateCompanion<VetContact> {
     this.id = const Value.absent(),
     this.petId = const Value.absent(),
     this.name = const Value.absent(),
+    this.contactType = const Value.absent(),
     this.clinicName = const Value.absent(),
     this.phoneNumber = const Value.absent(),
     this.address = const Value.absent(),
@@ -16331,6 +16373,7 @@ class VetContactsCompanion extends UpdateCompanion<VetContact> {
     required String id,
     required String petId,
     required String name,
+    this.contactType = const Value.absent(),
     this.clinicName = const Value.absent(),
     required String phoneNumber,
     this.address = const Value.absent(),
@@ -16347,6 +16390,7 @@ class VetContactsCompanion extends UpdateCompanion<VetContact> {
     Expression<String>? id,
     Expression<String>? petId,
     Expression<String>? name,
+    Expression<String>? contactType,
     Expression<String>? clinicName,
     Expression<String>? phoneNumber,
     Expression<String>? address,
@@ -16360,6 +16404,7 @@ class VetContactsCompanion extends UpdateCompanion<VetContact> {
       if (id != null) 'id': id,
       if (petId != null) 'pet_id': petId,
       if (name != null) 'name': name,
+      if (contactType != null) 'contact_type': contactType,
       if (clinicName != null) 'clinic_name': clinicName,
       if (phoneNumber != null) 'phone_number': phoneNumber,
       if (address != null) 'address': address,
@@ -16375,6 +16420,7 @@ class VetContactsCompanion extends UpdateCompanion<VetContact> {
     Value<String>? id,
     Value<String>? petId,
     Value<String>? name,
+    Value<String>? contactType,
     Value<String?>? clinicName,
     Value<String>? phoneNumber,
     Value<String?>? address,
@@ -16388,6 +16434,7 @@ class VetContactsCompanion extends UpdateCompanion<VetContact> {
       id: id ?? this.id,
       petId: petId ?? this.petId,
       name: name ?? this.name,
+      contactType: contactType ?? this.contactType,
       clinicName: clinicName ?? this.clinicName,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       address: address ?? this.address,
@@ -16414,6 +16461,9 @@ class VetContactsCompanion extends UpdateCompanion<VetContact> {
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
+    }
+    if (contactType.present) {
+      map['contact_type'] = Variable<String>(contactType.value);
     }
     if (clinicName.present) {
       map['clinic_name'] = Variable<String>(clinicName.value);
@@ -16444,6 +16494,7 @@ class VetContactsCompanion extends UpdateCompanion<VetContact> {
           ..write('id: $id, ')
           ..write('petId: $petId, ')
           ..write('name: $name, ')
+          ..write('contactType: $contactType, ')
           ..write('clinicName: $clinicName, ')
           ..write('phoneNumber: $phoneNumber, ')
           ..write('address: $address, ')
@@ -24398,6 +24449,7 @@ typedef $$VetContactsTableCreateCompanionBuilder =
       required String id,
       required String petId,
       required String name,
+      Value<String> contactType,
       Value<String?> clinicName,
       required String phoneNumber,
       Value<String?> address,
@@ -24412,6 +24464,7 @@ typedef $$VetContactsTableUpdateCompanionBuilder =
       Value<String> id,
       Value<String> petId,
       Value<String> name,
+      Value<String> contactType,
       Value<String?> clinicName,
       Value<String> phoneNumber,
       Value<String?> address,
@@ -24451,6 +24504,11 @@ class $$VetContactsTableFilterComposer
 
   ColumnFilters<String> get name => $composableBuilder(
     column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get contactType => $composableBuilder(
+    column: $table.contactType,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -24514,6 +24572,11 @@ class $$VetContactsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get contactType => $composableBuilder(
+    column: $table.contactType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get clinicName => $composableBuilder(
     column: $table.clinicName,
     builder: (column) => ColumnOrderings(column),
@@ -24563,6 +24626,11 @@ class $$VetContactsTableAnnotationComposer
 
   GeneratedColumn<String> get name =>
       $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get contactType => $composableBuilder(
+    column: $table.contactType,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get clinicName => $composableBuilder(
     column: $table.clinicName,
@@ -24623,6 +24691,7 @@ class $$VetContactsTableTableManager
                 Value<String> id = const Value.absent(),
                 Value<String> petId = const Value.absent(),
                 Value<String> name = const Value.absent(),
+                Value<String> contactType = const Value.absent(),
                 Value<String?> clinicName = const Value.absent(),
                 Value<String> phoneNumber = const Value.absent(),
                 Value<String?> address = const Value.absent(),
@@ -24635,6 +24704,7 @@ class $$VetContactsTableTableManager
                 id: id,
                 petId: petId,
                 name: name,
+                contactType: contactType,
                 clinicName: clinicName,
                 phoneNumber: phoneNumber,
                 address: address,
@@ -24649,6 +24719,7 @@ class $$VetContactsTableTableManager
                 required String id,
                 required String petId,
                 required String name,
+                Value<String> contactType = const Value.absent(),
                 Value<String?> clinicName = const Value.absent(),
                 required String phoneNumber,
                 Value<String?> address = const Value.absent(),
@@ -24661,6 +24732,7 @@ class $$VetContactsTableTableManager
                 id: id,
                 petId: petId,
                 name: name,
+                contactType: contactType,
                 clinicName: clinicName,
                 phoneNumber: phoneNumber,
                 address: address,

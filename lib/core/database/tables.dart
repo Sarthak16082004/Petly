@@ -407,8 +407,9 @@ class VetContacts extends Table with TimestampColumns {
   TextColumn get id => text()();
   TextColumn get petId => text().references(Pets, #id, onDelete: KeyAction.cascade)();
   TextColumn get name => text()(); // e.g., Dr. Smith or "Poison Control"
+  TextColumn get contactType => text().withDefault(const Constant('Veterinarian'))(); // 'Veterinarian', 'Clinic', 'Personal'
   TextColumn get clinicName => text().nullable()();
-  TextColumn get phoneNumber => text()();
+  TextColumn get phoneNumber => text()(); // comma-separated for multiple
   TextColumn get address => text().nullable()();
   BoolColumn get isEmergency => boolean().withDefault(const Constant(false))();
   TextColumn get notes => text().nullable()();

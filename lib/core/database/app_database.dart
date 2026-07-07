@@ -39,7 +39,7 @@ class AppDatabase extends _$AppDatabase {
     : super(executor ?? driftDatabase(name: 'petly'));
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -61,6 +61,9 @@ class AppDatabase extends _$AppDatabase {
       }
       if (from < 4) {
         await migrator.createTable(vetContacts);
+      }
+      if (from < 5) {
+        await migrator.addColumn(vetContacts, vetContacts.contactType);
       }
     },
     beforeOpen: (details) async {
