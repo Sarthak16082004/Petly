@@ -54,29 +54,56 @@ class MemoriesScreen extends ConsumerWidget {
     if (sourceAction == null) return;
 
     XFile? xfile;
-    switch (sourceAction) {
-      case _MediaSourceAction.takePhoto:
-        xfile = await picker.pickImage(source: ImageSource.camera);
-        break;
-      case _MediaSourceAction.choosePhoto:
-        xfile = await picker.pickImage(source: ImageSource.gallery);
-        break;
-      case _MediaSourceAction.recordVideo:
-        xfile = await picker.pickVideo(source: ImageSource.camera);
-        break;
-      case _MediaSourceAction.chooseVideo:
-        xfile = await picker.pickVideo(source: ImageSource.gallery);
-        break;
+    try {
+      switch (sourceAction) {
+        case _MediaSourceAction.takePhoto:
+          xfile = await picker.pickImage(source: ImageSource.camera, imageQuality: 85);
+          break;
+        case _MediaSourceAction.choosePhoto:
+          xfile = await picker.pickImage(source: ImageSource.gallery, imageQuality: 85);
+          break;
+        case _MediaSourceAction.recordVideo:
+          xfile = await picker.pickVideo(source: ImageSource.camera);
+          break;
+        case _MediaSourceAction.chooseVideo:
+          xfile = await picker.pickVideo(source: ImageSource.gallery);
+          break;
+      }
+    } catch (e) {
+      debugPrint('[Memories] Error picking media: $e');
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to pick media: $e')));
+      }
+      return;
     }
 
-    if (xfile == null) return;
+    if (xfile == null) {
+      debugPrint('[Memories] User cancelled media picker');
+      return;
+    }
+
+    debugPrint('[Memories] Picked file: ${xfile.path}');
+
+    // Verify the file actually exists
+    final pickedFile = File(xfile.path);
+    if (!await pickedFile.exists()) {
+      debugPrint('[Memories] ERROR: Picked file does not exist at path: ${xfile.path}');
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Error: Selected file not found')));
+      }
+      return;
+    }
+
+    final fileSize = await pickedFile.length();
+    debugPrint('[Memories] File exists, size: $fileSize bytes');
 
     // Show dialog to add title/description
     final titleController = TextEditingController();
     final descController = TextEditingController();
 
     if (!context.mounted) return;
-    final isVideo = xfile.path.toLowerCase().endsWith('.mp4') || xfile.path.toLowerCase().endsWith('.mov');
+    final ext = xfile.path.toLowerCase();
+    final isVideo = ext.endsWith('.mp4') || ext.endsWith('.mov') || ext.endsWith('.avi') || ext.endsWith('.mkv');
     
     final bool? result = await showDialog<bool>(
       context: context,
@@ -88,9 +115,16 @@ class MemoriesScreen extends ConsumerWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: isVideo
-                  ? Container(height: 120, width: double.infinity, color: Colors.black, child: const Icon(Icons.play_circle_fill, color: Colors.white, size: 48))
-                  : Image.file(File(xfile!.path), height: 120, width: double.infinity, fit: BoxFit.cover),
+                child: Container(
+                  height: 120,
+                  width: double.infinity,
+                  color: isVideo ? Colors.black : Colors.grey.shade200,
+                  child: Icon(
+                    isVideo ? Icons.play_circle_fill : Icons.photo,
+                    color: isVideo ? Colors.white : Colors.grey.shade600,
+                    size: 48,
+                  ),
+                ),
               ),
               const SizedBox(height: 16),
               TextField(controller: titleController, decoration: const InputDecoration(labelText: 'Title')),
@@ -106,11 +140,14 @@ class MemoriesScreen extends ConsumerWidget {
       ),
     );
 
+    debugPrint('[Memories] Dialog result: $result');
+
     if (result == true) {
       try {
-        // Move to persistent storage using the MediaStorageService
+        debugPrint('[Memories] Saving file to persistent storage...');
         final storageService = ref.read(mediaStorageServiceProvider);
         final fileAssetId = await storageService.saveMediaFile(xfile.path, category: 'memories');
+        debugPrint('[Memories] File saved with asset ID: $fileAssetId');
         
         final newMemory = Memory(
           id: '',
@@ -121,8 +158,9 @@ class MemoriesScreen extends ConsumerWidget {
           imageFileId: fileAssetId,
         );
         await ref.read(memoriesRepositoryProvider).addMemory(newMemory);
+        debugPrint('[Memories] Memory record added successfully');
       } catch (e, stack) {
-        debugPrint('Error saving memory: $e\n$stack');
+        debugPrint('[Memories] Error saving memory: $e\n$stack');
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to save: $e')));
         }
@@ -169,12 +207,12 @@ class MemoriesScreen extends ConsumerWidget {
 
 enum _MediaSourceAction { takePhoto, choosePhoto, recordVideo, chooseVideo }
 
-class _MemoryCard extends StatelessWidget {
+class _MemoryCard extends ConsumerWidget {
   const _MemoryCard({required this.memory});
   final Memory memory;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     
     // Fallback: If filePath is null, it might be an older record where imageFileId contains the absolute path.
@@ -195,6 +233,32 @@ class _MemoryCard extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 iconTheme: const IconThemeData(color: Colors.white),
                 titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.redAccent),
+                    onPressed: () async {
+                      final confirm = await showDialog<bool>(
+                        context: context,
+                        builder: (c) => AlertDialog(
+                          title: const Text('Delete Memory?'),
+                          content: const Text('Are you sure you want to delete this memory?'),
+                          actions: [
+                            TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('Cancel')),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                              onPressed: () => Navigator.pop(c, true),
+                              child: const Text('Delete', style: TextStyle(color: Colors.white)),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (confirm == true) {
+                        await ref.read(memoriesRepositoryProvider).deleteMemory(memory.id);
+                        if (context.mounted) Navigator.pop(ctx);
+                      }
+                    },
+                  ),
+                ],
               ),
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

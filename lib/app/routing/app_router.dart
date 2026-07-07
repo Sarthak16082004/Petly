@@ -10,6 +10,8 @@ import 'package:petly/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:petly/features/expenses/presentation/expense_form_screen.dart';
 import 'package:petly/features/expenses/presentation/expenses_screen.dart';
 import 'package:petly/features/growth/presentation/growth_form_screen.dart';
+import 'package:petly/features/food/presentation/food_screen.dart';
+import 'package:petly/features/grooming/presentation/grooming_screen.dart';
 import 'package:petly/features/growth/presentation/growth_screen.dart';
 import 'package:petly/features/medical_history/presentation/medical_history_screen.dart';
 import 'package:petly/features/medical_history/presentation/medical_record_form_screen.dart';
@@ -149,7 +151,24 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                             petId: s.pathParameters['petId']!,
                           ),
                         ),
-                        
+                        // Diet & Food
+                        GoRoute(
+                          path: 'food',
+                          parentNavigatorKey: rootNavigatorKey,
+                          builder: (ctx, s) => FoodScreen(
+                            petId: s.pathParameters['petId']!,
+                          ),
+                        ),
+
+                        // Grooming
+                        GoRoute(
+                          path: 'grooming',
+                          parentNavigatorKey: rootNavigatorKey,
+                          builder: (ctx, s) => GroomingScreen(
+                            petId: s.pathParameters['petId']!,
+                          ),
+                        ),
+
                         // Appointments
                     GoRoute(
                       path: 'appointments',

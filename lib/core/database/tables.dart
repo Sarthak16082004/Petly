@@ -345,3 +345,58 @@ class Dewormings extends Table with TimestampColumns {
   @override
   Set<Column<Object>> get primaryKey => {id};
 }
+
+// Food Tracker Tables
+
+class FoodInventories extends Table with TimestampColumns {
+  TextColumn get id => text()();
+  TextColumn get petId => text().references(Pets, #id, onDelete: KeyAction.cascade)();
+  TextColumn get brand => text()();
+  TextColumn get name => text()();
+  RealColumn get totalWeightGrams => real()();
+  RealColumn get remainingWeightGrams => real()();
+  DateTimeColumn get expiryDate => dateTime().nullable()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
+class MealLogs extends Table with TimestampColumns {
+  TextColumn get id => text()();
+  TextColumn get petId => text().references(Pets, #id, onDelete: KeyAction.cascade)();
+  TextColumn get foodId => text().nullable().references(FoodInventories, #id, onDelete: KeyAction.setNull)();
+  DateTimeColumn get fedAt => dateTime()();
+  RealColumn get amountGrams => real()();
+  TextColumn get notes => text().nullable()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
+class FeedingSchedules extends Table with TimestampColumns {
+  TextColumn get id => text()();
+  TextColumn get petId => text().references(Pets, #id, onDelete: KeyAction.cascade)();
+  TextColumn get foodId => text().nullable().references(FoodInventories, #id, onDelete: KeyAction.setNull)();
+  TextColumn get timeOfDay => text()(); // e.g., '08:00'
+  RealColumn get amountGrams => real()();
+  TextColumn get name => text()(); // e.g., 'Breakfast'
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
+// Grooming Tracker Table
+
+class GroomingLogs extends Table with TimestampColumns {
+  TextColumn get id => text()();
+  TextColumn get petId => text().references(Pets, #id, onDelete: KeyAction.cascade)();
+  TextColumn get groomingType => text()(); // Bath, Haircut, Nail Trim, etc.
+  DateTimeColumn get date => dateTime()();
+  TextColumn get groomerName => text().nullable()();
+  RealColumn get cost => real().nullable()();
+  TextColumn get notes => text().nullable()();
+  DateTimeColumn get nextDueDate => dateTime().nullable()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}

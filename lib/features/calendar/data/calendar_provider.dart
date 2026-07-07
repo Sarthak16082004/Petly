@@ -34,6 +34,16 @@ final allMedicinesProvider = StreamProvider<List<Medicine>>((ref) {
   return db.select(db.medicines).watch();
 });
 
+final allFeedingSchedulesProvider = StreamProvider<List<FeedingSchedule>>((ref) {
+  final db = ref.watch(databaseProvider);
+  return db.select(db.feedingSchedules).watch();
+});
+
+final allGroomingLogsProvider = StreamProvider<List<GroomingLog>>((ref) {
+  final db = ref.watch(databaseProvider);
+  return db.select(db.groomingLogs).watch();
+});
+
 final calendarEventsProvider = Provider<List<CalendarEvent>>((ref) {
   final appointments = ref.watch(allAppointmentsProvider).valueOrNull ?? [];
   final vaccinations = ref.watch(allVaccinationsProvider).valueOrNull ?? [];
@@ -42,6 +52,9 @@ final calendarEventsProvider = Provider<List<CalendarEvent>>((ref) {
   final medications = ref.watch(allMedicationsProvider).valueOrNull ?? [];
   final schedules = ref.watch(allMedicationSchedulesProvider).valueOrNull ?? [];
   final medicines = ref.watch(allMedicinesProvider).valueOrNull ?? [];
+  
+  final feedingSchedules = ref.watch(allFeedingSchedulesProvider).valueOrNull ?? [];
+  final groomingLogs = ref.watch(allGroomingLogsProvider).valueOrNull ?? [];
   
   final events = <CalendarEvent>[];
   
@@ -143,6 +156,57 @@ final calendarEventsProvider = Provider<List<CalendarEvent>>((ref) {
          }
          if (pm.endDate != null && curr.isAfter(pm.endDate!)) break;
        }
+    }
+  }
+
+  for (final feed in feedingSchedules) {
+    // Generate feeding events for today and next 30 days
+    final timeParts = feed.timeOfDay.split(':');
+    if (timeParts.length == 2) {
+      final hour = int.tryParse(timeParts[0]) ?? 8;
+      final min = int.tryParse(timeParts[1]) ?? 0;
+      
+      final now = DateTime.now();
+      for (var i = 0; i < 30; i++) {
+        final d = now.add(Duration(days: i));
+        final date = DateTime(d.year, d.month, d.day, hour, min);
+        
+        events.add(CalendarEvent(
+          id: '${feed.id}_$i',
+          title: feed.name,
+          subtitle: '${feed.amountGrams}g',
+          date: date,
+          type: CalendarEventType.feeding,
+          petId: feed.petId,
+          color: Colors.amber,
+          icon: Icons.restaurant,
+        ));
+      }
+    }
+  }
+
+  for (final groom in groomingLogs) {
+    events.add(CalendarEvent(
+      id: '${groom.id}_admin',
+      title: groom.groomingType,
+      subtitle: 'Grooming Log',
+      date: groom.date,
+      type: CalendarEventType.grooming,
+      petId: groom.petId,
+      color: Colors.pink,
+      icon: Icons.content_cut,
+    ));
+    if (groom.nextDueDate != null) {
+      events.add(CalendarEvent(
+        id: '${groom.id}_due',
+        title: '${groom.groomingType} Due',
+        subtitle: 'Hygiene Reminder',
+        date: groom.nextDueDate!,
+        type: CalendarEventType.grooming,
+        petId: groom.petId,
+        color: Colors.redAccent,
+        icon: Icons.content_cut,
+      ));
     }
   }
   

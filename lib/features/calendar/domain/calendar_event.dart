@@ -5,6 +5,8 @@ enum CalendarEventType {
   medication,
   vaccination,
   deworming,
+  feeding,
+  grooming,
 }
 
 class CalendarEvent {

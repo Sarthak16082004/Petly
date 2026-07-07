@@ -27,6 +27,10 @@ part 'app_database.g.dart';
     BackupRecords,
     Memories,
     Dewormings,
+    FoodInventories,
+    MealLogs,
+    FeedingSchedules,
+    GroomingLogs,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -34,7 +38,7 @@ class AppDatabase extends _$AppDatabase {
     : super(executor ?? driftDatabase(name: 'petly'));
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -47,6 +51,12 @@ class AppDatabase extends _$AppDatabase {
         await migrator.addColumn(pets, pets.size);
         await migrator.addColumn(pets, pets.weight);
         await migrator.addColumn(pets, pets.profilePicturePath);
+      }
+      if (from < 3) {
+        await migrator.createTable(foodInventories);
+        await migrator.createTable(mealLogs);
+        await migrator.createTable(feedingSchedules);
+        await migrator.createTable(groomingLogs);
       }
     },
     beforeOpen: (details) async {

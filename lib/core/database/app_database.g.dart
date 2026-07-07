@@ -13617,6 +13617,2225 @@ class DewormingsCompanion extends UpdateCompanion<Deworming> {
   }
 }
 
+class $FoodInventoriesTable extends FoodInventories
+    with TableInfo<$FoodInventoriesTable, FoodInventory> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $FoodInventoriesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _petIdMeta = const VerificationMeta('petId');
+  @override
+  late final GeneratedColumn<String> petId = GeneratedColumn<String>(
+    'pet_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _brandMeta = const VerificationMeta('brand');
+  @override
+  late final GeneratedColumn<String> brand = GeneratedColumn<String>(
+    'brand',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _totalWeightGramsMeta = const VerificationMeta(
+    'totalWeightGrams',
+  );
+  @override
+  late final GeneratedColumn<double> totalWeightGrams = GeneratedColumn<double>(
+    'total_weight_grams',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _remainingWeightGramsMeta =
+      const VerificationMeta('remainingWeightGrams');
+  @override
+  late final GeneratedColumn<double> remainingWeightGrams =
+      GeneratedColumn<double>(
+        'remaining_weight_grams',
+        aliasedName,
+        false,
+        type: DriftSqlType.double,
+        requiredDuringInsert: true,
+      );
+  static const VerificationMeta _expiryDateMeta = const VerificationMeta(
+    'expiryDate',
+  );
+  @override
+  late final GeneratedColumn<DateTime> expiryDate = GeneratedColumn<DateTime>(
+    'expiry_date',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    brand,
+    name,
+    totalWeightGrams,
+    remainingWeightGrams,
+    expiryDate,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'food_inventories';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<FoodInventory> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pet_id')) {
+      context.handle(
+        _petIdMeta,
+        petId.isAcceptableOrUnknown(data['pet_id']!, _petIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_petIdMeta);
+    }
+    if (data.containsKey('brand')) {
+      context.handle(
+        _brandMeta,
+        brand.isAcceptableOrUnknown(data['brand']!, _brandMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_brandMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('total_weight_grams')) {
+      context.handle(
+        _totalWeightGramsMeta,
+        totalWeightGrams.isAcceptableOrUnknown(
+          data['total_weight_grams']!,
+          _totalWeightGramsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_totalWeightGramsMeta);
+    }
+    if (data.containsKey('remaining_weight_grams')) {
+      context.handle(
+        _remainingWeightGramsMeta,
+        remainingWeightGrams.isAcceptableOrUnknown(
+          data['remaining_weight_grams']!,
+          _remainingWeightGramsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_remainingWeightGramsMeta);
+    }
+    if (data.containsKey('expiry_date')) {
+      context.handle(
+        _expiryDateMeta,
+        expiryDate.isAcceptableOrUnknown(data['expiry_date']!, _expiryDateMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  FoodInventory map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return FoodInventory(
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      brand:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}brand'],
+          )!,
+      name:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}name'],
+          )!,
+      totalWeightGrams:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.double,
+            data['${effectivePrefix}total_weight_grams'],
+          )!,
+      remainingWeightGrams:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.double,
+            data['${effectivePrefix}remaining_weight_grams'],
+          )!,
+      expiryDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}expiry_date'],
+      ),
+    );
+  }
+
+  @override
+  $FoodInventoriesTable createAlias(String alias) {
+    return $FoodInventoriesTable(attachedDatabase, alias);
+  }
+}
+
+class FoodInventory extends DataClass implements Insertable<FoodInventory> {
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final String id;
+  final String petId;
+  final String brand;
+  final String name;
+  final double totalWeightGrams;
+  final double remainingWeightGrams;
+  final DateTime? expiryDate;
+  const FoodInventory({
+    required this.createdAt,
+    required this.updatedAt,
+    required this.id,
+    required this.petId,
+    required this.brand,
+    required this.name,
+    required this.totalWeightGrams,
+    required this.remainingWeightGrams,
+    this.expiryDate,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['id'] = Variable<String>(id);
+    map['pet_id'] = Variable<String>(petId);
+    map['brand'] = Variable<String>(brand);
+    map['name'] = Variable<String>(name);
+    map['total_weight_grams'] = Variable<double>(totalWeightGrams);
+    map['remaining_weight_grams'] = Variable<double>(remainingWeightGrams);
+    if (!nullToAbsent || expiryDate != null) {
+      map['expiry_date'] = Variable<DateTime>(expiryDate);
+    }
+    return map;
+  }
+
+  FoodInventoriesCompanion toCompanion(bool nullToAbsent) {
+    return FoodInventoriesCompanion(
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      id: Value(id),
+      petId: Value(petId),
+      brand: Value(brand),
+      name: Value(name),
+      totalWeightGrams: Value(totalWeightGrams),
+      remainingWeightGrams: Value(remainingWeightGrams),
+      expiryDate:
+          expiryDate == null && nullToAbsent
+              ? const Value.absent()
+              : Value(expiryDate),
+    );
+  }
+
+  factory FoodInventory.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return FoodInventory(
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      id: serializer.fromJson<String>(json['id']),
+      petId: serializer.fromJson<String>(json['petId']),
+      brand: serializer.fromJson<String>(json['brand']),
+      name: serializer.fromJson<String>(json['name']),
+      totalWeightGrams: serializer.fromJson<double>(json['totalWeightGrams']),
+      remainingWeightGrams: serializer.fromJson<double>(
+        json['remainingWeightGrams'],
+      ),
+      expiryDate: serializer.fromJson<DateTime?>(json['expiryDate']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'id': serializer.toJson<String>(id),
+      'petId': serializer.toJson<String>(petId),
+      'brand': serializer.toJson<String>(brand),
+      'name': serializer.toJson<String>(name),
+      'totalWeightGrams': serializer.toJson<double>(totalWeightGrams),
+      'remainingWeightGrams': serializer.toJson<double>(remainingWeightGrams),
+      'expiryDate': serializer.toJson<DateTime?>(expiryDate),
+    };
+  }
+
+  FoodInventory copyWith({
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? id,
+    String? petId,
+    String? brand,
+    String? name,
+    double? totalWeightGrams,
+    double? remainingWeightGrams,
+    Value<DateTime?> expiryDate = const Value.absent(),
+  }) => FoodInventory(
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    id: id ?? this.id,
+    petId: petId ?? this.petId,
+    brand: brand ?? this.brand,
+    name: name ?? this.name,
+    totalWeightGrams: totalWeightGrams ?? this.totalWeightGrams,
+    remainingWeightGrams: remainingWeightGrams ?? this.remainingWeightGrams,
+    expiryDate: expiryDate.present ? expiryDate.value : this.expiryDate,
+  );
+  FoodInventory copyWithCompanion(FoodInventoriesCompanion data) {
+    return FoodInventory(
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      id: data.id.present ? data.id.value : this.id,
+      petId: data.petId.present ? data.petId.value : this.petId,
+      brand: data.brand.present ? data.brand.value : this.brand,
+      name: data.name.present ? data.name.value : this.name,
+      totalWeightGrams:
+          data.totalWeightGrams.present
+              ? data.totalWeightGrams.value
+              : this.totalWeightGrams,
+      remainingWeightGrams:
+          data.remainingWeightGrams.present
+              ? data.remainingWeightGrams.value
+              : this.remainingWeightGrams,
+      expiryDate:
+          data.expiryDate.present ? data.expiryDate.value : this.expiryDate,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FoodInventory(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('brand: $brand, ')
+          ..write('name: $name, ')
+          ..write('totalWeightGrams: $totalWeightGrams, ')
+          ..write('remainingWeightGrams: $remainingWeightGrams, ')
+          ..write('expiryDate: $expiryDate')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    brand,
+    name,
+    totalWeightGrams,
+    remainingWeightGrams,
+    expiryDate,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is FoodInventory &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.id == this.id &&
+          other.petId == this.petId &&
+          other.brand == this.brand &&
+          other.name == this.name &&
+          other.totalWeightGrams == this.totalWeightGrams &&
+          other.remainingWeightGrams == this.remainingWeightGrams &&
+          other.expiryDate == this.expiryDate);
+}
+
+class FoodInventoriesCompanion extends UpdateCompanion<FoodInventory> {
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<String> id;
+  final Value<String> petId;
+  final Value<String> brand;
+  final Value<String> name;
+  final Value<double> totalWeightGrams;
+  final Value<double> remainingWeightGrams;
+  final Value<DateTime?> expiryDate;
+  final Value<int> rowid;
+  const FoodInventoriesCompanion({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.id = const Value.absent(),
+    this.petId = const Value.absent(),
+    this.brand = const Value.absent(),
+    this.name = const Value.absent(),
+    this.totalWeightGrams = const Value.absent(),
+    this.remainingWeightGrams = const Value.absent(),
+    this.expiryDate = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  FoodInventoriesCompanion.insert({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    required String id,
+    required String petId,
+    required String brand,
+    required String name,
+    required double totalWeightGrams,
+    required double remainingWeightGrams,
+    this.expiryDate = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       petId = Value(petId),
+       brand = Value(brand),
+       name = Value(name),
+       totalWeightGrams = Value(totalWeightGrams),
+       remainingWeightGrams = Value(remainingWeightGrams);
+  static Insertable<FoodInventory> custom({
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<String>? id,
+    Expression<String>? petId,
+    Expression<String>? brand,
+    Expression<String>? name,
+    Expression<double>? totalWeightGrams,
+    Expression<double>? remainingWeightGrams,
+    Expression<DateTime>? expiryDate,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (id != null) 'id': id,
+      if (petId != null) 'pet_id': petId,
+      if (brand != null) 'brand': brand,
+      if (name != null) 'name': name,
+      if (totalWeightGrams != null) 'total_weight_grams': totalWeightGrams,
+      if (remainingWeightGrams != null)
+        'remaining_weight_grams': remainingWeightGrams,
+      if (expiryDate != null) 'expiry_date': expiryDate,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  FoodInventoriesCompanion copyWith({
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<String>? id,
+    Value<String>? petId,
+    Value<String>? brand,
+    Value<String>? name,
+    Value<double>? totalWeightGrams,
+    Value<double>? remainingWeightGrams,
+    Value<DateTime?>? expiryDate,
+    Value<int>? rowid,
+  }) {
+    return FoodInventoriesCompanion(
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      id: id ?? this.id,
+      petId: petId ?? this.petId,
+      brand: brand ?? this.brand,
+      name: name ?? this.name,
+      totalWeightGrams: totalWeightGrams ?? this.totalWeightGrams,
+      remainingWeightGrams: remainingWeightGrams ?? this.remainingWeightGrams,
+      expiryDate: expiryDate ?? this.expiryDate,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (petId.present) {
+      map['pet_id'] = Variable<String>(petId.value);
+    }
+    if (brand.present) {
+      map['brand'] = Variable<String>(brand.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (totalWeightGrams.present) {
+      map['total_weight_grams'] = Variable<double>(totalWeightGrams.value);
+    }
+    if (remainingWeightGrams.present) {
+      map['remaining_weight_grams'] = Variable<double>(
+        remainingWeightGrams.value,
+      );
+    }
+    if (expiryDate.present) {
+      map['expiry_date'] = Variable<DateTime>(expiryDate.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FoodInventoriesCompanion(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('brand: $brand, ')
+          ..write('name: $name, ')
+          ..write('totalWeightGrams: $totalWeightGrams, ')
+          ..write('remainingWeightGrams: $remainingWeightGrams, ')
+          ..write('expiryDate: $expiryDate, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $MealLogsTable extends MealLogs with TableInfo<$MealLogsTable, MealLog> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MealLogsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _petIdMeta = const VerificationMeta('petId');
+  @override
+  late final GeneratedColumn<String> petId = GeneratedColumn<String>(
+    'pet_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _foodIdMeta = const VerificationMeta('foodId');
+  @override
+  late final GeneratedColumn<String> foodId = GeneratedColumn<String>(
+    'food_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _fedAtMeta = const VerificationMeta('fedAt');
+  @override
+  late final GeneratedColumn<DateTime> fedAt = GeneratedColumn<DateTime>(
+    'fed_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _amountGramsMeta = const VerificationMeta(
+    'amountGrams',
+  );
+  @override
+  late final GeneratedColumn<double> amountGrams = GeneratedColumn<double>(
+    'amount_grams',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    foodId,
+    fedAt,
+    amountGrams,
+    notes,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'meal_logs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<MealLog> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pet_id')) {
+      context.handle(
+        _petIdMeta,
+        petId.isAcceptableOrUnknown(data['pet_id']!, _petIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_petIdMeta);
+    }
+    if (data.containsKey('food_id')) {
+      context.handle(
+        _foodIdMeta,
+        foodId.isAcceptableOrUnknown(data['food_id']!, _foodIdMeta),
+      );
+    }
+    if (data.containsKey('fed_at')) {
+      context.handle(
+        _fedAtMeta,
+        fedAt.isAcceptableOrUnknown(data['fed_at']!, _fedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_fedAtMeta);
+    }
+    if (data.containsKey('amount_grams')) {
+      context.handle(
+        _amountGramsMeta,
+        amountGrams.isAcceptableOrUnknown(
+          data['amount_grams']!,
+          _amountGramsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_amountGramsMeta);
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  MealLog map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return MealLog(
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      foodId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}food_id'],
+      ),
+      fedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}fed_at'],
+          )!,
+      amountGrams:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.double,
+            data['${effectivePrefix}amount_grams'],
+          )!,
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+    );
+  }
+
+  @override
+  $MealLogsTable createAlias(String alias) {
+    return $MealLogsTable(attachedDatabase, alias);
+  }
+}
+
+class MealLog extends DataClass implements Insertable<MealLog> {
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final String id;
+  final String petId;
+  final String? foodId;
+  final DateTime fedAt;
+  final double amountGrams;
+  final String? notes;
+  const MealLog({
+    required this.createdAt,
+    required this.updatedAt,
+    required this.id,
+    required this.petId,
+    this.foodId,
+    required this.fedAt,
+    required this.amountGrams,
+    this.notes,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['id'] = Variable<String>(id);
+    map['pet_id'] = Variable<String>(petId);
+    if (!nullToAbsent || foodId != null) {
+      map['food_id'] = Variable<String>(foodId);
+    }
+    map['fed_at'] = Variable<DateTime>(fedAt);
+    map['amount_grams'] = Variable<double>(amountGrams);
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    return map;
+  }
+
+  MealLogsCompanion toCompanion(bool nullToAbsent) {
+    return MealLogsCompanion(
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      id: Value(id),
+      petId: Value(petId),
+      foodId:
+          foodId == null && nullToAbsent ? const Value.absent() : Value(foodId),
+      fedAt: Value(fedAt),
+      amountGrams: Value(amountGrams),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
+    );
+  }
+
+  factory MealLog.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return MealLog(
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      id: serializer.fromJson<String>(json['id']),
+      petId: serializer.fromJson<String>(json['petId']),
+      foodId: serializer.fromJson<String?>(json['foodId']),
+      fedAt: serializer.fromJson<DateTime>(json['fedAt']),
+      amountGrams: serializer.fromJson<double>(json['amountGrams']),
+      notes: serializer.fromJson<String?>(json['notes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'id': serializer.toJson<String>(id),
+      'petId': serializer.toJson<String>(petId),
+      'foodId': serializer.toJson<String?>(foodId),
+      'fedAt': serializer.toJson<DateTime>(fedAt),
+      'amountGrams': serializer.toJson<double>(amountGrams),
+      'notes': serializer.toJson<String?>(notes),
+    };
+  }
+
+  MealLog copyWith({
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? id,
+    String? petId,
+    Value<String?> foodId = const Value.absent(),
+    DateTime? fedAt,
+    double? amountGrams,
+    Value<String?> notes = const Value.absent(),
+  }) => MealLog(
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    id: id ?? this.id,
+    petId: petId ?? this.petId,
+    foodId: foodId.present ? foodId.value : this.foodId,
+    fedAt: fedAt ?? this.fedAt,
+    amountGrams: amountGrams ?? this.amountGrams,
+    notes: notes.present ? notes.value : this.notes,
+  );
+  MealLog copyWithCompanion(MealLogsCompanion data) {
+    return MealLog(
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      id: data.id.present ? data.id.value : this.id,
+      petId: data.petId.present ? data.petId.value : this.petId,
+      foodId: data.foodId.present ? data.foodId.value : this.foodId,
+      fedAt: data.fedAt.present ? data.fedAt.value : this.fedAt,
+      amountGrams:
+          data.amountGrams.present ? data.amountGrams.value : this.amountGrams,
+      notes: data.notes.present ? data.notes.value : this.notes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MealLog(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('foodId: $foodId, ')
+          ..write('fedAt: $fedAt, ')
+          ..write('amountGrams: $amountGrams, ')
+          ..write('notes: $notes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    foodId,
+    fedAt,
+    amountGrams,
+    notes,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is MealLog &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.id == this.id &&
+          other.petId == this.petId &&
+          other.foodId == this.foodId &&
+          other.fedAt == this.fedAt &&
+          other.amountGrams == this.amountGrams &&
+          other.notes == this.notes);
+}
+
+class MealLogsCompanion extends UpdateCompanion<MealLog> {
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<String> id;
+  final Value<String> petId;
+  final Value<String?> foodId;
+  final Value<DateTime> fedAt;
+  final Value<double> amountGrams;
+  final Value<String?> notes;
+  final Value<int> rowid;
+  const MealLogsCompanion({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.id = const Value.absent(),
+    this.petId = const Value.absent(),
+    this.foodId = const Value.absent(),
+    this.fedAt = const Value.absent(),
+    this.amountGrams = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  MealLogsCompanion.insert({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    required String id,
+    required String petId,
+    this.foodId = const Value.absent(),
+    required DateTime fedAt,
+    required double amountGrams,
+    this.notes = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       petId = Value(petId),
+       fedAt = Value(fedAt),
+       amountGrams = Value(amountGrams);
+  static Insertable<MealLog> custom({
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<String>? id,
+    Expression<String>? petId,
+    Expression<String>? foodId,
+    Expression<DateTime>? fedAt,
+    Expression<double>? amountGrams,
+    Expression<String>? notes,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (id != null) 'id': id,
+      if (petId != null) 'pet_id': petId,
+      if (foodId != null) 'food_id': foodId,
+      if (fedAt != null) 'fed_at': fedAt,
+      if (amountGrams != null) 'amount_grams': amountGrams,
+      if (notes != null) 'notes': notes,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  MealLogsCompanion copyWith({
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<String>? id,
+    Value<String>? petId,
+    Value<String?>? foodId,
+    Value<DateTime>? fedAt,
+    Value<double>? amountGrams,
+    Value<String?>? notes,
+    Value<int>? rowid,
+  }) {
+    return MealLogsCompanion(
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      id: id ?? this.id,
+      petId: petId ?? this.petId,
+      foodId: foodId ?? this.foodId,
+      fedAt: fedAt ?? this.fedAt,
+      amountGrams: amountGrams ?? this.amountGrams,
+      notes: notes ?? this.notes,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (petId.present) {
+      map['pet_id'] = Variable<String>(petId.value);
+    }
+    if (foodId.present) {
+      map['food_id'] = Variable<String>(foodId.value);
+    }
+    if (fedAt.present) {
+      map['fed_at'] = Variable<DateTime>(fedAt.value);
+    }
+    if (amountGrams.present) {
+      map['amount_grams'] = Variable<double>(amountGrams.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MealLogsCompanion(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('foodId: $foodId, ')
+          ..write('fedAt: $fedAt, ')
+          ..write('amountGrams: $amountGrams, ')
+          ..write('notes: $notes, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $FeedingSchedulesTable extends FeedingSchedules
+    with TableInfo<$FeedingSchedulesTable, FeedingSchedule> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $FeedingSchedulesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _petIdMeta = const VerificationMeta('petId');
+  @override
+  late final GeneratedColumn<String> petId = GeneratedColumn<String>(
+    'pet_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _foodIdMeta = const VerificationMeta('foodId');
+  @override
+  late final GeneratedColumn<String> foodId = GeneratedColumn<String>(
+    'food_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _timeOfDayMeta = const VerificationMeta(
+    'timeOfDay',
+  );
+  @override
+  late final GeneratedColumn<String> timeOfDay = GeneratedColumn<String>(
+    'time_of_day',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _amountGramsMeta = const VerificationMeta(
+    'amountGrams',
+  );
+  @override
+  late final GeneratedColumn<double> amountGrams = GeneratedColumn<double>(
+    'amount_grams',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    foodId,
+    timeOfDay,
+    amountGrams,
+    name,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'feeding_schedules';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<FeedingSchedule> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pet_id')) {
+      context.handle(
+        _petIdMeta,
+        petId.isAcceptableOrUnknown(data['pet_id']!, _petIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_petIdMeta);
+    }
+    if (data.containsKey('food_id')) {
+      context.handle(
+        _foodIdMeta,
+        foodId.isAcceptableOrUnknown(data['food_id']!, _foodIdMeta),
+      );
+    }
+    if (data.containsKey('time_of_day')) {
+      context.handle(
+        _timeOfDayMeta,
+        timeOfDay.isAcceptableOrUnknown(data['time_of_day']!, _timeOfDayMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_timeOfDayMeta);
+    }
+    if (data.containsKey('amount_grams')) {
+      context.handle(
+        _amountGramsMeta,
+        amountGrams.isAcceptableOrUnknown(
+          data['amount_grams']!,
+          _amountGramsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_amountGramsMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  FeedingSchedule map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return FeedingSchedule(
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      foodId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}food_id'],
+      ),
+      timeOfDay:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}time_of_day'],
+          )!,
+      amountGrams:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.double,
+            data['${effectivePrefix}amount_grams'],
+          )!,
+      name:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}name'],
+          )!,
+    );
+  }
+
+  @override
+  $FeedingSchedulesTable createAlias(String alias) {
+    return $FeedingSchedulesTable(attachedDatabase, alias);
+  }
+}
+
+class FeedingSchedule extends DataClass implements Insertable<FeedingSchedule> {
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final String id;
+  final String petId;
+  final String? foodId;
+  final String timeOfDay;
+  final double amountGrams;
+  final String name;
+  const FeedingSchedule({
+    required this.createdAt,
+    required this.updatedAt,
+    required this.id,
+    required this.petId,
+    this.foodId,
+    required this.timeOfDay,
+    required this.amountGrams,
+    required this.name,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['id'] = Variable<String>(id);
+    map['pet_id'] = Variable<String>(petId);
+    if (!nullToAbsent || foodId != null) {
+      map['food_id'] = Variable<String>(foodId);
+    }
+    map['time_of_day'] = Variable<String>(timeOfDay);
+    map['amount_grams'] = Variable<double>(amountGrams);
+    map['name'] = Variable<String>(name);
+    return map;
+  }
+
+  FeedingSchedulesCompanion toCompanion(bool nullToAbsent) {
+    return FeedingSchedulesCompanion(
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      id: Value(id),
+      petId: Value(petId),
+      foodId:
+          foodId == null && nullToAbsent ? const Value.absent() : Value(foodId),
+      timeOfDay: Value(timeOfDay),
+      amountGrams: Value(amountGrams),
+      name: Value(name),
+    );
+  }
+
+  factory FeedingSchedule.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return FeedingSchedule(
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      id: serializer.fromJson<String>(json['id']),
+      petId: serializer.fromJson<String>(json['petId']),
+      foodId: serializer.fromJson<String?>(json['foodId']),
+      timeOfDay: serializer.fromJson<String>(json['timeOfDay']),
+      amountGrams: serializer.fromJson<double>(json['amountGrams']),
+      name: serializer.fromJson<String>(json['name']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'id': serializer.toJson<String>(id),
+      'petId': serializer.toJson<String>(petId),
+      'foodId': serializer.toJson<String?>(foodId),
+      'timeOfDay': serializer.toJson<String>(timeOfDay),
+      'amountGrams': serializer.toJson<double>(amountGrams),
+      'name': serializer.toJson<String>(name),
+    };
+  }
+
+  FeedingSchedule copyWith({
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? id,
+    String? petId,
+    Value<String?> foodId = const Value.absent(),
+    String? timeOfDay,
+    double? amountGrams,
+    String? name,
+  }) => FeedingSchedule(
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    id: id ?? this.id,
+    petId: petId ?? this.petId,
+    foodId: foodId.present ? foodId.value : this.foodId,
+    timeOfDay: timeOfDay ?? this.timeOfDay,
+    amountGrams: amountGrams ?? this.amountGrams,
+    name: name ?? this.name,
+  );
+  FeedingSchedule copyWithCompanion(FeedingSchedulesCompanion data) {
+    return FeedingSchedule(
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      id: data.id.present ? data.id.value : this.id,
+      petId: data.petId.present ? data.petId.value : this.petId,
+      foodId: data.foodId.present ? data.foodId.value : this.foodId,
+      timeOfDay: data.timeOfDay.present ? data.timeOfDay.value : this.timeOfDay,
+      amountGrams:
+          data.amountGrams.present ? data.amountGrams.value : this.amountGrams,
+      name: data.name.present ? data.name.value : this.name,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FeedingSchedule(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('foodId: $foodId, ')
+          ..write('timeOfDay: $timeOfDay, ')
+          ..write('amountGrams: $amountGrams, ')
+          ..write('name: $name')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    foodId,
+    timeOfDay,
+    amountGrams,
+    name,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is FeedingSchedule &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.id == this.id &&
+          other.petId == this.petId &&
+          other.foodId == this.foodId &&
+          other.timeOfDay == this.timeOfDay &&
+          other.amountGrams == this.amountGrams &&
+          other.name == this.name);
+}
+
+class FeedingSchedulesCompanion extends UpdateCompanion<FeedingSchedule> {
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<String> id;
+  final Value<String> petId;
+  final Value<String?> foodId;
+  final Value<String> timeOfDay;
+  final Value<double> amountGrams;
+  final Value<String> name;
+  final Value<int> rowid;
+  const FeedingSchedulesCompanion({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.id = const Value.absent(),
+    this.petId = const Value.absent(),
+    this.foodId = const Value.absent(),
+    this.timeOfDay = const Value.absent(),
+    this.amountGrams = const Value.absent(),
+    this.name = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  FeedingSchedulesCompanion.insert({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    required String id,
+    required String petId,
+    this.foodId = const Value.absent(),
+    required String timeOfDay,
+    required double amountGrams,
+    required String name,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       petId = Value(petId),
+       timeOfDay = Value(timeOfDay),
+       amountGrams = Value(amountGrams),
+       name = Value(name);
+  static Insertable<FeedingSchedule> custom({
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<String>? id,
+    Expression<String>? petId,
+    Expression<String>? foodId,
+    Expression<String>? timeOfDay,
+    Expression<double>? amountGrams,
+    Expression<String>? name,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (id != null) 'id': id,
+      if (petId != null) 'pet_id': petId,
+      if (foodId != null) 'food_id': foodId,
+      if (timeOfDay != null) 'time_of_day': timeOfDay,
+      if (amountGrams != null) 'amount_grams': amountGrams,
+      if (name != null) 'name': name,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  FeedingSchedulesCompanion copyWith({
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<String>? id,
+    Value<String>? petId,
+    Value<String?>? foodId,
+    Value<String>? timeOfDay,
+    Value<double>? amountGrams,
+    Value<String>? name,
+    Value<int>? rowid,
+  }) {
+    return FeedingSchedulesCompanion(
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      id: id ?? this.id,
+      petId: petId ?? this.petId,
+      foodId: foodId ?? this.foodId,
+      timeOfDay: timeOfDay ?? this.timeOfDay,
+      amountGrams: amountGrams ?? this.amountGrams,
+      name: name ?? this.name,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (petId.present) {
+      map['pet_id'] = Variable<String>(petId.value);
+    }
+    if (foodId.present) {
+      map['food_id'] = Variable<String>(foodId.value);
+    }
+    if (timeOfDay.present) {
+      map['time_of_day'] = Variable<String>(timeOfDay.value);
+    }
+    if (amountGrams.present) {
+      map['amount_grams'] = Variable<double>(amountGrams.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FeedingSchedulesCompanion(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('foodId: $foodId, ')
+          ..write('timeOfDay: $timeOfDay, ')
+          ..write('amountGrams: $amountGrams, ')
+          ..write('name: $name, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $GroomingLogsTable extends GroomingLogs
+    with TableInfo<$GroomingLogsTable, GroomingLog> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $GroomingLogsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _petIdMeta = const VerificationMeta('petId');
+  @override
+  late final GeneratedColumn<String> petId = GeneratedColumn<String>(
+    'pet_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _groomingTypeMeta = const VerificationMeta(
+    'groomingType',
+  );
+  @override
+  late final GeneratedColumn<String> groomingType = GeneratedColumn<String>(
+    'grooming_type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<DateTime> date = GeneratedColumn<DateTime>(
+    'date',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _groomerNameMeta = const VerificationMeta(
+    'groomerName',
+  );
+  @override
+  late final GeneratedColumn<String> groomerName = GeneratedColumn<String>(
+    'groomer_name',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _costMeta = const VerificationMeta('cost');
+  @override
+  late final GeneratedColumn<double> cost = GeneratedColumn<double>(
+    'cost',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _nextDueDateMeta = const VerificationMeta(
+    'nextDueDate',
+  );
+  @override
+  late final GeneratedColumn<DateTime> nextDueDate = GeneratedColumn<DateTime>(
+    'next_due_date',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    groomingType,
+    date,
+    groomerName,
+    cost,
+    notes,
+    nextDueDate,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'grooming_logs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<GroomingLog> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pet_id')) {
+      context.handle(
+        _petIdMeta,
+        petId.isAcceptableOrUnknown(data['pet_id']!, _petIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_petIdMeta);
+    }
+    if (data.containsKey('grooming_type')) {
+      context.handle(
+        _groomingTypeMeta,
+        groomingType.isAcceptableOrUnknown(
+          data['grooming_type']!,
+          _groomingTypeMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_groomingTypeMeta);
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+        _dateMeta,
+        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    if (data.containsKey('groomer_name')) {
+      context.handle(
+        _groomerNameMeta,
+        groomerName.isAcceptableOrUnknown(
+          data['groomer_name']!,
+          _groomerNameMeta,
+        ),
+      );
+    }
+    if (data.containsKey('cost')) {
+      context.handle(
+        _costMeta,
+        cost.isAcceptableOrUnknown(data['cost']!, _costMeta),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    if (data.containsKey('next_due_date')) {
+      context.handle(
+        _nextDueDateMeta,
+        nextDueDate.isAcceptableOrUnknown(
+          data['next_due_date']!,
+          _nextDueDateMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  GroomingLog map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return GroomingLog(
+      createdAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}created_at'],
+          )!,
+      updatedAt:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}updated_at'],
+          )!,
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}id'],
+          )!,
+      petId:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}pet_id'],
+          )!,
+      groomingType:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}grooming_type'],
+          )!,
+      date:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}date'],
+          )!,
+      groomerName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}groomer_name'],
+      ),
+      cost: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}cost'],
+      ),
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+      nextDueDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}next_due_date'],
+      ),
+    );
+  }
+
+  @override
+  $GroomingLogsTable createAlias(String alias) {
+    return $GroomingLogsTable(attachedDatabase, alias);
+  }
+}
+
+class GroomingLog extends DataClass implements Insertable<GroomingLog> {
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final String id;
+  final String petId;
+  final String groomingType;
+  final DateTime date;
+  final String? groomerName;
+  final double? cost;
+  final String? notes;
+  final DateTime? nextDueDate;
+  const GroomingLog({
+    required this.createdAt,
+    required this.updatedAt,
+    required this.id,
+    required this.petId,
+    required this.groomingType,
+    required this.date,
+    this.groomerName,
+    this.cost,
+    this.notes,
+    this.nextDueDate,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['id'] = Variable<String>(id);
+    map['pet_id'] = Variable<String>(petId);
+    map['grooming_type'] = Variable<String>(groomingType);
+    map['date'] = Variable<DateTime>(date);
+    if (!nullToAbsent || groomerName != null) {
+      map['groomer_name'] = Variable<String>(groomerName);
+    }
+    if (!nullToAbsent || cost != null) {
+      map['cost'] = Variable<double>(cost);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    if (!nullToAbsent || nextDueDate != null) {
+      map['next_due_date'] = Variable<DateTime>(nextDueDate);
+    }
+    return map;
+  }
+
+  GroomingLogsCompanion toCompanion(bool nullToAbsent) {
+    return GroomingLogsCompanion(
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      id: Value(id),
+      petId: Value(petId),
+      groomingType: Value(groomingType),
+      date: Value(date),
+      groomerName:
+          groomerName == null && nullToAbsent
+              ? const Value.absent()
+              : Value(groomerName),
+      cost: cost == null && nullToAbsent ? const Value.absent() : Value(cost),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
+      nextDueDate:
+          nextDueDate == null && nullToAbsent
+              ? const Value.absent()
+              : Value(nextDueDate),
+    );
+  }
+
+  factory GroomingLog.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return GroomingLog(
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      id: serializer.fromJson<String>(json['id']),
+      petId: serializer.fromJson<String>(json['petId']),
+      groomingType: serializer.fromJson<String>(json['groomingType']),
+      date: serializer.fromJson<DateTime>(json['date']),
+      groomerName: serializer.fromJson<String?>(json['groomerName']),
+      cost: serializer.fromJson<double?>(json['cost']),
+      notes: serializer.fromJson<String?>(json['notes']),
+      nextDueDate: serializer.fromJson<DateTime?>(json['nextDueDate']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'id': serializer.toJson<String>(id),
+      'petId': serializer.toJson<String>(petId),
+      'groomingType': serializer.toJson<String>(groomingType),
+      'date': serializer.toJson<DateTime>(date),
+      'groomerName': serializer.toJson<String?>(groomerName),
+      'cost': serializer.toJson<double?>(cost),
+      'notes': serializer.toJson<String?>(notes),
+      'nextDueDate': serializer.toJson<DateTime?>(nextDueDate),
+    };
+  }
+
+  GroomingLog copyWith({
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? id,
+    String? petId,
+    String? groomingType,
+    DateTime? date,
+    Value<String?> groomerName = const Value.absent(),
+    Value<double?> cost = const Value.absent(),
+    Value<String?> notes = const Value.absent(),
+    Value<DateTime?> nextDueDate = const Value.absent(),
+  }) => GroomingLog(
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    id: id ?? this.id,
+    petId: petId ?? this.petId,
+    groomingType: groomingType ?? this.groomingType,
+    date: date ?? this.date,
+    groomerName: groomerName.present ? groomerName.value : this.groomerName,
+    cost: cost.present ? cost.value : this.cost,
+    notes: notes.present ? notes.value : this.notes,
+    nextDueDate: nextDueDate.present ? nextDueDate.value : this.nextDueDate,
+  );
+  GroomingLog copyWithCompanion(GroomingLogsCompanion data) {
+    return GroomingLog(
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      id: data.id.present ? data.id.value : this.id,
+      petId: data.petId.present ? data.petId.value : this.petId,
+      groomingType:
+          data.groomingType.present
+              ? data.groomingType.value
+              : this.groomingType,
+      date: data.date.present ? data.date.value : this.date,
+      groomerName:
+          data.groomerName.present ? data.groomerName.value : this.groomerName,
+      cost: data.cost.present ? data.cost.value : this.cost,
+      notes: data.notes.present ? data.notes.value : this.notes,
+      nextDueDate:
+          data.nextDueDate.present ? data.nextDueDate.value : this.nextDueDate,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GroomingLog(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('groomingType: $groomingType, ')
+          ..write('date: $date, ')
+          ..write('groomerName: $groomerName, ')
+          ..write('cost: $cost, ')
+          ..write('notes: $notes, ')
+          ..write('nextDueDate: $nextDueDate')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    createdAt,
+    updatedAt,
+    id,
+    petId,
+    groomingType,
+    date,
+    groomerName,
+    cost,
+    notes,
+    nextDueDate,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is GroomingLog &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.id == this.id &&
+          other.petId == this.petId &&
+          other.groomingType == this.groomingType &&
+          other.date == this.date &&
+          other.groomerName == this.groomerName &&
+          other.cost == this.cost &&
+          other.notes == this.notes &&
+          other.nextDueDate == this.nextDueDate);
+}
+
+class GroomingLogsCompanion extends UpdateCompanion<GroomingLog> {
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<String> id;
+  final Value<String> petId;
+  final Value<String> groomingType;
+  final Value<DateTime> date;
+  final Value<String?> groomerName;
+  final Value<double?> cost;
+  final Value<String?> notes;
+  final Value<DateTime?> nextDueDate;
+  final Value<int> rowid;
+  const GroomingLogsCompanion({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.id = const Value.absent(),
+    this.petId = const Value.absent(),
+    this.groomingType = const Value.absent(),
+    this.date = const Value.absent(),
+    this.groomerName = const Value.absent(),
+    this.cost = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.nextDueDate = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  GroomingLogsCompanion.insert({
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    required String id,
+    required String petId,
+    required String groomingType,
+    required DateTime date,
+    this.groomerName = const Value.absent(),
+    this.cost = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.nextDueDate = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       petId = Value(petId),
+       groomingType = Value(groomingType),
+       date = Value(date);
+  static Insertable<GroomingLog> custom({
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<String>? id,
+    Expression<String>? petId,
+    Expression<String>? groomingType,
+    Expression<DateTime>? date,
+    Expression<String>? groomerName,
+    Expression<double>? cost,
+    Expression<String>? notes,
+    Expression<DateTime>? nextDueDate,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (id != null) 'id': id,
+      if (petId != null) 'pet_id': petId,
+      if (groomingType != null) 'grooming_type': groomingType,
+      if (date != null) 'date': date,
+      if (groomerName != null) 'groomer_name': groomerName,
+      if (cost != null) 'cost': cost,
+      if (notes != null) 'notes': notes,
+      if (nextDueDate != null) 'next_due_date': nextDueDate,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  GroomingLogsCompanion copyWith({
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<String>? id,
+    Value<String>? petId,
+    Value<String>? groomingType,
+    Value<DateTime>? date,
+    Value<String?>? groomerName,
+    Value<double?>? cost,
+    Value<String?>? notes,
+    Value<DateTime?>? nextDueDate,
+    Value<int>? rowid,
+  }) {
+    return GroomingLogsCompanion(
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      id: id ?? this.id,
+      petId: petId ?? this.petId,
+      groomingType: groomingType ?? this.groomingType,
+      date: date ?? this.date,
+      groomerName: groomerName ?? this.groomerName,
+      cost: cost ?? this.cost,
+      notes: notes ?? this.notes,
+      nextDueDate: nextDueDate ?? this.nextDueDate,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (petId.present) {
+      map['pet_id'] = Variable<String>(petId.value);
+    }
+    if (groomingType.present) {
+      map['grooming_type'] = Variable<String>(groomingType.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<DateTime>(date.value);
+    }
+    if (groomerName.present) {
+      map['groomer_name'] = Variable<String>(groomerName.value);
+    }
+    if (cost.present) {
+      map['cost'] = Variable<double>(cost.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (nextDueDate.present) {
+      map['next_due_date'] = Variable<DateTime>(nextDueDate.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GroomingLogsCompanion(')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('id: $id, ')
+          ..write('petId: $petId, ')
+          ..write('groomingType: $groomingType, ')
+          ..write('date: $date, ')
+          ..write('groomerName: $groomerName, ')
+          ..write('cost: $cost, ')
+          ..write('notes: $notes, ')
+          ..write('nextDueDate: $nextDueDate, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -13647,6 +15866,14 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $BackupRecordsTable backupRecords = $BackupRecordsTable(this);
   late final $MemoriesTable memories = $MemoriesTable(this);
   late final $DewormingsTable dewormings = $DewormingsTable(this);
+  late final $FoodInventoriesTable foodInventories = $FoodInventoriesTable(
+    this,
+  );
+  late final $MealLogsTable mealLogs = $MealLogsTable(this);
+  late final $FeedingSchedulesTable feedingSchedules = $FeedingSchedulesTable(
+    this,
+  );
+  late final $GroomingLogsTable groomingLogs = $GroomingLogsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -13673,6 +15900,10 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     backupRecords,
     memories,
     dewormings,
+    foodInventories,
+    mealLogs,
+    feedingSchedules,
+    groomingLogs,
   ];
 }
 
@@ -20393,6 +22624,1152 @@ typedef $$DewormingsTableProcessedTableManager =
       Deworming,
       PrefetchHooks Function()
     >;
+typedef $$FoodInventoriesTableCreateCompanionBuilder =
+    FoodInventoriesCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      required String id,
+      required String petId,
+      required String brand,
+      required String name,
+      required double totalWeightGrams,
+      required double remainingWeightGrams,
+      Value<DateTime?> expiryDate,
+      Value<int> rowid,
+    });
+typedef $$FoodInventoriesTableUpdateCompanionBuilder =
+    FoodInventoriesCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<String> id,
+      Value<String> petId,
+      Value<String> brand,
+      Value<String> name,
+      Value<double> totalWeightGrams,
+      Value<double> remainingWeightGrams,
+      Value<DateTime?> expiryDate,
+      Value<int> rowid,
+    });
+
+class $$FoodInventoriesTableFilterComposer
+    extends Composer<_$AppDatabase, $FoodInventoriesTable> {
+  $$FoodInventoriesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get brand => $composableBuilder(
+    column: $table.brand,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get totalWeightGrams => $composableBuilder(
+    column: $table.totalWeightGrams,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get remainingWeightGrams => $composableBuilder(
+    column: $table.remainingWeightGrams,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get expiryDate => $composableBuilder(
+    column: $table.expiryDate,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$FoodInventoriesTableOrderingComposer
+    extends Composer<_$AppDatabase, $FoodInventoriesTable> {
+  $$FoodInventoriesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get brand => $composableBuilder(
+    column: $table.brand,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get totalWeightGrams => $composableBuilder(
+    column: $table.totalWeightGrams,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get remainingWeightGrams => $composableBuilder(
+    column: $table.remainingWeightGrams,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get expiryDate => $composableBuilder(
+    column: $table.expiryDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$FoodInventoriesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $FoodInventoriesTable> {
+  $$FoodInventoriesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
+  GeneratedColumn<String> get brand =>
+      $composableBuilder(column: $table.brand, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<double> get totalWeightGrams => $composableBuilder(
+    column: $table.totalWeightGrams,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get remainingWeightGrams => $composableBuilder(
+    column: $table.remainingWeightGrams,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get expiryDate => $composableBuilder(
+    column: $table.expiryDate,
+    builder: (column) => column,
+  );
+}
+
+class $$FoodInventoriesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $FoodInventoriesTable,
+          FoodInventory,
+          $$FoodInventoriesTableFilterComposer,
+          $$FoodInventoriesTableOrderingComposer,
+          $$FoodInventoriesTableAnnotationComposer,
+          $$FoodInventoriesTableCreateCompanionBuilder,
+          $$FoodInventoriesTableUpdateCompanionBuilder,
+          (
+            FoodInventory,
+            BaseReferences<_$AppDatabase, $FoodInventoriesTable, FoodInventory>,
+          ),
+          FoodInventory,
+          PrefetchHooks Function()
+        > {
+  $$FoodInventoriesTableTableManager(
+    _$AppDatabase db,
+    $FoodInventoriesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer:
+              () =>
+                  $$FoodInventoriesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$FoodInventoriesTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer:
+              () => $$FoodInventoriesTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<String> id = const Value.absent(),
+                Value<String> petId = const Value.absent(),
+                Value<String> brand = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<double> totalWeightGrams = const Value.absent(),
+                Value<double> remainingWeightGrams = const Value.absent(),
+                Value<DateTime?> expiryDate = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => FoodInventoriesCompanion(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                brand: brand,
+                name: name,
+                totalWeightGrams: totalWeightGrams,
+                remainingWeightGrams: remainingWeightGrams,
+                expiryDate: expiryDate,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                required String id,
+                required String petId,
+                required String brand,
+                required String name,
+                required double totalWeightGrams,
+                required double remainingWeightGrams,
+                Value<DateTime?> expiryDate = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => FoodInventoriesCompanion.insert(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                brand: brand,
+                name: name,
+                totalWeightGrams: totalWeightGrams,
+                remainingWeightGrams: remainingWeightGrams,
+                expiryDate: expiryDate,
+                rowid: rowid,
+              ),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$FoodInventoriesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $FoodInventoriesTable,
+      FoodInventory,
+      $$FoodInventoriesTableFilterComposer,
+      $$FoodInventoriesTableOrderingComposer,
+      $$FoodInventoriesTableAnnotationComposer,
+      $$FoodInventoriesTableCreateCompanionBuilder,
+      $$FoodInventoriesTableUpdateCompanionBuilder,
+      (
+        FoodInventory,
+        BaseReferences<_$AppDatabase, $FoodInventoriesTable, FoodInventory>,
+      ),
+      FoodInventory,
+      PrefetchHooks Function()
+    >;
+typedef $$MealLogsTableCreateCompanionBuilder =
+    MealLogsCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      required String id,
+      required String petId,
+      Value<String?> foodId,
+      required DateTime fedAt,
+      required double amountGrams,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+typedef $$MealLogsTableUpdateCompanionBuilder =
+    MealLogsCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<String> id,
+      Value<String> petId,
+      Value<String?> foodId,
+      Value<DateTime> fedAt,
+      Value<double> amountGrams,
+      Value<String?> notes,
+      Value<int> rowid,
+    });
+
+class $$MealLogsTableFilterComposer
+    extends Composer<_$AppDatabase, $MealLogsTable> {
+  $$MealLogsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get foodId => $composableBuilder(
+    column: $table.foodId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get fedAt => $composableBuilder(
+    column: $table.fedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get amountGrams => $composableBuilder(
+    column: $table.amountGrams,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$MealLogsTableOrderingComposer
+    extends Composer<_$AppDatabase, $MealLogsTable> {
+  $$MealLogsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get foodId => $composableBuilder(
+    column: $table.foodId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get fedAt => $composableBuilder(
+    column: $table.fedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get amountGrams => $composableBuilder(
+    column: $table.amountGrams,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$MealLogsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $MealLogsTable> {
+  $$MealLogsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
+  GeneratedColumn<String> get foodId =>
+      $composableBuilder(column: $table.foodId, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get fedAt =>
+      $composableBuilder(column: $table.fedAt, builder: (column) => column);
+
+  GeneratedColumn<double> get amountGrams => $composableBuilder(
+    column: $table.amountGrams,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+}
+
+class $$MealLogsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $MealLogsTable,
+          MealLog,
+          $$MealLogsTableFilterComposer,
+          $$MealLogsTableOrderingComposer,
+          $$MealLogsTableAnnotationComposer,
+          $$MealLogsTableCreateCompanionBuilder,
+          $$MealLogsTableUpdateCompanionBuilder,
+          (MealLog, BaseReferences<_$AppDatabase, $MealLogsTable, MealLog>),
+          MealLog,
+          PrefetchHooks Function()
+        > {
+  $$MealLogsTableTableManager(_$AppDatabase db, $MealLogsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer:
+              () => $$MealLogsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$MealLogsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () => $$MealLogsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<String> id = const Value.absent(),
+                Value<String> petId = const Value.absent(),
+                Value<String?> foodId = const Value.absent(),
+                Value<DateTime> fedAt = const Value.absent(),
+                Value<double> amountGrams = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MealLogsCompanion(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                foodId: foodId,
+                fedAt: fedAt,
+                amountGrams: amountGrams,
+                notes: notes,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                required String id,
+                required String petId,
+                Value<String?> foodId = const Value.absent(),
+                required DateTime fedAt,
+                required double amountGrams,
+                Value<String?> notes = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MealLogsCompanion.insert(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                foodId: foodId,
+                fedAt: fedAt,
+                amountGrams: amountGrams,
+                notes: notes,
+                rowid: rowid,
+              ),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$MealLogsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $MealLogsTable,
+      MealLog,
+      $$MealLogsTableFilterComposer,
+      $$MealLogsTableOrderingComposer,
+      $$MealLogsTableAnnotationComposer,
+      $$MealLogsTableCreateCompanionBuilder,
+      $$MealLogsTableUpdateCompanionBuilder,
+      (MealLog, BaseReferences<_$AppDatabase, $MealLogsTable, MealLog>),
+      MealLog,
+      PrefetchHooks Function()
+    >;
+typedef $$FeedingSchedulesTableCreateCompanionBuilder =
+    FeedingSchedulesCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      required String id,
+      required String petId,
+      Value<String?> foodId,
+      required String timeOfDay,
+      required double amountGrams,
+      required String name,
+      Value<int> rowid,
+    });
+typedef $$FeedingSchedulesTableUpdateCompanionBuilder =
+    FeedingSchedulesCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<String> id,
+      Value<String> petId,
+      Value<String?> foodId,
+      Value<String> timeOfDay,
+      Value<double> amountGrams,
+      Value<String> name,
+      Value<int> rowid,
+    });
+
+class $$FeedingSchedulesTableFilterComposer
+    extends Composer<_$AppDatabase, $FeedingSchedulesTable> {
+  $$FeedingSchedulesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get foodId => $composableBuilder(
+    column: $table.foodId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get timeOfDay => $composableBuilder(
+    column: $table.timeOfDay,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get amountGrams => $composableBuilder(
+    column: $table.amountGrams,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$FeedingSchedulesTableOrderingComposer
+    extends Composer<_$AppDatabase, $FeedingSchedulesTable> {
+  $$FeedingSchedulesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get foodId => $composableBuilder(
+    column: $table.foodId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get timeOfDay => $composableBuilder(
+    column: $table.timeOfDay,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get amountGrams => $composableBuilder(
+    column: $table.amountGrams,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$FeedingSchedulesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $FeedingSchedulesTable> {
+  $$FeedingSchedulesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
+  GeneratedColumn<String> get foodId =>
+      $composableBuilder(column: $table.foodId, builder: (column) => column);
+
+  GeneratedColumn<String> get timeOfDay =>
+      $composableBuilder(column: $table.timeOfDay, builder: (column) => column);
+
+  GeneratedColumn<double> get amountGrams => $composableBuilder(
+    column: $table.amountGrams,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+}
+
+class $$FeedingSchedulesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $FeedingSchedulesTable,
+          FeedingSchedule,
+          $$FeedingSchedulesTableFilterComposer,
+          $$FeedingSchedulesTableOrderingComposer,
+          $$FeedingSchedulesTableAnnotationComposer,
+          $$FeedingSchedulesTableCreateCompanionBuilder,
+          $$FeedingSchedulesTableUpdateCompanionBuilder,
+          (
+            FeedingSchedule,
+            BaseReferences<
+              _$AppDatabase,
+              $FeedingSchedulesTable,
+              FeedingSchedule
+            >,
+          ),
+          FeedingSchedule,
+          PrefetchHooks Function()
+        > {
+  $$FeedingSchedulesTableTableManager(
+    _$AppDatabase db,
+    $FeedingSchedulesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer:
+              () =>
+                  $$FeedingSchedulesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$FeedingSchedulesTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer:
+              () => $$FeedingSchedulesTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<String> id = const Value.absent(),
+                Value<String> petId = const Value.absent(),
+                Value<String?> foodId = const Value.absent(),
+                Value<String> timeOfDay = const Value.absent(),
+                Value<double> amountGrams = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => FeedingSchedulesCompanion(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                foodId: foodId,
+                timeOfDay: timeOfDay,
+                amountGrams: amountGrams,
+                name: name,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                required String id,
+                required String petId,
+                Value<String?> foodId = const Value.absent(),
+                required String timeOfDay,
+                required double amountGrams,
+                required String name,
+                Value<int> rowid = const Value.absent(),
+              }) => FeedingSchedulesCompanion.insert(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                foodId: foodId,
+                timeOfDay: timeOfDay,
+                amountGrams: amountGrams,
+                name: name,
+                rowid: rowid,
+              ),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$FeedingSchedulesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $FeedingSchedulesTable,
+      FeedingSchedule,
+      $$FeedingSchedulesTableFilterComposer,
+      $$FeedingSchedulesTableOrderingComposer,
+      $$FeedingSchedulesTableAnnotationComposer,
+      $$FeedingSchedulesTableCreateCompanionBuilder,
+      $$FeedingSchedulesTableUpdateCompanionBuilder,
+      (
+        FeedingSchedule,
+        BaseReferences<_$AppDatabase, $FeedingSchedulesTable, FeedingSchedule>,
+      ),
+      FeedingSchedule,
+      PrefetchHooks Function()
+    >;
+typedef $$GroomingLogsTableCreateCompanionBuilder =
+    GroomingLogsCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      required String id,
+      required String petId,
+      required String groomingType,
+      required DateTime date,
+      Value<String?> groomerName,
+      Value<double?> cost,
+      Value<String?> notes,
+      Value<DateTime?> nextDueDate,
+      Value<int> rowid,
+    });
+typedef $$GroomingLogsTableUpdateCompanionBuilder =
+    GroomingLogsCompanion Function({
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<String> id,
+      Value<String> petId,
+      Value<String> groomingType,
+      Value<DateTime> date,
+      Value<String?> groomerName,
+      Value<double?> cost,
+      Value<String?> notes,
+      Value<DateTime?> nextDueDate,
+      Value<int> rowid,
+    });
+
+class $$GroomingLogsTableFilterComposer
+    extends Composer<_$AppDatabase, $GroomingLogsTable> {
+  $$GroomingLogsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get groomingType => $composableBuilder(
+    column: $table.groomingType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get groomerName => $composableBuilder(
+    column: $table.groomerName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get cost => $composableBuilder(
+    column: $table.cost,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get nextDueDate => $composableBuilder(
+    column: $table.nextDueDate,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$GroomingLogsTableOrderingComposer
+    extends Composer<_$AppDatabase, $GroomingLogsTable> {
+  $$GroomingLogsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get petId => $composableBuilder(
+    column: $table.petId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get groomingType => $composableBuilder(
+    column: $table.groomingType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get groomerName => $composableBuilder(
+    column: $table.groomerName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get cost => $composableBuilder(
+    column: $table.cost,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get nextDueDate => $composableBuilder(
+    column: $table.nextDueDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$GroomingLogsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $GroomingLogsTable> {
+  $$GroomingLogsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get petId =>
+      $composableBuilder(column: $table.petId, builder: (column) => column);
+
+  GeneratedColumn<String> get groomingType => $composableBuilder(
+    column: $table.groomingType,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get date =>
+      $composableBuilder(column: $table.date, builder: (column) => column);
+
+  GeneratedColumn<String> get groomerName => $composableBuilder(
+    column: $table.groomerName,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get cost =>
+      $composableBuilder(column: $table.cost, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get nextDueDate => $composableBuilder(
+    column: $table.nextDueDate,
+    builder: (column) => column,
+  );
+}
+
+class $$GroomingLogsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $GroomingLogsTable,
+          GroomingLog,
+          $$GroomingLogsTableFilterComposer,
+          $$GroomingLogsTableOrderingComposer,
+          $$GroomingLogsTableAnnotationComposer,
+          $$GroomingLogsTableCreateCompanionBuilder,
+          $$GroomingLogsTableUpdateCompanionBuilder,
+          (
+            GroomingLog,
+            BaseReferences<_$AppDatabase, $GroomingLogsTable, GroomingLog>,
+          ),
+          GroomingLog,
+          PrefetchHooks Function()
+        > {
+  $$GroomingLogsTableTableManager(_$AppDatabase db, $GroomingLogsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer:
+              () => $$GroomingLogsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer:
+              () => $$GroomingLogsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer:
+              () =>
+                  $$GroomingLogsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<String> id = const Value.absent(),
+                Value<String> petId = const Value.absent(),
+                Value<String> groomingType = const Value.absent(),
+                Value<DateTime> date = const Value.absent(),
+                Value<String?> groomerName = const Value.absent(),
+                Value<double?> cost = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<DateTime?> nextDueDate = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => GroomingLogsCompanion(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                groomingType: groomingType,
+                date: date,
+                groomerName: groomerName,
+                cost: cost,
+                notes: notes,
+                nextDueDate: nextDueDate,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                required String id,
+                required String petId,
+                required String groomingType,
+                required DateTime date,
+                Value<String?> groomerName = const Value.absent(),
+                Value<double?> cost = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<DateTime?> nextDueDate = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => GroomingLogsCompanion.insert(
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                id: id,
+                petId: petId,
+                groomingType: groomingType,
+                date: date,
+                groomerName: groomerName,
+                cost: cost,
+                notes: notes,
+                nextDueDate: nextDueDate,
+                rowid: rowid,
+              ),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$GroomingLogsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $GroomingLogsTable,
+      GroomingLog,
+      $$GroomingLogsTableFilterComposer,
+      $$GroomingLogsTableOrderingComposer,
+      $$GroomingLogsTableAnnotationComposer,
+      $$GroomingLogsTableCreateCompanionBuilder,
+      $$GroomingLogsTableUpdateCompanionBuilder,
+      (
+        GroomingLog,
+        BaseReferences<_$AppDatabase, $GroomingLogsTable, GroomingLog>,
+      ),
+      GroomingLog,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -20444,4 +23821,12 @@ class $AppDatabaseManager {
       $$MemoriesTableTableManager(_db, _db.memories);
   $$DewormingsTableTableManager get dewormings =>
       $$DewormingsTableTableManager(_db, _db.dewormings);
+  $$FoodInventoriesTableTableManager get foodInventories =>
+      $$FoodInventoriesTableTableManager(_db, _db.foodInventories);
+  $$MealLogsTableTableManager get mealLogs =>
+      $$MealLogsTableTableManager(_db, _db.mealLogs);
+  $$FeedingSchedulesTableTableManager get feedingSchedules =>
+      $$FeedingSchedulesTableTableManager(_db, _db.feedingSchedules);
+  $$GroomingLogsTableTableManager get groomingLogs =>
+      $$GroomingLogsTableTableManager(_db, _db.groomingLogs);
 }

@@ -279,6 +279,20 @@ class PetDetailsScreen extends ConsumerWidget {
                             onTap: () => context.push('/pets/$petId/growth'),
                           ),
                           _BentoCard(
+                            title: 'Diet & Food',
+                            subtitle: 'Meals & Inventory',
+                            icon: Icons.restaurant,
+                            color: const Color(0xFFeab308), // Yellow
+                            onTap: () => context.push('/pets/$petId/food'),
+                          ),
+                          _BentoCard(
+                            title: 'Grooming',
+                            subtitle: 'Hygiene & Spas',
+                            icon: Icons.content_cut,
+                            color: const Color(0xFFec4899), // Pink
+                            onTap: () => context.push('/pets/$petId/grooming'),
+                          ),
+                          _BentoCard(
                             title: 'Expenses',
                             subtitle: 'Track costs',
                             icon: Icons.receipt_long,
