@@ -28,7 +28,9 @@ With a stunning **glassmorphic** and **bento-grid UI** inspired by modern design
 - **📸 Memories Gallery:** A Pinterest-style photo grid to save and look back on precious moments with your pets.
 - **💊 Medicines & Reminders:** Log active and past prescriptions with Daily, Weekly, and Monthly recurrence tracking. Keep track of dosages and automatically see them on your calendar.
 - **💉 Vaccinations & Dewormings:** Keep an active log of your pet's health history and view upcoming due dates dynamically inserted into your schedule.
+- **🩺 Emergency & Vet Contacts:** Maintain a dedicated dashboard of Veterinarians, Clinics, and Personal Emergency Contacts. Quickly launch Google Maps directions or dial numbers straight from the app with support for multiple phone numbers per contact.
 - **📈 Growth Tracking:** Monitor your pet's weight over time to ensure they are growing healthy and strong. The pet's main profile automatically syncs to display the latest weight reading.
+- **🥩 Food & Grooming Logs:** Record and manage daily feeding routines, preferred food brands, and grooming sessions. Log events with notes to keep a comprehensive care history.
 - **💰 Expense Management:** Track vet bills, food costs, and toys to stay on top of your pet-care budget.
 - **💾 Secure Backup System:** Easily export your entire local database and images to a secure zip file to share or save to the cloud.
 - **🎨 Glassmorphic UI:** A meticulously crafted, premium user interface featuring soft floating navigation bars, gorgeous gradients, and dynamic theming (Dark & Light mode support).
