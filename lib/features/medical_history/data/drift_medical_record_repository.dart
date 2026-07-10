@@ -4,10 +4,13 @@ import 'package:petly/features/medical_history/domain/medical_record.dart' as do
 import 'package:petly/features/medical_history/domain/medical_record_repository.dart';
 import 'package:uuid/uuid.dart';
 
+import 'package:petly/core/services/media_storage_service.dart';
+
 class DriftMedicalRecordRepository implements MedicalRecordRepository {
-  DriftMedicalRecordRepository(this._db, this._uuid);
+  DriftMedicalRecordRepository(this._db, this._uuid, this._mediaStorage);
   final AppDatabase _db;
   final Uuid _uuid;
+  final MediaStorageService _mediaStorage;
 
   @override
   Stream<List<domain.MedicalRecord>> watchByPet(String petId) {
@@ -26,7 +29,7 @@ class DriftMedicalRecordRepository implements MedicalRecordRepository {
   }
 
   @override
-  Future<void> save({
+  Future<String> save({
     String? id,
     required String petId,
     required String recordType,
@@ -46,9 +49,10 @@ class DriftMedicalRecordRepository implements MedicalRecordRepository {
               ..where((r) => r.id.equals(id)))
             .getSingleOrNull();
     final now = DateTime.now().toUtc();
+    final recordId = id ?? _uuid.v4();
     await _db.into(_db.medicalRecords).insertOnConflictUpdate(
           MedicalRecordsCompanion.insert(
-            id: id ?? _uuid.v4(),
+            id: recordId,
             petId: petId,
             recordType: recordType,
             occurredOn: occurredOn,
@@ -64,6 +68,7 @@ class DriftMedicalRecordRepository implements MedicalRecordRepository {
             updatedAt: Value(now),
           ),
         );
+    return recordId;
   }
 
   @override
@@ -86,6 +91,46 @@ class DriftMedicalRecordRepository implements MedicalRecordRepository {
         createdAt: r.createdAt,
         updatedAt: r.updatedAt,
       );
+
+  @override
+  Stream<List<domain.MedicalRecordAttachment>> watchAttachments(String recordId) {
+    final query = _db.select(_db.recordAttachments).join([
+      innerJoin(_db.fileAssets, _db.fileAssets.id.equalsExp(_db.recordAttachments.fileId)),
+    ])..where(_db.recordAttachments.entityType.equals('MedicalRecord') & _db.recordAttachments.entityId.equals(recordId));
+    
+    return query.watch().map((rows) {
+      return rows.map((row) {
+        final attachment = row.readTable(_db.recordAttachments);
+        final fileAsset = row.readTable(_db.fileAssets);
+        return domain.MedicalRecordAttachment(
+          id: attachment.id,
+          medicalRecordId: attachment.entityId,
+          fileAssetId: attachment.fileId,
+          caption: attachment.caption,
+          absolutePath: fileAsset.relativePath,
+        );
+      }).toList();
+    });
+  }
+
+  @override
+  Future<void> addAttachment(String recordId, String sourceFilePath, String documentType) async {
+    final fileAssetId = await _mediaStorage.saveMediaFile(sourceFilePath, category: 'medical_documents');
+    await _db.into(_db.recordAttachments).insert(
+      RecordAttachmentsCompanion.insert(
+        id: _uuid.v4(),
+        fileId: fileAssetId,
+        entityType: 'MedicalRecord',
+        entityId: recordId,
+        caption: Value(documentType),
+      )
+    );
+  }
+
+  @override
+  Future<void> deleteAttachment(String attachmentId) async {
+    await (_db.delete(_db.recordAttachments)..where((t) => t.id.equals(attachmentId))).go();
+  }
 
   String? _c(String? v) {
     final s = v?.trim();

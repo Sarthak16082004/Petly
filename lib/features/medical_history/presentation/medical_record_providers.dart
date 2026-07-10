@@ -4,11 +4,18 @@ import 'package:petly/features/medical_history/data/drift_medical_record_reposit
 import 'package:petly/features/medical_history/domain/medical_record.dart';
 import 'package:petly/features/medical_history/domain/medical_record_repository.dart';
 
+import 'package:petly/core/services/media_storage_service.dart';
+
 final medicalRecordRepositoryProvider = Provider<MedicalRecordRepository>((ref) {
   return DriftMedicalRecordRepository(
     ref.watch(databaseProvider),
     ref.watch(uuidProvider),
+    ref.watch(mediaStorageServiceProvider),
   );
+});
+
+final medicalRecordAttachmentsProvider = StreamProvider.family<List<MedicalRecordAttachment>, String>((ref, recordId) {
+  return ref.watch(medicalRecordRepositoryProvider).watchAttachments(recordId);
 });
 
 final medicalRecordsByPetProvider =

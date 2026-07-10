@@ -3,7 +3,7 @@ import 'package:petly/features/medical_history/domain/medical_record.dart';
 abstract interface class MedicalRecordRepository {
   Stream<List<MedicalRecord>> watchByPet(String petId);
   Future<MedicalRecord?> getById(String id);
-  Future<void> save({
+  Future<String> save({
     String? id,
     required String petId,
     required String recordType,
@@ -18,4 +18,8 @@ abstract interface class MedicalRecordRepository {
     String? notes,
   });
   Future<void> delete(String id);
+  
+  Stream<List<MedicalRecordAttachment>> watchAttachments(String recordId);
+  Future<void> addAttachment(String recordId, String sourceFilePath, String documentType);
+  Future<void> deleteAttachment(String attachmentId);
 }

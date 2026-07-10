@@ -31,3 +31,19 @@ class MedicalRecord {
   final DateTime createdAt;
   final DateTime updatedAt;
 }
+
+class MedicalRecordAttachment {
+  const MedicalRecordAttachment({
+    required this.id,
+    required this.medicalRecordId,
+    required this.fileAssetId,
+    required this.caption,
+    required this.absolutePath,
+  });
+
+  final String id;
+  final String medicalRecordId;
+  final String fileAssetId;
+  final String? caption; // e.g. "Prescription", "Bill"
+  final String absolutePath;
+}

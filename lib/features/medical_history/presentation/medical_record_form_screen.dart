@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:petly/app/theme/app_theme.dart';
 import 'package:petly/core/extensions/extensions.dart';
@@ -26,6 +28,8 @@ class _State extends ConsumerState<MedicalRecordFormScreen> {
   final _vet = TextEditingController();
   final _clinic = TextEditingController();
   final _notes = TextEditingController();
+
+  final List<({String path, String caption})> _pendingAttachments = [];
 
   DateTime _occurredOn = DateTime.now();
   DateTime? _followUpOn;
@@ -77,7 +81,7 @@ class _State extends ConsumerState<MedicalRecordFormScreen> {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _saving = true);
     try {
-      await ref.read(medicalRecordRepositoryProvider).save(
+      final id = await ref.read(medicalRecordRepositoryProvider).save(
             id: widget.recordId,
             petId: widget.petId,
             recordType: _recordType,
@@ -91,6 +95,11 @@ class _State extends ConsumerState<MedicalRecordFormScreen> {
             followUpOn: _followUpOn,
             notes: _notes.text.nullIfEmpty,
           );
+      
+      for (final a in _pendingAttachments) {
+        await ref.read(medicalRecordRepositoryProvider).addAttachment(id, a.path, a.caption);
+      }
+      
       if (mounted) context.pop();
     } catch (_) {
       if (!mounted) return;
@@ -100,6 +109,7 @@ class _State extends ConsumerState<MedicalRecordFormScreen> {
       if (mounted) setState(() => _saving = false);
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -230,6 +240,10 @@ class _State extends ConsumerState<MedicalRecordFormScreen> {
                   prefixIcon: Icon(Icons.notes_rounded),
                 ),
               ),
+              const SizedBox(height: 20),
+              _Divider('Attached Documents'),
+              const SizedBox(height: 14),
+              _buildAttachmentsSection(isEdit),
               const SizedBox(height: 28),
               FilledButton(
                 onPressed: _saving ? null : _save,
@@ -241,6 +255,109 @@ class _State extends ConsumerState<MedicalRecordFormScreen> {
         ),
       ),
     );
+  }
+
+  Widget _buildAttachmentsSection(bool isEdit) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (isEdit)
+          ref.watch(medicalRecordAttachmentsProvider(widget.recordId!)).when(
+            data: (attachments) {
+              if (attachments.isEmpty) return const SizedBox.shrink();
+              return Column(
+                children: attachments.map((a) => ListTile(
+                  leading: const Icon(Icons.image_outlined, color: AppTheme.medicalColor),
+                  title: Text(a.caption ?? 'Document'),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                        clipBehavior: Clip.antiAlias,
+                        child: Stack(
+                          children: [
+                            InteractiveViewer(
+                              child: Image.file(File(a.absolutePath)),
+                            ),
+                            Positioned(
+                              top: 8,
+                              right: 8,
+                              child: IconButton(
+                                icon: const Icon(Icons.close, color: Colors.white, shadows: [Shadow(blurRadius: 10, color: Colors.black)]),
+                                onPressed: () => Navigator.pop(context),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete_outline_rounded, color: Colors.red),
+                    onPressed: () async {
+                      await ref.read(medicalRecordRepositoryProvider).deleteAttachment(a.id);
+                      ref.invalidate(medicalRecordAttachmentsProvider(widget.recordId!));
+                    },
+                  ),
+                )).toList(),
+              );
+            },
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (e, _) => const Text('Failed to load documents'),
+          ),
+        
+        if (_pendingAttachments.isNotEmpty)
+          Column(
+            children: _pendingAttachments.map((a) => ListTile(
+              leading: const Icon(Icons.image_outlined, color: Colors.orange),
+              title: Text(a.caption),
+              subtitle: const Text('Pending upload'),
+              trailing: IconButton(
+                icon: const Icon(Icons.close_rounded),
+                onPressed: () => setState(() => _pendingAttachments.remove(a)),
+              ),
+            )).toList(),
+          ),
+          
+        const SizedBox(height: 8),
+        OutlinedButton.icon(
+          onPressed: _pickDocument,
+          icon: const Icon(Icons.add_photo_alternate_outlined),
+          label: const Text('Add Document Photo'),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _pickDocument() async {
+    final type = await showModalBottomSheet<String>(
+      context: context,
+      builder: (context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const ListTile(title: Text('Select Document Type', style: TextStyle(fontWeight: FontWeight.bold))),
+              ListTile(title: const Text('Prescription'), onTap: () => context.pop('Prescription')),
+              ListTile(title: const Text('Bill / Invoice'), onTap: () => context.pop('Bill / Invoice')),
+              ListTile(title: const Text('Lab Report'), onTap: () => context.pop('Lab Report')),
+              ListTile(title: const Text('X-Ray'), onTap: () => context.pop('X-Ray')),
+              ListTile(title: const Text('Other'), onTap: () => context.pop('Other')),
+            ],
+          ),
+        );
+      },
+    );
+
+    if (type == null) return;
+
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(source: ImageSource.gallery);
+    if (picked != null) {
+      setState(() {
+        _pendingAttachments.add((path: picked.path, caption: type));
+      });
+    }
   }
 
   Future<void> _delete(BuildContext ctx) async {
