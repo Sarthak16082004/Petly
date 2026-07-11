@@ -16,6 +16,8 @@ import 'package:petly/features/grooming/presentation/grooming_screen.dart';
 import 'package:petly/features/growth/presentation/growth_screen.dart';
 import 'package:petly/features/medical_history/presentation/medical_history_screen.dart';
 import 'package:petly/features/medical_history/presentation/medical_record_form_screen.dart';
+import 'package:petly/features/breeding/presentation/breeding_records_screen.dart';
+import 'package:petly/features/breeding/presentation/breeding_record_form_screen.dart';
 import 'package:petly/features/onboarding/presentation/bootstrap_screen.dart';
 import 'package:petly/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:petly/features/pets/presentation/pet_details_screen.dart';
@@ -144,7 +146,31 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                       ],
                     ),
 
-                        // ID Card
+                        // Breeding records
+                    GoRoute(
+                      path: 'breeding',
+                      parentNavigatorKey: rootNavigatorKey,
+                      builder: (ctx, s) => BreedingRecordsScreen(
+                          petId: s.pathParameters['petId']!),
+                      routes: [
+                        GoRoute(
+                          path: 'new',
+                          parentNavigatorKey: rootNavigatorKey,
+                          builder: (ctx, s) => BreedingRecordFormScreen(
+                              petId: s.pathParameters['petId']!),
+                        ),
+                        GoRoute(
+                          path: ':recordId',
+                          parentNavigatorKey: rootNavigatorKey,
+                          builder: (ctx, s) => BreedingRecordFormScreen(
+                            petId: s.pathParameters['petId']!,
+                            recordId: s.pathParameters['recordId'],
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // ID Card
                         GoRoute(
                           path: 'id',
                           parentNavigatorKey: rootNavigatorKey,

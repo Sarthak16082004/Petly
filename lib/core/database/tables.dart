@@ -207,6 +207,53 @@ class RecordAttachments extends Table with TimestampColumns {
   Set<Column<Object>> get primaryKey => {id};
 }
 
+class BreedingRecords extends Table with TimestampColumns {
+  TextColumn get id => text()();
+  
+  // The Pet this record was created under (can be male or female)
+  TextColumn get petId => text().references(Pets, #id, onDelete: KeyAction.cascade)(); 
+  
+  // Partner Details (e.g., if pet is male, this is the Dam. If female, this is the Sire)
+  TextColumn get partnerName => text().nullable()();
+  TextColumn get partnerPetId => text().nullable().references(Pets, #id, onDelete: KeyAction.setNull)(); 
+  
+  // Heat Cycle (Only relevant if pet is female)
+  DateTimeColumn get heatStartDate => dateTime().nullable()();
+  DateTimeColumn get heatEndDate => dateTime().nullable()();
+  
+  // Mating Event (Relevant for both)
+  DateTimeColumn get matingDate => dateTime().nullable()();
+  TextColumn get matingNotes => text().nullable()();
+  
+  // Pregnancy (Relevant if tracking a female, or if the stud owner wants to track the partner's progress)
+  TextColumn get pregnancyStatus => text().withDefault(const Constant('Unknown'))(); // Unknown, Confirmed, Failed
+  DateTimeColumn get expectedDueDate => dateTime().nullable()();
+  
+  // Whelping (Birth)
+  DateTimeColumn get whelpingDate => dateTime().nullable()();
+  IntColumn get totalBorn => integer().nullable()();
+  IntColumn get males => integer().nullable()();
+  IntColumn get females => integer().nullable()();
+  
+  TextColumn get notes => text().nullable()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
+class LitterTracking extends Table with TimestampColumns {
+  TextColumn get id => text()();
+  TextColumn get breedingRecordId => text().references(BreedingRecords, #id, onDelete: KeyAction.cascade)(); 
+  
+  TextColumn get identifier => text()(); // e.g., "Red Collar", "Puppy 1"
+  TextColumn get sex => text().nullable()();
+  RealColumn get birthWeight => real().nullable()();
+  TextColumn get color => text().nullable()();
+  
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
 class GrowthEntries extends Table with TimestampColumns {
   TextColumn get id => text()();
   TextColumn get petId =>

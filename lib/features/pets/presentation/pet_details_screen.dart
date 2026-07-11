@@ -348,8 +348,15 @@ class PetDetailsScreen extends ConsumerWidget {
                             title: 'Deworming',
                             subtitle: 'Parasite control',
                             icon: Icons.bug_report,
-                            color: const Color(0xFFa855f7), // Purple variant
+                            color: const Color(0xFFa855f7), // Purple-pink
                             onTap: () => context.push('/pets/$petId/dewormings'),
+                          ),
+                          _BentoCard(
+                            title: 'Breeding',
+                            subtitle: value.gender?.toLowerCase() == 'male' ? 'Stud Book & Litters' : 'Cycles & Whelping',
+                            icon: Icons.favorite_rounded,
+                            color: const Color(0xFFef4444), // Red
+                            onTap: () => context.push('/pets/$petId/breeding'),
                           ),
                         ],
                       ),

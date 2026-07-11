@@ -6,7 +6,7 @@ void main() {
   testWidgets('Petly theme renders Material 3 content', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
-        theme: AppTheme.light,
+        theme: AppTheme.theme,
         home: const Scaffold(body: Text('Petly')),
       ),
     );
