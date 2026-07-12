@@ -32,6 +32,7 @@ With a stunning **glassmorphic** and **bento-grid UI** inspired by modern design
 - **🩺 Emergency & Vet Contacts:** Maintain a dedicated dashboard of Veterinarians, Clinics, and Personal Emergency Contacts. Quickly launch Google Maps directions or dial numbers straight from the app with support for multiple phone numbers per contact.
 - **📈 Growth Tracking:** Monitor your pet's weight over time to ensure they are growing healthy and strong. The pet's main profile automatically syncs to display the latest weight reading.
 - **🥩 Food & Grooming Logs:** Record and manage daily feeding routines, preferred food brands, and grooming sessions. Log events with notes to keep a comprehensive care history.
+- **🧬 Breeding Records:** Comprehensive breeding management. Dynamically tracks Heat Cycles, Mating dates, and Pregnancies (with auto-calculated expected due dates) for females, and maintains a detailed Stud Book for males. Seamlessly manage litter size and track newborns.
 - **💰 Expense Management:** Track vet bills, food costs, and toys to stay on top of your pet-care budget.
 - **💾 Secure Backup System:** Easily export your entire local database and images to a secure zip file to share or save to the cloud.
 - **🎨 Glassmorphic UI:** A meticulously crafted, premium user interface featuring soft floating navigation bars, gorgeous gradients, and dynamic theming (Dark & Light mode support).
