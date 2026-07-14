@@ -9,6 +9,11 @@
     <a href="https://riverpod.dev/"><img src="https://img.shields.io/badge/Riverpod-State_Management-blue?style=for-the-badge" alt="Riverpod" /></a>
     <a href="https://drift.simonbinder.eu/"><img src="https://img.shields.io/badge/Drift-SQLite-green?style=for-the-badge" alt="Drift" /></a>
   </p>
+  <p>
+    <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS-lightgrey?style=flat-square" alt="Platforms" />
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License" />
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" />
+  </p>
 </div>
 
 ---
@@ -21,18 +26,37 @@ With a stunning **glassmorphic** and **bento-grid UI** inspired by modern design
 
 <br/>
 
+## 📱 App Preview
+
+*(Add your app screenshots here by placing images in the `assets/images/screenshots/` folder)*
+
+<table align="center">
+  <tr>
+    <td align="center"><img src="https://via.placeholder.com/250x500.png?text=Dashboard" width="250" alt="Dashboard" /><br/><b>Smart Dashboard</b></td>
+    <td align="center"><img src="https://via.placeholder.com/250x500.png?text=Pet+Profile" width="250" alt="Pet Profile" /><br/><b>Bento Grid Profiles</b></td>
+    <td align="center"><img src="https://via.placeholder.com/250x500.png?text=Calendar" width="250" alt="Calendar" /><br/><b>Interactive Calendar</b></td>
+  </tr>
+</table>
+
+<br/>
+
 ## ✨ Key Features
 
-- **🐕 Comprehensive Pet Profiles:** Manage multiple pets with stunning dedicated profile screens featuring dynamic, color-coded bento grids. Now supports **custom profile pictures**, coat colors, sizes, and a **dynamically synced live weight**.
-- **📆 Interactive Calendar Dashboard:** A fully interactive Google Calendar-style screen featuring a swipeable month grid and a unified timeline. It intelligently aggregates all your **Appointments**, **Vaccinations**, **Dewormings**, and smart **Medication Schedules** for any given day.
-- **📸 Memories Gallery:** A Pinterest-style photo grid to save and look back on precious moments with your pets.
+### 🏥 Health & Medical
 - **💊 Medicines & Reminders:** Log active and past prescriptions with Daily, Weekly, and Monthly recurrence tracking. Keep track of dosages and automatically see them on your calendar.
 - **💉 Vaccinations & Dewormings:** Keep an active log of your pet's health history and view upcoming due dates dynamically inserted into your schedule.
 - **📄 Medical History & Documents:** Log vet visits, surgeries, and conditions. Attach photos of prescriptions, vet bills, lab reports, and X-rays directly to the record for quick access.
-- **🩺 Emergency & Vet Contacts:** Maintain a dedicated dashboard of Veterinarians, Clinics, and Personal Emergency Contacts. Quickly launch Google Maps directions or dial numbers straight from the app with support for multiple phone numbers per contact.
-- **📈 Growth Tracking:** Monitor your pet's weight over time to ensure they are growing healthy and strong. The pet's main profile automatically syncs to display the latest weight reading.
-- **🥩 Food & Grooming Logs:** Record and manage daily feeding routines, preferred food brands, and grooming sessions. Log events with notes to keep a comprehensive care history.
 - **🧬 Breeding Records:** Comprehensive breeding management. Dynamically tracks Heat Cycles, Mating dates, and Pregnancies (with auto-calculated expected due dates) for females, and maintains a detailed Stud Book for males. Seamlessly manage litter size and track newborns.
+- **🩺 Emergency & Vet Contacts:** Maintain a dedicated dashboard of Veterinarians, Clinics, and Personal Emergency Contacts. Quickly launch Google Maps directions or dial numbers straight from the app with support for multiple phone numbers per contact.
+
+### 📅 Organization & Planning
+- **🐕 Comprehensive Pet Profiles:** Manage multiple pets with stunning dedicated profile screens featuring dynamic, color-coded bento grids. Now supports custom profile pictures, coat colors, sizes, and a dynamically synced live weight.
+- **📆 Interactive Calendar Dashboard:** A fully interactive Google Calendar-style screen featuring a swipeable month grid and a unified timeline. It intelligently aggregates all your Appointments, Vaccinations, Dewormings, and smart Medication Schedules for any given day.
+- **🥩 Food & Grooming Logs:** Record and manage daily feeding routines, preferred food brands, and grooming sessions. Log events with notes to keep a comprehensive care history.
+- **📈 Growth Tracking:** Monitor your pet's weight over time to ensure they are growing healthy and strong. The pet's main profile automatically syncs to display the latest weight reading.
+
+### ⚙️ System & Design
+- **📸 Memories Gallery:** A Pinterest-style photo grid to save and look back on precious moments with your pets.
 - **💰 Expense Management:** Track vet bills, food costs, and toys to stay on top of your pet-care budget.
 - **💾 Secure Backup System:** Easily export your entire local database and images to a secure zip file to share or save to the cloud.
 - **🎨 Glassmorphic UI:** A meticulously crafted, premium user interface featuring soft floating navigation bars, gorgeous gradients, and dynamic theming (Dark & Light mode support).
