@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:petly/core/database/app_database.dart';
+import 'package:petly/core/utils/dialog_utils.dart';
 import 'package:petly/features/food/data/food_repository.dart';
 import 'package:petly/features/food/presentation/food_inventory_form_screen.dart';
 import 'package:petly/features/food/presentation/meal_log_form_screen.dart';
@@ -199,7 +200,10 @@ class FoodScreen extends ConsumerWidget {
                                   builder: (context) => MealLogFormScreen(petId: petId, logToEdit: meal),
                                 ));
                               } else if (value == 'delete') {
-                                await ref.read(foodRepositoryProvider).deleteMealLog(meal.id);
+                                final confirm = await showDeleteConfirmationDialog(context, itemType: 'meal log');
+                                if (confirm) {
+                                  await ref.read(foodRepositoryProvider).deleteMealLog(meal.id);
+                                }
                               }
                             },
                             itemBuilder: (context) => [

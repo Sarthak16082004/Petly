@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:petly/core/database/app_database.dart';
 import 'package:petly/core/providers/core_providers.dart';
+import 'package:petly/core/utils/dialog_utils.dart';
 import 'package:petly/features/emergency/data/vet_contact_repository.dart';
 import 'package:petly/features/emergency/presentation/vet_contact_form_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -175,7 +176,10 @@ class EmergencyDashboardScreen extends ConsumerWidget {
                                           builder: (context) => VetContactFormScreen(petId: petId, contactToEdit: contact),
                                         ));
                                       } else if (value == 'delete') {
-                                        await ref.read(vetContactRepositoryProvider).deleteContact(contact.id);
+                                        final confirm = await showDeleteConfirmationDialog(context, itemType: 'contact');
+                                        if (confirm) {
+                                          await ref.read(vetContactRepositoryProvider).deleteContact(contact.id);
+                                        }
                                       }
                                     },
                                     itemBuilder: (context) => [

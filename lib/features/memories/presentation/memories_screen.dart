@@ -8,6 +8,7 @@ import 'package:video_player/video_player.dart';
 import 'package:petly/core/extensions/extensions.dart';
 import 'package:petly/core/providers/core_providers.dart';
 import 'package:petly/core/services/media_storage_service.dart';
+import 'package:petly/core/utils/dialog_utils.dart';
 import 'package:petly/features/memories/domain/memory.dart';
 import 'package:petly/features/memories/presentation/memories_providers.dart';
 
@@ -237,21 +238,7 @@ class _MemoryCard extends ConsumerWidget {
                   IconButton(
                     icon: const Icon(Icons.delete, color: Colors.redAccent),
                     onPressed: () async {
-                      final confirm = await showDialog<bool>(
-                        context: context,
-                        builder: (c) => AlertDialog(
-                          title: const Text('Delete Memory?'),
-                          content: const Text('Are you sure you want to delete this memory?'),
-                          actions: [
-                            TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('Cancel')),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                              onPressed: () => Navigator.pop(c, true),
-                              child: const Text('Delete', style: TextStyle(color: Colors.white)),
-                            ),
-                          ],
-                        ),
-                      );
+                      final confirm = await showDeleteConfirmationDialog(context, itemType: 'memory');
                       if (confirm == true) {
                         await ref.read(memoriesRepositoryProvider).deleteMemory(memory.id);
                         if (context.mounted) Navigator.pop(ctx);

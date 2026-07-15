@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:petly/core/database/app_database.dart';
+import 'package:petly/core/utils/dialog_utils.dart';
 import 'package:petly/features/grooming/data/grooming_repository.dart';
 import 'package:petly/features/grooming/presentation/grooming_form_screen.dart';
 
@@ -113,7 +114,10 @@ class GroomingScreen extends ConsumerWidget {
                                 builder: (context) => GroomingFormScreen(petId: petId, logToEdit: log),
                               ));
                             } else if (value == 'delete') {
-                              await ref.read(groomingRepositoryProvider).deleteGroomingLog(log.id);
+                              final confirm = await showDeleteConfirmationDialog(context, itemType: 'grooming log');
+                              if (confirm) {
+                                await ref.read(groomingRepositoryProvider).deleteGroomingLog(log.id);
+                              }
                             }
                           },
                           itemBuilder: (context) => [

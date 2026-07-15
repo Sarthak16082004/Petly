@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:petly/app/theme/app_theme.dart';
 import 'package:petly/core/extensions/extensions.dart';
+import 'package:petly/core/utils/dialog_utils.dart';
 import 'package:petly/core/widgets/shared_widgets.dart';
 import 'package:petly/features/expenses/domain/expense.dart';
 import 'package:petly/features/expenses/presentation/expense_providers.dart';
@@ -231,21 +232,7 @@ class _State extends ConsumerState<ExpenseFormScreen> {
   }
 
   Future<void> _delete(BuildContext ctx) async {
-    final ok = await showDialog<bool>(
-      context: ctx,
-      builder: (d) => AlertDialog(
-        title: const Text('Delete expense?'),
-        content: const Text('This expense will be permanently deleted.'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(d, false), child: const Text('Cancel')),
-          FilledButton(
-            onPressed: () => Navigator.pop(d, true),
-            style: FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.error),
-            child: const Text('Delete'),
-          ),
-        ],
-      ),
-    );
+    final ok = await showDeleteConfirmationDialog(ctx, itemType: 'expense');
     if (ok != true || !mounted) return;
     await ref.read(expenseRepositoryProvider).delete(widget.expenseId!);
     if (mounted) context.pop();

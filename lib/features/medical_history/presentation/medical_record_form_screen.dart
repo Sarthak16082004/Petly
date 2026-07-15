@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:petly/app/theme/app_theme.dart';
+import 'package:petly/core/utils/dialog_utils.dart';
 import 'package:petly/core/extensions/extensions.dart';
 import 'package:petly/core/widgets/shared_widgets.dart';
 import 'package:petly/features/medical_history/domain/medical_record.dart';
@@ -295,8 +296,11 @@ class _State extends ConsumerState<MedicalRecordFormScreen> {
                   trailing: IconButton(
                     icon: const Icon(Icons.delete_outline_rounded, color: Colors.red),
                     onPressed: () async {
-                      await ref.read(medicalRecordRepositoryProvider).deleteAttachment(a.id);
-                      ref.invalidate(medicalRecordAttachmentsProvider(widget.recordId!));
+                      final confirm = await showDeleteConfirmationDialog(context, itemType: 'attachment');
+                      if (confirm) {
+                        await ref.read(medicalRecordRepositoryProvider).deleteAttachment(a.id);
+                        ref.invalidate(medicalRecordAttachmentsProvider(widget.recordId!));
+                      }
                     },
                   ),
                 )).toList(),
@@ -361,21 +365,7 @@ class _State extends ConsumerState<MedicalRecordFormScreen> {
   }
 
   Future<void> _delete(BuildContext ctx) async {
-    final ok = await showDialog<bool>(
-      context: ctx,
-      builder: (d) => AlertDialog(
-        title: const Text('Delete record?'),
-        content: const Text('This medical record will be permanently deleted.'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(d, false), child: const Text('Cancel')),
-          FilledButton(
-            onPressed: () => Navigator.pop(d, true),
-            style: FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.error),
-            child: const Text('Delete'),
-          ),
-        ],
-      ),
-    );
+    final ok = await showDeleteConfirmationDialog(ctx, itemType: 'medical record');
     if (ok != true || !mounted) return;
     await ref.read(medicalRecordRepositoryProvider).delete(widget.recordId!);
     if (mounted) context.pop();

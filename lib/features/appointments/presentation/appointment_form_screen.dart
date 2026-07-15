@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:petly/app/theme/app_theme.dart';
 import 'package:petly/core/extensions/extensions.dart';
+import 'package:petly/core/utils/dialog_utils.dart';
 import 'package:petly/core/widgets/shared_widgets.dart';
 import 'package:petly/features/appointments/domain/appointment.dart';
 import 'package:petly/features/appointments/presentation/appointment_providers.dart';
@@ -249,21 +249,7 @@ class _State extends ConsumerState<AppointmentFormScreen> {
   }
 
   Future<void> _delete(BuildContext ctx) async {
-    final ok = await showDialog<bool>(
-      context: ctx,
-      builder: (d) => AlertDialog(
-        title: const Text('Delete appointment?'),
-        content: const Text('This appointment will be permanently deleted.'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(d, false), child: const Text('Cancel')),
-          FilledButton(
-            onPressed: () => Navigator.pop(d, true),
-            style: FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.error),
-            child: const Text('Delete'),
-          ),
-        ],
-      ),
-    );
+    final ok = await showDeleteConfirmationDialog(ctx, itemType: 'appointment');
     if (ok != true || !mounted) return;
     await ref.read(appointmentRepositoryProvider).delete(widget.appointmentId!);
     if (mounted) context.pop();
