@@ -6,7 +6,11 @@ import 'package:petly/core/extensions/extensions.dart';
 import 'package:petly/features/appointments/domain/appointment.dart';
 import 'package:petly/features/dashboard/presentation/upcoming_events_provider.dart';
 import 'package:petly/features/expenses/presentation/expense_providers.dart';
+import 'package:petly/features/expenses/presentation/expense_form_screen.dart';
+import 'package:petly/features/growth/presentation/growth_form_screen.dart';
+import 'package:petly/features/medical_history/presentation/medical_record_form_screen.dart';
 import 'package:petly/features/owner_profile/presentation/owner_providers.dart';
+import 'package:petly/features/pets/domain/pet.dart';
 import 'package:petly/features/pets/presentation/pet_providers.dart';
 import 'package:petly/app/theme/theme_provider.dart';
 
@@ -82,7 +86,7 @@ class DashboardScreen extends ConsumerWidget {
                 const SizedBox(height: 32),
 
                 // Quick Actions
-                const _QuickActionsSection(),
+                _QuickActionsSection(pets: pets.value),
                 const SizedBox(height: 32),
 
                 // Upcoming Section
@@ -316,7 +320,43 @@ class _AddPetAvatar extends StatelessWidget {
 }
 
 class _QuickActionsSection extends StatelessWidget {
-  const _QuickActionsSection();
+  const _QuickActionsSection({required this.pets});
+  final List<Pet>? pets;
+
+  void _selectPetForAction(BuildContext context, void Function(String petId) onSelected) {
+    if (pets == null || pets!.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please add a pet first!')));
+      return;
+    }
+    if (pets!.length == 1) {
+      onSelected(pets!.first.id);
+      return;
+    }
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text('Select Pet', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+              ...pets!.map((p) => ListTile(
+                    leading: const Icon(Icons.pets),
+                    title: Text(p.name),
+                    onTap: () {
+                      Navigator.pop(ctx);
+                      onSelected(p.id);
+                    },
+                  )),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -333,6 +373,9 @@ class _QuickActionsSection extends StatelessWidget {
                 icon: Icons.description_outlined,
                 label: 'Add\nRecord',
                 color: theme.colorScheme.primaryContainer,
+                onTap: () => _selectPetForAction(context, (petId) {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => MedicalRecordFormScreen(petId: petId)));
+                }),
               ),
             ),
             const SizedBox(width: 16),
@@ -341,6 +384,9 @@ class _QuickActionsSection extends StatelessWidget {
                 icon: Icons.scale_outlined,
                 label: 'Log\nWeight',
                 color: theme.colorScheme.secondary,
+                onTap: () => _selectPetForAction(context, (petId) {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => GrowthFormScreen(petId: petId)));
+                }),
               ),
             ),
             const SizedBox(width: 16),
@@ -349,6 +395,9 @@ class _QuickActionsSection extends StatelessWidget {
                 icon: Icons.payments_outlined,
                 label: 'Add\nExpense',
                 color: theme.colorScheme.tertiary,
+                onTap: () => _selectPetForAction(context, (petId) {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => ExpenseFormScreen(petId: petId)));
+                }),
               ),
             ),
           ],
@@ -359,40 +408,48 @@ class _QuickActionsSection extends StatelessWidget {
 }
 
 class _QuickActionTile extends StatelessWidget {
-  const _QuickActionTile({required this.icon, required this.label, required this.color});
+  const _QuickActionTile({required this.icon, required this.label, required this.color, required this.onTap});
   final IconData icon;
   final String label;
   final Color color;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainer,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: theme.colorScheme.outlineVariant.withOpacity(0.3)),
-      ),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Icon(icon, color: color),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surfaceContainer,
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: theme.colorScheme.outlineVariant.withOpacity(0.3)),
           ),
-          const SizedBox(height: 12),
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            style: theme.textTheme.labelMedium?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Icon(icon, color: color),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                label,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
